@@ -45,6 +45,9 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Mobile responsiveness — scrollable tab bar, responsive header text/padding, hidden scrollbar on mobile
 - [x] PDF export — "Export PDF" button in header, renders full bracket (4 regions in 2×2 grid + Final Four) to landscape PDF via `jspdf` + `html2canvas`
 
+## Frontend Improvements (v4.1 — Signal Bar Contrast) — all complete
+- [x] Signal breakdown bars — dominant side color-coded by edge strength (emerald ≥75%, blue ≥60%, yellow ≥52%); weaker side darkened to `slate-800` for sharp contrast; 1px gap divider between halves
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
