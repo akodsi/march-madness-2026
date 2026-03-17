@@ -10,7 +10,7 @@
     "pct_a": 50,
     "pct_b": 50,
     "confidence": "Toss-Up",
-    "user_pick": null,
+    "user_pick": "UMBC",
     "winner_slot": "MW_R1_1",
     "winner_slot_position": "a",
     "signals": {
@@ -18,20 +18,6 @@
       "sos": 0.4996,
       "seed": 0.5,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": -4.4,
-      "srs_b": -4.6,
-      "sos_a": -11.9,
-      "sos_b": -11.8,
-      "seed_a": 16,
-      "seed_b": 16,
-      "wins_a": 24,
-      "wins_b": 23,
-      "losses_a": 8,
-      "losses_b": 10,
-      "distance_a": 0,
-      "distance_b": 303
     }
   },
   "FF_2": {
@@ -45,7 +31,7 @@
     "pct_a": 24,
     "pct_b": 76,
     "confidence": "Clear Favorite",
-    "user_pick": null,
+    "user_pick": "Miami (OH)",
     "winner_slot": "MW_R1_5",
     "winner_slot_position": "b",
     "signals": {
@@ -53,20 +39,6 @@
       "sos": 0.0518,
       "seed": 0.5,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 5.4,
-      "srs_b": 17.3,
-      "sos_a": -5.5,
-      "sos_b": 10.7,
-      "seed_a": 11,
-      "seed_b": 11,
-      "wins_a": 31,
-      "wins_b": 20,
-      "losses_a": 1,
-      "losses_b": 13,
-      "distance_a": 97,
-      "distance_b": 0
     }
   },
   "FF_3": {
@@ -80,7 +52,7 @@
     "pct_a": 45,
     "pct_b": 55,
     "confidence": "Slight Edge",
-    "user_pick": null,
+    "user_pick": "NC State",
     "winner_slot": "W_R1_5",
     "winner_slot_position": "a",
     "signals": {
@@ -88,20 +60,6 @@
       "sos": 0.4762,
       "seed": 0.5,
       "travel": 0.3451
-    },
-    "raw_stats": {
-      "srs_a": 16.2,
-      "srs_b": 18.0,
-      "sos_a": 10.3,
-      "sos_b": 10.8,
-      "seed_a": 11,
-      "seed_b": 11,
-      "wins_a": 18,
-      "wins_b": 20,
-      "losses_a": 14,
-      "losses_b": 13,
-      "distance_a": 512,
-      "distance_b": 127
     }
   },
   "FF_4": {
@@ -115,7 +73,7 @@
     "pct_a": 42,
     "pct_b": 58,
     "confidence": "Slight Edge",
-    "user_pick": null,
+    "user_pick": "Lehigh",
     "winner_slot": "S_R1_1",
     "winner_slot_position": "b",
     "signals": {
@@ -123,20 +81,6 @@
       "sos": 0.3728,
       "seed": 0.5,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": -12.7,
-      "srs_b": -9.3,
-      "sos_a": -9.9,
-      "sos_b": -7.0,
-      "seed_a": 16,
-      "seed_b": 16,
-      "wins_a": 18,
-      "wins_b": 18,
-      "losses_a": 17,
-      "losses_b": 16,
-      "distance_a": 0,
-      "distance_b": 164
     }
   },
   "E_R1_1": {
@@ -150,7 +94,7 @@
     "pct_a": 99,
     "pct_b": 1,
     "confidence": "Heavy Favorite",
-    "user_pick": null,
+    "user_pick": "Duke",
     "winner_slot": "E_R2_1",
     "winner_slot_position": "a",
     "signals": {
@@ -158,20 +102,6 @@
       "sos": 0.9799,
       "seed": 0.993,
       "travel": 0.9985
-    },
-    "raw_stats": {
-      "srs_a": 31.6,
-      "srs_b": -4.3,
-      "sos_a": 12.4,
-      "sos_b": -9.2,
-      "seed_a": 1,
-      "seed_b": 16,
-      "wins_a": 32,
-      "wins_b": 23,
-      "losses_a": 2,
-      "losses_b": 11,
-      "distance_a": 119,
-      "distance_b": 4025
     }
   },
   "E_R1_2": {
@@ -185,7 +115,7 @@
     "pct_a": 58,
     "pct_b": 42,
     "confidence": "Slight Edge",
-    "user_pick": null,
+    "user_pick": "Ohio State",
     "winner_slot": "E_R2_1",
     "winner_slot_position": "b",
     "signals": {
@@ -193,20 +123,6 @@
       "sos": 0.6128,
       "seed": 0.519,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 19.1,
-      "srs_b": 15.8,
-      "sos_a": 12.1,
-      "sos_b": 9.5,
-      "seed_a": 8,
-      "seed_b": 9,
-      "wins_a": 21,
-      "wins_b": 22,
-      "losses_a": 12,
-      "losses_b": 11,
-      "distance_a": 124,
-      "distance_b": 0
     }
   },
   "E_R1_3": {
@@ -220,7 +136,7 @@
     "pct_a": 78,
     "pct_b": 22,
     "confidence": "Clear Favorite",
-    "user_pick": null,
+    "user_pick": "St. John's (NY)",
     "winner_slot": "E_R2_2",
     "winner_slot_position": "a",
     "signals": {
@@ -228,20 +144,6 @@
       "sos": 0.8431,
       "seed": 0.647,
       "travel": 0.6011
-    },
-    "raw_stats": {
-      "srs_a": 22.4,
-      "srs_b": 8.5,
-      "sos_a": 10.8,
-      "sos_b": 1.5,
-      "seed_a": 5,
-      "seed_b": 12,
-      "wins_a": 28,
-      "wins_b": 23,
-      "losses_a": 6,
-      "losses_b": 12,
-      "distance_a": 133,
-      "distance_b": 379
     }
   },
   "E_R1_4": {
@@ -255,7 +157,7 @@
     "pct_a": 89,
     "pct_b": 11,
     "confidence": "Heavy Favorite",
-    "user_pick": null,
+    "user_pick": "Kansas",
     "winner_slot": "E_R2_2",
     "winner_slot_position": "b",
     "signals": {
@@ -263,20 +165,6 @@
       "sos": 0.9609,
       "seed": 0.793,
       "travel": 0.7933
-    },
-    "raw_stats": {
-      "srs_a": 21.1,
-      "srs_b": 2.5,
-      "sos_a": 14.9,
-      "sos_b": -2.9,
-      "seed_a": 4,
-      "seed_b": 13,
-      "wins_a": 23,
-      "wins_b": 25,
-      "losses_a": 10,
-      "losses_b": 8,
-      "distance_a": 142,
-      "distance_b": 949
     }
   },
   "E_R1_5": {
@@ -290,7 +178,7 @@
     "pct_a": 75,
     "pct_b": 25,
     "confidence": "Clear Favorite",
-    "user_pick": null,
+    "user_pick": "Louisville",
     "winner_slot": "E_R2_3",
     "winner_slot_position": "a",
     "signals": {
@@ -298,20 +186,6 @@
       "sos": 0.8148,
       "seed": 0.63,
       "travel": 0.6732
-    },
-    "raw_stats": {
-      "srs_a": 23.4,
-      "srs_b": 13.3,
-      "sos_a": 10.8,
-      "sos_b": 2.6,
-      "seed_a": 6,
-      "seed_b": 11,
-      "wins_a": 23,
-      "wins_b": 25,
-      "losses_a": 10,
-      "losses_b": 8,
-      "distance_a": 69,
-      "distance_b": 503
     }
   },
   "E_R1_6": {
@@ -325,7 +199,7 @@
     "pct_a": 89,
     "pct_b": 11,
     "confidence": "Heavy Favorite",
-    "user_pick": null,
+    "user_pick": "Michigan State",
     "winner_slot": "E_R2_3",
     "winner_slot_position": "b",
     "signals": {
@@ -333,20 +207,6 @@
       "sos": 0.9666,
       "seed": 0.85,
       "travel": 0.6869
-    },
-    "raw_stats": {
-      "srs_a": 23.4,
-      "srs_b": 2.5,
-      "sos_a": 12.9,
-      "sos_b": -5.8,
-      "seed_a": 3,
-      "seed_b": 14,
-      "wins_a": 25,
-      "wins_b": 27,
-      "losses_a": 7,
-      "losses_b": 7,
-      "distance_a": 165,
-      "distance_b": 636
     }
   },
   "E_R1_7": {
@@ -360,7 +220,7 @@
     "pct_a": 55,
     "pct_b": 45,
     "confidence": "Slight Edge",
-    "user_pick": null,
+    "user_pick": "UCF",
     "winner_slot": "E_R2_4",
     "winner_slot_position": "a",
     "signals": {
@@ -368,20 +228,6 @@
       "sos": 0.5337,
       "seed": 0.601,
       "travel": 0.3092
-    },
-    "raw_stats": {
-      "srs_a": 18.3,
-      "srs_b": 13.3,
-      "sos_a": 11.6,
-      "sos_b": 10.8,
-      "seed_a": 7,
-      "seed_b": 10,
-      "wins_a": 23,
-      "wins_b": 21,
-      "losses_a": 11,
-      "losses_b": 11,
-      "distance_a": 940,
-      "distance_b": 458
     }
   },
   "E_R1_8": {
@@ -395,7 +241,7 @@
     "pct_a": 89,
     "pct_b": 11,
     "confidence": "Heavy Favorite",
-    "user_pick": null,
+    "user_pick": "Connecticut",
     "winner_slot": "E_R2_4",
     "winner_slot_position": "b",
     "signals": {
@@ -403,140 +249,154 @@
       "sos": 0.9526,
       "seed": 0.94,
       "travel": 0.5207
-    },
-    "raw_stats": {
-      "srs_a": 22.9,
-      "srs_b": -3.2,
-      "sos_a": 10.5,
-      "sos_b": -6.1,
-      "seed_a": 2,
-      "seed_b": 15,
-      "wins_a": 29,
-      "wins_b": 22,
-      "losses_a": 5,
-      "losses_b": 12,
-      "distance_a": 43,
-      "distance_b": 92
     }
   },
   "E_R2_1": {
     "id": "E_R2_1",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "Duke",
+    "team_b": "Ohio State",
+    "prob_a": 0.683,
+    "prob_b": 0.317,
+    "pct_a": 68,
+    "pct_b": 32,
+    "confidence": "Clear Favorite",
+    "user_pick": "Duke",
     "winner_slot": "E_R3_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.8174,
+      "sos": 0.5157,
+      "seed": 0.84,
+      "travel": 0.5023
+    }
   },
   "E_R2_2": {
     "id": "E_R2_2",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "St. John's (NY)",
+    "team_b": "Kansas",
+    "prob_a": 0.4537,
+    "prob_b": 0.5463,
+    "pct_a": 45,
+    "pct_b": 55,
+    "confidence": "Toss-Up",
+    "user_pick": "St. John's (NY)",
     "winner_slot": "E_R3_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.5395,
+      "sos": 0.3262,
+      "seed": 0.43,
+      "travel": 0.5038
+    }
   },
   "E_R2_3": {
     "id": "E_R2_3",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "Louisville",
+    "team_b": "Michigan State",
+    "prob_a": 0.4449,
+    "prob_b": 0.5551,
+    "pct_a": 44,
+    "pct_b": 56,
+    "confidence": "Slight Edge",
+    "user_pick": "Louisville",
     "winner_slot": "E_R3_2",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.4991,
+      "sos": 0.4075,
+      "seed": 0.28,
+      "travel": 0.54
+    }
   },
   "E_R2_4": {
     "id": "E_R2_4",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "UCF",
+    "team_b": "Connecticut",
+    "prob_a": 0.3401,
+    "prob_b": 0.6599,
+    "pct_a": 34,
+    "pct_b": 66,
+    "confidence": "Clear Favorite",
+    "user_pick": "Connecticut",
     "winner_slot": "E_R3_2",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.2397,
+      "sos": 0.5121,
+      "seed": 0.27,
+      "travel": 0.3336
+    }
   },
   "E_R3_1": {
     "id": "E_R3_1",
     "round_name": "Sweet 16",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "Duke",
+    "team_b": "St. John's (NY)",
+    "prob_a": 0.6653,
+    "prob_b": 0.3347,
+    "pct_a": 67,
+    "pct_b": 33,
+    "confidence": "Clear Favorite",
+    "user_pick": "St. John's (NY)",
     "winner_slot": "E_R4_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.7494,
+      "sos": 0.5706,
+      "seed": 0.79,
+      "travel": 0.5058
+    }
   },
   "E_R3_2": {
     "id": "E_R3_2",
     "round_name": "Sweet 16",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "Louisville",
+    "team_b": "Connecticut",
+    "prob_a": 0.5083,
+    "prob_b": 0.4917,
+    "pct_a": 51,
+    "pct_b": 49,
+    "confidence": "Toss-Up",
+    "user_pick": "Connecticut",
     "winner_slot": "E_R4_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.5147,
+      "sos": 0.5135,
+      "seed": 0.5,
+      "travel": 0.489
+    }
   },
   "E_R4_1": {
     "id": "E_R4_1",
     "round_name": "Elite 8",
     "region": "East",
-    "team_a": null,
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
-    "user_pick": null,
+    "team_a": "St. John's (NY)",
+    "team_b": "Connecticut",
+    "prob_a": 0.4924,
+    "prob_b": 0.5076,
+    "pct_a": 49,
+    "pct_b": 51,
+    "confidence": "Toss-Up",
+    "user_pick": "Connecticut",
     "winner_slot": "SF_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.485,
+      "sos": 0.5135,
+      "seed": 0.5,
+      "travel": 0.4625
+    }
   },
   "W_R1_1": {
     "id": "W_R1_1",
@@ -557,20 +417,6 @@
       "sos": 0.9756,
       "seed": 0.993,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 29.9,
-      "srs_b": -5.0,
-      "sos_a": 12.6,
-      "sos_b": -7.9,
-      "seed_a": 1,
-      "seed_b": 16,
-      "wins_a": 32,
-      "wins_b": 24,
-      "losses_a": 2,
-      "losses_b": 10,
-      "distance_a": 857,
-      "distance_b": 0
     }
   },
   "W_R1_2": {
@@ -592,20 +438,6 @@
       "sos": 0.6492,
       "seed": 0.519,
       "travel": 0.6201
-    },
-    "raw_stats": {
-      "srs_a": 16.3,
-      "srs_b": 17.4,
-      "sos_a": 9.9,
-      "sos_b": 6.5,
-      "seed_a": 8,
-      "seed_b": 9,
-      "wins_a": 24,
-      "wins_b": 28,
-      "losses_a": 8,
-      "losses_b": 6,
-      "distance_a": 198,
-      "distance_b": 492
     }
   },
   "W_R1_3": {
@@ -627,20 +459,6 @@
       "sos": 0.9749,
       "seed": 0.647,
       "travel": 0.4114
-    },
-    "raw_stats": {
-      "srs_a": 19.5,
-      "srs_b": 6.8,
-      "sos_a": 12.4,
-      "sos_b": -7.9,
-      "seed_a": 5,
-      "seed_b": 12,
-      "wins_a": 24,
-      "wins_b": 30,
-      "losses_a": 10,
-      "losses_b": 4,
-      "distance_a": 285,
-      "distance_b": 70
     }
   },
   "W_R1_4": {
@@ -662,38 +480,28 @@
       "sos": 0.9483,
       "seed": 0.793,
       "travel": 0.9886
-    },
-    "raw_stats": {
-      "srs_a": 22.4,
-      "srs_b": 4.8,
-      "sos_a": 12.6,
-      "sos_b": -3.6,
-      "seed_a": 4,
-      "seed_b": 13,
-      "wins_a": 26,
-      "wins_b": 24,
-      "losses_a": 8,
-      "losses_b": 8,
-      "distance_a": 206,
-      "distance_b": 2882
     }
   },
   "W_R1_5": {
     "id": "W_R1_5",
     "round_name": "Round of 64",
     "region": "West",
-    "team_a": null,
+    "team_a": "NC State",
     "team_b": "BYU",
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
+    "prob_a": 0.4229,
+    "prob_b": 0.5771,
+    "pct_a": 42,
+    "pct_b": 58,
+    "confidence": "Slight Edge",
     "user_pick": null,
     "winner_slot": "W_R2_3",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.4104,
+      "sos": 0.4276,
+      "seed": 0.37,
+      "travel": 0.5
+    }
   },
   "W_R1_6": {
     "id": "W_R1_6",
@@ -714,20 +522,6 @@
       "sos": 0.8079,
       "seed": 0.85,
       "travel": 0.5935
-    },
-    "raw_stats": {
-      "srs_a": 25.1,
-      "srs_b": 0.1,
-      "sos_a": 6.0,
-      "sos_b": -2.0,
-      "seed_a": 3,
-      "seed_b": 14,
-      "wins_a": 30,
-      "wins_b": 21,
-      "losses_a": 3,
-      "losses_b": 13,
-      "distance_a": 1,
-      "distance_b": 228
     }
   },
   "W_R1_7": {
@@ -749,20 +543,6 @@
       "sos": 0.3586,
       "seed": 0.601,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 17.9,
-      "srs_b": 13.1,
-      "sos_a": 5.5,
-      "sos_b": 8.8,
-      "seed_a": 7,
-      "seed_b": 10,
-      "wins_a": 27,
-      "wins_b": 20,
-      "losses_a": 5,
-      "losses_b": 12,
-      "distance_a": 0,
-      "distance_b": 284
     }
   },
   "W_R1_8": {
@@ -784,20 +564,6 @@
       "sos": 0.9455,
       "seed": 0.94,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 25.6,
-      "srs_b": -0.5,
-      "sos_a": 14.1,
-      "sos_b": -1.7,
-      "seed_a": 2,
-      "seed_b": 15,
-      "wins_a": 27,
-      "wins_b": 18,
-      "losses_a": 8,
-      "losses_b": 11,
-      "distance_a": 61,
-      "distance_b": 0
     }
   },
   "W_R2_1": {
@@ -814,8 +580,7 @@
     "user_pick": null,
     "winner_slot": "W_R3_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R2_2": {
     "id": "W_R2_2",
@@ -831,8 +596,7 @@
     "user_pick": null,
     "winner_slot": "W_R3_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R2_3": {
     "id": "W_R2_3",
@@ -848,8 +612,7 @@
     "user_pick": null,
     "winner_slot": "W_R3_2",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R2_4": {
     "id": "W_R2_4",
@@ -865,8 +628,7 @@
     "user_pick": null,
     "winner_slot": "W_R3_2",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R3_1": {
     "id": "W_R3_1",
@@ -882,8 +644,7 @@
     "user_pick": null,
     "winner_slot": "W_R4_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R3_2": {
     "id": "W_R3_2",
@@ -899,8 +660,7 @@
     "user_pick": null,
     "winner_slot": "W_R4_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "W_R4_1": {
     "id": "W_R4_1",
@@ -916,25 +676,28 @@
     "user_pick": null,
     "winner_slot": "SF_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R1_1": {
     "id": "MW_R1_1",
     "round_name": "Round of 64",
     "region": "Midwest",
-    "team_a": null,
+    "team_a": "UMBC",
     "team_b": "Michigan",
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
+    "prob_a": 0.0832,
+    "prob_b": 0.9168,
+    "pct_a": 8,
+    "pct_b": 92,
+    "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.0118,
+      "sos": 0.0081,
+      "seed": 0.007,
+      "travel": 0.5
+    }
   },
   "MW_R1_2": {
     "id": "MW_R1_2",
@@ -955,20 +718,6 @@
       "sos": 0.7909,
       "seed": 0.519,
       "travel": 0.526
-    },
-    "raw_stats": {
-      "srs_a": 19.6,
-      "srs_b": 17.3,
-      "sos_a": 8.9,
-      "sos_b": 1.5,
-      "seed_a": 8,
-      "seed_b": 9,
-      "wins_a": 22,
-      "wins_b": 28,
-      "losses_a": 10,
-      "losses_b": 5,
-      "distance_a": 169,
-      "distance_b": 231
     }
   },
   "MW_R1_3": {
@@ -990,20 +739,6 @@
       "sos": 0.9589,
       "seed": 0.647,
       "travel": 0.3577
-    },
-    "raw_stats": {
-      "srs_a": 21.9,
-      "srs_b": 9.0,
-      "sos_a": 14.2,
-      "sos_b": -3.3,
-      "seed_a": 5,
-      "seed_b": 12,
-      "wins_a": 22,
-      "wins_b": 29,
-      "losses_a": 10,
-      "losses_b": 5,
-      "distance_a": 381,
-      "distance_b": 30
     }
   },
   "MW_R1_4": {
@@ -1025,20 +760,6 @@
       "sos": 0.9545,
       "seed": 0.793,
       "travel": 0.4008
-    },
-    "raw_stats": {
-      "srs_a": 22.7,
-      "srs_b": 4.5,
-      "sos_a": 14.4,
-      "sos_b": -2.5,
-      "seed_a": 4,
-      "seed_b": 13,
-      "wins_a": 23,
-      "wins_b": 24,
-      "losses_a": 9,
-      "losses_b": 10,
-      "distance_a": 375,
-      "distance_b": 134
     }
   },
   "MW_R1_5": {
@@ -1046,17 +767,21 @@
     "round_name": "Round of 64",
     "region": "Midwest",
     "team_a": "Tennessee",
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
+    "team_b": "Miami (OH)",
+    "prob_a": 0.8065,
+    "prob_b": 0.1935,
+    "pct_a": 81,
+    "pct_b": 19,
+    "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_3",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.8813,
+      "sos": 0.9588,
+      "seed": 0.63,
+      "travel": 0.4786
+    }
   },
   "MW_R1_6": {
     "id": "MW_R1_6",
@@ -1077,20 +802,6 @@
       "sos": 0.923,
       "seed": 0.85,
       "travel": 0.4493
-    },
-    "raw_stats": {
-      "srs_a": 21.6,
-      "srs_b": 0.1,
-      "sos_a": 9.4,
-      "sos_b": -4.4,
-      "seed_a": 3,
-      "seed_b": 14,
-      "wins_a": 29,
-      "wins_b": 23,
-      "losses_a": 5,
-      "losses_b": 11,
-      "distance_a": 233,
-      "distance_b": 111
     }
   },
   "MW_R1_7": {
@@ -1112,20 +823,6 @@
       "sos": 0.7728,
       "seed": 0.601,
       "travel": 0.7764
-    },
-    "raw_stats": {
-      "srs_a": 19.8,
-      "srs_b": 15.9,
-      "sos_a": 12.9,
-      "sos_b": 6.1,
-      "seed_a": 7,
-      "seed_b": 10,
-      "wins_a": 21,
-      "wins_b": 26,
-      "losses_a": 13,
-      "losses_b": 8,
-      "distance_a": 1,
-      "distance_b": 748
     }
   },
   "MW_R1_8": {
@@ -1147,20 +844,6 @@
       "sos": 0.9693,
       "seed": 0.94,
       "travel": 0.4275
-    },
-    "raw_stats": {
-      "srs_a": 27.1,
-      "srs_b": -4.5,
-      "sos_a": 10.5,
-      "sos_b": -8.7,
-      "seed_a": 2,
-      "seed_b": 15,
-      "wins_a": 27,
-      "wins_b": 23,
-      "losses_a": 7,
-      "losses_b": 9,
-      "distance_a": 357,
-      "distance_b": 182
     }
   },
   "MW_R2_1": {
@@ -1177,8 +860,7 @@
     "user_pick": null,
     "winner_slot": "MW_R3_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R2_2": {
     "id": "MW_R2_2",
@@ -1194,8 +876,7 @@
     "user_pick": null,
     "winner_slot": "MW_R3_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R2_3": {
     "id": "MW_R2_3",
@@ -1211,8 +892,7 @@
     "user_pick": null,
     "winner_slot": "MW_R3_2",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R2_4": {
     "id": "MW_R2_4",
@@ -1228,8 +908,7 @@
     "user_pick": null,
     "winner_slot": "MW_R3_2",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R3_1": {
     "id": "MW_R3_1",
@@ -1245,8 +924,7 @@
     "user_pick": null,
     "winner_slot": "MW_R4_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R3_2": {
     "id": "MW_R3_2",
@@ -1262,8 +940,7 @@
     "user_pick": null,
     "winner_slot": "MW_R4_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "MW_R4_1": {
     "id": "MW_R4_1",
@@ -1279,25 +956,28 @@
     "user_pick": null,
     "winner_slot": "SF_2",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R1_1": {
     "id": "S_R1_1",
     "round_name": "Round of 64",
     "region": "South",
     "team_a": "Florida",
-    "team_b": null,
-    "prob_a": null,
-    "prob_b": null,
-    "pct_a": null,
-    "pct_b": null,
-    "confidence": null,
+    "team_b": "Lehigh",
+    "prob_a": 0.8973,
+    "prob_b": 0.1027,
+    "pct_a": 90,
+    "pct_b": 10,
+    "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "S_R2_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": {
+      "srs": 0.9886,
+      "sos": 0.9741,
+      "seed": 0.993,
+      "travel": 0.4047
+    }
   },
   "S_R1_2": {
     "id": "S_R1_2",
@@ -1318,20 +998,6 @@
       "sos": 0.4915,
       "seed": 0.519,
       "travel": 0.5788
-    },
-    "raw_stats": {
-      "srs_a": 17.0,
-      "srs_b": 19.0,
-      "sos_a": 9.6,
-      "sos_b": 9.8,
-      "seed_a": 8,
-      "seed_b": 9,
-      "wins_a": 24,
-      "wins_b": 21,
-      "losses_a": 10,
-      "losses_b": 12,
-      "distance_a": 119,
-      "distance_b": 310
     }
   },
   "S_R1_3": {
@@ -1353,20 +1019,6 @@
       "sos": 0.9222,
       "seed": 0.647,
       "travel": 0.656
-    },
-    "raw_stats": {
-      "srs_a": 22.8,
-      "srs_b": 7.7,
-      "sos_a": 11.7,
-      "sos_b": -2.1,
-      "seed_a": 5,
-      "seed_b": 12,
-      "wins_a": 26,
-      "wins_b": 28,
-      "losses_a": 8,
-      "losses_b": 5,
-      "distance_a": 182,
-      "distance_b": 570
     }
   },
   "S_R1_4": {
@@ -1388,20 +1040,6 @@
       "sos": 0.9376,
       "seed": 0.793,
       "travel": 0.5653
-    },
-    "raw_stats": {
-      "srs_a": 21.5,
-      "srs_b": -0.8,
-      "sos_a": 10.5,
-      "sos_b": -4.6,
-      "seed_a": 4,
-      "seed_b": 13,
-      "wins_a": 26,
-      "wins_b": 22,
-      "losses_a": 6,
-      "losses_b": 11,
-      "distance_a": 220,
-      "distance_b": 377
     }
   },
   "S_R1_5": {
@@ -1423,20 +1061,6 @@
       "sos": 0.8031,
       "seed": 0.63,
       "travel": 0.5
-    },
-    "raw_stats": {
-      "srs_a": 19.4,
-      "srs_b": 13.2,
-      "sos_a": 10.9,
-      "sos_b": 3.1,
-      "seed_a": 6,
-      "seed_b": 11,
-      "wins_a": 24,
-      "wins_b": 27,
-      "losses_a": 8,
-      "losses_b": 7,
-      "distance_a": 110,
-      "distance_b": 0
     }
   },
   "S_R1_6": {
@@ -1458,20 +1082,6 @@
       "sos": 0.9541,
       "seed": 0.85,
       "travel": 0.8063
-    },
-    "raw_stats": {
-      "srs_a": 26.4,
-      "srs_b": -3.3,
-      "sos_a": 11.9,
-      "sos_b": -5.0,
-      "seed_a": 3,
-      "seed_b": 14,
-      "wins_a": 24,
-      "wins_b": 21,
-      "losses_a": 8,
-      "losses_b": 13,
-      "distance_a": 111,
-      "distance_b": 967
     }
   },
   "S_R1_7": {
@@ -1493,20 +1103,6 @@
       "sos": 0.4409,
       "seed": 0.601,
       "travel": 0.4314
-    },
-    "raw_stats": {
-      "srs_a": 18.0,
-      "srs_b": 16.8,
-      "sos_a": 7.3,
-      "sos_b": 8.6,
-      "seed_a": 7,
-      "seed_b": 10,
-      "wins_a": 25,
-      "wins_b": 21,
-      "losses_a": 8,
-      "losses_b": 11,
-      "distance_a": 657,
-      "distance_b": 492
     }
   },
   "S_R1_8": {
@@ -1528,20 +1124,6 @@
       "sos": 0.933,
       "seed": 0.94,
       "travel": 0.305
-    },
-    "raw_stats": {
-      "srs_a": 26.2,
-      "srs_b": -0.1,
-      "sos_a": 11.9,
-      "sos_b": -2.7,
-      "seed_a": 2,
-      "seed_b": 15,
-      "wins_a": 28,
-      "wins_b": 21,
-      "losses_a": 6,
-      "losses_b": 14,
-      "distance_a": 562,
-      "distance_b": 67
     }
   },
   "S_R2_1": {
@@ -1558,8 +1140,7 @@
     "user_pick": null,
     "winner_slot": "S_R3_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R2_2": {
     "id": "S_R2_2",
@@ -1575,8 +1156,7 @@
     "user_pick": null,
     "winner_slot": "S_R3_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R2_3": {
     "id": "S_R2_3",
@@ -1592,8 +1172,7 @@
     "user_pick": null,
     "winner_slot": "S_R3_2",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R2_4": {
     "id": "S_R2_4",
@@ -1609,8 +1188,7 @@
     "user_pick": null,
     "winner_slot": "S_R3_2",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R3_1": {
     "id": "S_R3_1",
@@ -1626,8 +1204,7 @@
     "user_pick": null,
     "winner_slot": "S_R4_1",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R3_2": {
     "id": "S_R3_2",
@@ -1643,8 +1220,7 @@
     "user_pick": null,
     "winner_slot": "S_R4_1",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "S_R4_1": {
     "id": "S_R4_1",
@@ -1660,14 +1236,13 @@
     "user_pick": null,
     "winner_slot": "SF_2",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "SF_1": {
     "id": "SF_1",
     "round_name": "Final Four",
     "region": "National",
-    "team_a": null,
+    "team_a": "Connecticut",
     "team_b": null,
     "prob_a": null,
     "prob_b": null,
@@ -1677,8 +1252,7 @@
     "user_pick": null,
     "winner_slot": "CHAMP",
     "winner_slot_position": "a",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "SF_2": {
     "id": "SF_2",
@@ -1694,8 +1268,7 @@
     "user_pick": null,
     "winner_slot": "CHAMP",
     "winner_slot_position": "b",
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   },
   "CHAMP": {
     "id": "CHAMP",
@@ -1711,7 +1284,6 @@
     "user_pick": null,
     "winner_slot": null,
     "winner_slot_position": null,
-    "signals": null,
-    "raw_stats": null
+    "signals": null
   }
 }
