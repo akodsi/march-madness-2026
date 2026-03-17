@@ -54,6 +54,12 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Both sources shown in matchup detail modal as new sections (Google News · r/CollegeBasketball); hidden when no data present
 - [x] Community data stored in `community_2026.json`, merged into commentary at prediction time — display only, not part of weighted formula
 
+## Frontend Improvements (v5.1 — Community Section Polish) — all complete
+- [x] Summary blurbs styled as tinted callout boxes — blue left-border accent for Google News, orange for Reddit; `italic text-slate-300` inside for visual distinction from headline items
+- [x] Reddit posts — `▲` upvote icon, full `text-orange-400` (no opacity reduction), comma-formatted scores, `border-orange-500/30` left border
+- [x] Google News source/date — bumped from `text-slate-600` to `text-slate-500` for readability while staying de-emphasized
+- [x] Section headers — added muted sub-labels ("recent headlines" / "community posts") alongside the uppercase title
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -180,7 +186,8 @@ frontend/
 9. ✅ Frontend v3 — streak badges, injury icons on cards; momentum/injury/commentary sections in modal
 10. ✅ Frontend v4 — visual polish (hover effects, transitions, seed display, confidence pills), layout improvements (Final Four mini-bracket, mobile responsiveness), PDF export
 11. ✅ Community commentary (v5) — Google News RSS + Reddit r/collegebasketball sections in matchup detail modal
-12. Post-round refresh — update predictions after each round's results (next)
+12. ✅ Frontend v5.1 — polished Google News and Reddit sections (callout blurbs, Reddit orange accent, readable source/date)
+13. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash
