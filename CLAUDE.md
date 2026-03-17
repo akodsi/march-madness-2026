@@ -3,8 +3,9 @@
 ## Project Goal
 Build a web app that predicts March Madness tournament outcomes with confidence levels for each matchup. The user sees both teams' win percentages (e.g. 68% vs 32%) and picks winners manually. Picks cascade forward — each new matchup recalculates automatically as teams advance. Start with a rule-based system, architected to swap in a statistical or ML model later.
 
-## Current Approach: Rule-Based
-- Weighted combination of SRS, SOS, seed history, and travel advantage → both teams' win %
+## Current Approach: Rule-Based (v2)
+- 6 weighted signals: SRS, SOS, momentum, seed history, travel advantage, injuries → both teams' win %
+- Expert commentary from ESPN scraped and passed through for display (not part of prediction formula)
 - User picks the winner — no auto-prediction
 - Picks cascade forward through all 6 rounds
 - Rules are in a swappable `WEIGHTS` dict in `models/rule_engine.py` for easy iteration
@@ -56,7 +57,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 ## API Endpoints
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats) |
+| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats, signals, commentary) |
 | POST | `/bracket/{id}/pick` | Submit a pick `{"winner": "Team Name"}` |
 | DELETE | `/bracket/{id}/pick` | Undo a pick, clears downstream |
 | POST | `/bracket/reset` | Wipe all picks |
@@ -90,6 +91,9 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 ## Data Decisions
 - **Historical window: 10 years (2015–2024)** — not 40. Modern basketball plays differently than the 1985–2005 era. 2020 excluded (COVID). ~603 games across 9 tournaments.
 - **Seeds down-weighted to 10%** — allows genuinely strong low-seeds and weak high-seeds to show through the data.
+- **Momentum at 15%** — a team's last 10 games (W/L + margin trend) captures form heading into the tournament. A hot team on a 9-game win streak is meaningfully different from one limping in at 4-6.
+- **Injuries at 10%** — missing a star player can swing a game, but injury data is noisy (status changes daily, importance is estimated). Kept at 10% to influence without dominating.
+- **Commentary is display-only** — expert analysis is valuable as a sense check but too subjective to quantify in a formula. Shown in the matchup detail modal alongside signal breakdowns.
 - **No auto-winner prediction** — the app shows probabilities and lets the user decide, preserving human judgment.
 
 ## File Structure
@@ -133,7 +137,7 @@ frontend/
 ## Build Order
 1. ✅ Data pipeline — Sports-Reference stats, seed history, geocoding, travel distances
 2. ✅ Tournament filter — 68 confirmed 2026 teams with seeds, regions, stats, travel scores
-3. ✅ Rule engine — SRS 40% + SOS 30% + Seed 15% + Travel 15% → both teams' win %
+3. ✅ Rule engine — 6 weighted signals → both teams' win %
 4. ✅ Bracket model — 67-matchup tree, pick/cascade/undo, JSON persistence
 5. ✅ FastAPI layer — 5 REST endpoints with CORS
 6. ✅ Frontend — full bracket UI, confidence %, click-to-pick, live cascade
@@ -142,5 +146,19 @@ frontend/
 9. Post-round refresh — update predictions after each round's results (next)
 10. Frontend v3 — display momentum, injuries, and commentary in matchup detail modal
 
+## Running the Pipeline
+```bash
+cd backend && source venv/bin/activate
+
+# Full pipeline (6 steps — stats, seeds, profiles, travel, momentum, injuries+commentary)
+python pipeline/run_pipeline.py
+
+# Individual new steps
+python pipeline/momentum_ingest.py     # Last-10 games from ESPN
+python pipeline/injury_ingest.py       # ESPN injury reports
+python pipeline/commentary_ingest.py   # ESPN headlines + sentiment
+```
+Re-run before each round to pick up updated momentum, fresh injury reports, and latest commentary.
+
 ## Future Model Upgrade Path
-Swap `WEIGHTS` dict in `rule_engine.py` for quick re-weighting. Full model upgrade (ELO, logistic regression, ML) only requires reimplementing `predict()` — the bracket model and frontend are decoupled from prediction logic.
+Swap `WEIGHTS` dict in `rule_engine.py` for quick re-weighting. Full model upgrade (ELO, logistic regression, ML) only requires reimplementing `predict()` — the bracket model and frontend are decoupled from prediction logic. The 6-signal architecture makes it easy to add or remove signals without touching the bracket or frontend.
