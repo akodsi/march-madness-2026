@@ -152,8 +152,8 @@ def build_tournament_teams() -> pd.DataFrame:
 
 def filter_to_tournament(year: int = CURRENT_YEAR) -> pd.DataFrame:
     """
-    Merge tournament bracket info with full team stats and travel distances,
-    returning only the 68 tournament teams.
+    Merge tournament bracket info with full team stats, travel distances,
+    momentum data, and injury reports — returning only the 68 tournament teams.
     """
     bracket = build_tournament_teams()
     stats = pd.read_csv(PROCESSED_DIR / f"team_stats_{year}.csv")
@@ -180,6 +180,18 @@ def filter_to_tournament(year: int = CURRENT_YEAR) -> pd.DataFrame:
         })
         first_round_dist = nearest.reset_index(drop=True)
         merged = merged.merge(first_round_dist, on="Team", how="left")
+
+    # Pull in momentum data (last 10 games, streaks)
+    momentum_path = PROCESSED_DIR / f"momentum_{year}.csv"
+    if momentum_path.exists():
+        momentum = pd.read_csv(momentum_path)
+        merged = merged.merge(momentum, on="Team", how="left")
+
+    # Pull in injury / health score data
+    injury_path = PROCESSED_DIR / f"injuries_{year}.csv"
+    if injury_path.exists():
+        injuries = pd.read_csv(injury_path)
+        merged = merged.merge(injuries, on="Team", how="left")
 
     return merged.sort_values(["Region", "Seed"]).reset_index(drop=True)
 

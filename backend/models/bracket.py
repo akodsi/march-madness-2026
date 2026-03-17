@@ -48,6 +48,7 @@ class Matchup:
     winner_slot_position: Optional[str]  # "a" or "b" in the next matchup
     signals: Optional[dict] = field(default=None)
     raw_stats: Optional[dict] = field(default=None)
+    commentary: Optional[dict] = field(default=None)
 
     def is_ready(self) -> bool:
         """Both teams are known — probabilities can be calculated."""
@@ -238,6 +239,7 @@ class Bracket:
             m.confidence  = result["confidence"]
             m.signals     = result["signals"]
             m.raw_stats   = result["raw_stats"]
+            m.commentary  = result.get("commentary")
         except Exception as e:
             # Team not in dataset (e.g. small school) — fall back to seed-based 50/50
             m.prob_a = 0.5

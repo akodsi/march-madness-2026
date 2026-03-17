@@ -24,6 +24,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from pipeline.stats_ingest import build_team_stats, save_processed
 from pipeline.normalize import build_team_profiles, build_matchup_dataset
 from pipeline.geo_ingest import geocode_teams, add_2026_venues, compute_travel_distances
+from pipeline.momentum_ingest import fetch_all_momentum, save_momentum
+from pipeline.injury_ingest import fetch_all_injuries, save_injuries
+from pipeline.commentary_ingest import fetch_all_commentary, save_commentary
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 CURRENT_YEAR = 2026
@@ -35,12 +38,12 @@ def run():
     print("=" * 60)
 
     # Step 1: Current season stats
-    print("\n[1/4] Fetching current season stats...")
+    print("\n[1/6] Fetching current season stats...")
     stats = build_team_stats(CURRENT_YEAR)
     save_processed(stats, f"team_stats_{CURRENT_YEAR}.csv")
 
     # Step 2: Historical seed matchup data (requires Kaggle CSVs)
-    print("\n[2/4] Building seed matchup history...")
+    print("\n[2/6] Building seed matchup history...")
     kaggle_dir = Path(__file__).parent.parent / "data" / "raw" / "kaggle"
     seed_file = kaggle_dir / "MNCAATourneySeeds.csv"
 
@@ -54,12 +57,12 @@ def run():
         _write_builtin_seed_history()
 
     # Step 3: Build team profiles
-    print("\n[3/4] Building team profiles...")
+    print("\n[3/6] Building team profiles...")
     profiles = build_team_profiles(CURRENT_YEAR)
     save_processed(profiles, f"team_profiles_{CURRENT_YEAR}.csv")
 
     # Step 4: Geographic data — campus locations + travel distances to venues
-    print("\n[4/4] Computing geographic travel distances...")
+    print("\n[4/6] Computing geographic travel distances...")
     import pandas as pd
     teams = pd.read_csv(PROCESSED_DIR / f"team_stats_{CURRENT_YEAR}.csv")["Team"].tolist()
     coords = geocode_teams(teams)
@@ -68,11 +71,28 @@ def run():
     distances.to_csv(PROCESSED_DIR / f"travel_distances_{CURRENT_YEAR}.csv", index=False)
     print(f"  Saved travel_distances_{CURRENT_YEAR}.csv  ({len(distances)} rows)")
 
+    # Step 5: Momentum data — last 10 games, streaks, margin trends
+    print("\n[5/6] Fetching momentum data (last 10 games)...")
+    from pipeline.tournament_filter import build_tournament_teams
+    tournament_teams = build_tournament_teams()["Team"].tolist()
+    momentum = fetch_all_momentum(tournament_teams, delay=0.5)
+    save_momentum(momentum, CURRENT_YEAR)
+
+    # Step 6: Injuries + Commentary
+    print("\n[6/6] Fetching injuries and expert commentary...")
+    injury_df, injury_details = fetch_all_injuries(tournament_teams, delay=0.5)
+    save_injuries(injury_df, injury_details, CURRENT_YEAR)
+
+    commentary = fetch_all_commentary(tournament_teams, delay=0.5)
+    save_commentary(commentary, CURRENT_YEAR)
+
     print("\n" + "=" * 60)
     print("  Pipeline complete. Files in data/processed/:")
     for f in sorted(PROCESSED_DIR.glob("*.csv")):
         rows = sum(1 for _ in open(f)) - 1
         print(f"    {f.name:45s}  {rows} rows")
+    for f in sorted(PROCESSED_DIR.glob("*.json")):
+        print(f"    {f.name:45s}  (JSON)")
     print("=" * 60)
 
 

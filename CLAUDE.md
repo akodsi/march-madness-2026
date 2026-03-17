@@ -69,20 +69,27 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | OpenStreetMap / Nominatim | Campus geocoding for travel distance |
 | NCAA Selection Sunday 2026 | Official 68-team bracket, seedings, regions |
 | ESPN CDN | Team logos for all 68 tournament schools |
+| ESPN Schedule API | Game-by-game results for momentum (last 10 W/L, streaks, margins) |
+| ESPN Injuries API | Injury reports + player status for health scores |
+| ESPN Team Summary API | Expert headlines + team context for commentary display |
 
-## Key Metrics & Weights (v1)
+## Key Metrics & Weights (v2)
 | Signal | Weight | What it measures |
 |--------|--------|-----------------|
-| SRS (efficiency) | **40%** | Overall team quality adjusted for opponent |
-| SOS (schedule strength) | **30%** | How hard was their regular season |
-| Seed history | **15%** | 10-year historical win rate for this seed matchup |
-| Travel advantage | **15%** | Geographic proximity to game venue |
+| SRS (efficiency) | **30%** | Overall team quality adjusted for opponent |
+| SOS (schedule strength) | **25%** | How hard was their regular season |
+| Momentum | **15%** | Last 10 games W/L record + margin of victory trend |
+| Seed history | **10%** | 10-year historical win rate for this seed matchup |
+| Travel advantage | **10%** | Geographic proximity to game venue |
+| Injuries | **10%** | Roster health — key players out reduce team's score |
+
+**Commentary** (display only): ESPN headlines + team context shown in matchup detail modal. Not part of weighted formula.
 
 Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight Edge (55–64%) · Toss-Up (<55%)
 
 ## Data Decisions
 - **Historical window: 10 years (2015–2024)** — not 40. Modern basketball plays differently than the 1985–2005 era. 2020 excluded (COVID). ~603 games across 9 tournaments.
-- **Seeds down-weighted to 15%** — allows genuinely strong low-seeds and weak high-seeds to show through the data.
+- **Seeds down-weighted to 10%** — allows genuinely strong low-seeds and weak high-seeds to show through the data.
 - **No auto-winner prediction** — the app shows probabilities and lets the user decide, preserving human judgment.
 
 ## File Structure
@@ -90,16 +97,21 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 backend/
 ├── main.py                          FastAPI app (5 endpoints)
 ├── models/
-│   ├── rule_engine.py               Weighted probability calculator + raw_stats
+│   ├── rule_engine.py               6-signal weighted probability calculator + commentary
 │   └── bracket.py                   Full bracket tree with pick/cascade logic
 ├── pipeline/
-│   ├── run_pipeline.py              Master pipeline runner
+│   ├── run_pipeline.py              Master pipeline runner (6 steps)
 │   ├── stats_ingest.py              Sports-Reference scraper
 │   ├── kaggle_ingest.py             Historical tournament data loader
 │   ├── geo_ingest.py                Campus geocoding + travel distances
 │   ├── normalize.py                 Metric normalization
-│   └── tournament_filter.py         Filter to 68 confirmed teams
-└── data/processed/                  All output CSVs + bracket JSON
+│   ├── tournament_filter.py         Filter to 68 confirmed teams (merges all data)
+│   ├── espn_ids.py                  ESPN team ID mapping for 68 teams
+│   ├── momentum_ingest.py           Last-10 games, streaks, margin trends from ESPN
+│   ├── injury_ingest.py             ESPN injury reports → health scores
+│   ├── commentary_ingest.py         ESPN headlines + sentiment for display
+│   └── torvik_ingest.py             Bart Torvik advanced stats (optional)
+└── data/processed/                  All output CSVs + bracket JSON + commentary JSON
 
 frontend/
 ├── src/app/                         Next.js app shell
@@ -126,7 +138,9 @@ frontend/
 5. ✅ FastAPI layer — 5 REST endpoints with CORS
 6. ✅ Frontend — full bracket UI, confidence %, click-to-pick, live cascade
 7. ✅ Frontend v2 — tab navigation, team logos, matchup detail modal with signal breakdown
-8. Post-round refresh — update predictions after each round's results (next)
+8. ✅ Backend v2 — momentum (ESPN schedule), injuries (ESPN API), expert commentary
+9. Post-round refresh — update predictions after each round's results (next)
+10. Frontend v3 — display momentum, injuries, and commentary in matchup detail modal
 
 ## Future Model Upgrade Path
 Swap `WEIGHTS` dict in `rule_engine.py` for quick re-weighting. Full model upgrade (ELO, logistic regression, ML) only requires reimplementing `predict()` — the bracket model and frontend are decoupled from prediction logic.

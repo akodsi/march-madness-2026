@@ -2,14 +2,18 @@
 Rule-based prediction engine.
 
 For any two tournament teams, produces a win probability (0–1) for Team A
-by combining four signals with explicit weights.
+by combining six signals with explicit weights.
 
-Weights (intentionally de-prioritizing seed history):
-    SRS delta         40%  — best single predictor of team quality
-    SOS               30%  — adjusts for strength of competition faced
-    Seed history      15%  — historical matchup rates, down-weighted to
-                             allow strong/weak seeds to show through
-    Travel advantage  15%  — geographic proximity to venue
+Weights:
+    SRS delta         30%  — best single predictor of team quality
+    SOS               25%  — adjusts for strength of competition faced
+    Momentum          15%  — recent form (last 10 games, margin trend)
+    Seed history      10%  — historical matchup rates, down-weighted
+    Travel advantage  10%  — geographic proximity to venue
+    Injuries          10%  — roster health / key players out
+
+Commentary from expert sources is passed through for display but does NOT
+affect the probability calculation.
 
 All signals are converted to a [0, 1] win probability before weighting,
 then combined into a final probability and confidence label.
@@ -18,6 +22,7 @@ Weights are defined in WEIGHTS dict — easy to adjust in future iterations.
 """
 
 import math
+import json
 import pandas as pd
 from pathlib import Path
 
@@ -27,10 +32,12 @@ PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 # Weights — must sum to 1.0
 # ---------------------------------------------------------------------------
 WEIGHTS = {
-    "srs":      0.40,   # Efficiency/quality delta
-    "sos":      0.30,   # Strength of schedule delta
-    "seed":     0.15,   # Historical seed matchup win rate
-    "travel":   0.15,   # Geographic proximity advantage
+    "srs":       0.30,   # Efficiency/quality delta
+    "sos":       0.25,   # Strength of schedule delta
+    "momentum":  0.15,   # Recent form (last 10 W/L + margin trend)
+    "seed":      0.10,   # Historical seed matchup win rate
+    "travel":    0.10,   # Geographic proximity advantage
+    "injuries":  0.10,   # Roster health comparison
 }
 
 assert abs(sum(WEIGHTS.values()) - 1.0) < 1e-9, "Weights must sum to 1.0"
@@ -48,6 +55,7 @@ SOS_K = 0.18
 # ---------------------------------------------------------------------------
 _tournament_teams = None
 _seed_history = None
+_commentary = None
 
 
 def _load_teams() -> pd.DataFrame:
@@ -62,6 +70,18 @@ def _load_seed_history() -> pd.DataFrame:
     if _seed_history is None:
         _seed_history = pd.read_csv(PROCESSED_DIR / "seed_matchup_history.csv")
     return _seed_history
+
+
+def _load_commentary() -> dict:
+    global _commentary
+    if _commentary is None:
+        path = PROCESSED_DIR / "commentary_2026.json"
+        if path.exists():
+            with open(path) as f:
+                _commentary = json.load(f)
+        else:
+            _commentary = {}
+    return _commentary
 
 
 def get_team(name: str) -> pd.Series:
@@ -143,6 +163,46 @@ def travel_prob(team_a: pd.Series, team_b: pd.Series) -> float:
     return a / total
 
 
+def momentum_prob(team_a: pd.Series, team_b: pd.Series) -> float:
+    """
+    Win probability based on recent momentum (MomentumScore 0–1).
+    Compares both teams' composite momentum scores, which incorporate
+    last-10 win rate (70%) and margin of victory trend (30%).
+    Falls back to 0.5 if either team has no momentum data.
+    """
+    a = team_a.get("MomentumScore")
+    b = team_b.get("MomentumScore")
+
+    if pd.isna(a) or pd.isna(b):
+        return 0.5
+
+    a, b = float(a), float(b)
+    total = a + b
+    if total == 0:
+        return 0.5
+    return a / total
+
+
+def injury_prob(team_a: pd.Series, team_b: pd.Series) -> float:
+    """
+    Win probability based on roster health comparison.
+    HealthScore: 1.0 = fully healthy, lower = more key injuries.
+    Team with healthier roster gets an advantage.
+    Falls back to 0.5 if data is missing (no penalty for unknown status).
+    """
+    a = team_a.get("HealthScore")
+    b = team_b.get("HealthScore")
+
+    if pd.isna(a) or pd.isna(b):
+        return 0.5
+
+    a, b = float(a), float(b)
+    total = a + b
+    if total == 0:
+        return 0.5
+    return a / total
+
+
 # ---------------------------------------------------------------------------
 # Core prediction function
 # ---------------------------------------------------------------------------
@@ -164,10 +224,12 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
     b = get_team(team_b_name)
 
     signals = {
-        "srs":    srs_prob(a, b),
-        "sos":    sos_prob(a, b),
-        "seed":   seed_prob(a, b),
-        "travel": travel_prob(a, b),
+        "srs":       srs_prob(a, b),
+        "sos":       sos_prob(a, b),
+        "momentum":  momentum_prob(a, b),
+        "seed":      seed_prob(a, b),
+        "travel":    travel_prob(a, b),
+        "injuries":  injury_prob(a, b),
     }
 
     prob_a = sum(WEIGHTS[k] * v for k, v in signals.items())
@@ -209,19 +271,45 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "losses_b":   _safe_int(b, "Losses"),
         "distance_a": _safe_int(a, "NearestVenueMiles"),
         "distance_b": _safe_int(b, "NearestVenueMiles"),
+        # Momentum
+        "last10_wins_a":   _safe_int(a, "Last10Wins"),
+        "last10_wins_b":   _safe_int(b, "Last10Wins"),
+        "last10_losses_a": _safe_int(a, "Last10Losses"),
+        "last10_losses_b": _safe_int(b, "Last10Losses"),
+        "win_streak_a":    _safe_int(a, "WinStreak"),
+        "win_streak_b":    _safe_int(b, "WinStreak"),
+        "last10_margin_a": _safe_float(a, "Last10MarginAvg"),
+        "last10_margin_b": _safe_float(b, "Last10MarginAvg"),
+        "momentum_score_a": _safe_float(a, "MomentumScore"),
+        "momentum_score_b": _safe_float(b, "MomentumScore"),
+        # Injuries
+        "health_score_a":    _safe_float(a, "HealthScore", default=1.0),
+        "health_score_b":    _safe_float(b, "HealthScore", default=1.0),
+        "injured_count_a":   _safe_int(a, "InjuredCount"),
+        "injured_count_b":   _safe_int(b, "InjuredCount"),
+        "key_players_out_a": _safe_int(a, "KeyPlayersOut"),
+        "key_players_out_b": _safe_int(b, "KeyPlayersOut"),
+    }
+
+    # Commentary — display only, not part of prediction formula
+    commentary_data = _load_commentary()
+    commentary = {
+        "team_a": commentary_data.get(team_a_name, {}),
+        "team_b": commentary_data.get(team_b_name, {}),
     }
 
     return {
-        "team_a":     team_a_name,
-        "team_b":     team_b_name,
-        "prob_a":     round(prob_a, 4),
-        "prob_b":     round(prob_b, 4),
-        "pct_a":      pct_a,
-        "pct_b":      pct_b,
-        "confidence": label,
-        "signals":    {k: round(v, 4) for k, v in signals.items()},
-        "weights":    WEIGHTS,
-        "raw_stats":  raw_stats,
+        "team_a":      team_a_name,
+        "team_b":      team_b_name,
+        "prob_a":      round(prob_a, 4),
+        "prob_b":      round(prob_b, 4),
+        "pct_a":       pct_a,
+        "pct_b":       pct_b,
+        "confidence":  label,
+        "signals":     {k: round(v, 4) for k, v in signals.items()},
+        "weights":     WEIGHTS,
+        "raw_stats":   raw_stats,
+        "commentary":  commentary,
     }
 
 
