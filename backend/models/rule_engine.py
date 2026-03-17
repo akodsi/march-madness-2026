@@ -56,6 +56,7 @@ SOS_K = 0.18
 _tournament_teams = None
 _seed_history = None
 _commentary = None
+_injury_details = None
 
 
 def _load_teams() -> pd.DataFrame:
@@ -70,6 +71,37 @@ def _load_seed_history() -> pd.DataFrame:
     if _seed_history is None:
         _seed_history = pd.read_csv(PROCESSED_DIR / "seed_matchup_history.csv")
     return _seed_history
+
+
+def _load_injury_details() -> dict:
+    global _injury_details
+    if _injury_details is None:
+        path = PROCESSED_DIR / "injury_details_2026.json"
+        if path.exists():
+            with open(path) as f:
+                _injury_details = json.load(f)
+        else:
+            _injury_details = {}
+    return _injury_details
+
+
+def _key_players_out(team_name: str) -> list[str]:
+    """Return names of key players (stars/starters) who are Out or Doubtful."""
+    details = _load_injury_details().get(team_name, [])
+    total = len(details)
+    names = []
+    for i, inj in enumerate(details):
+        status = inj.get("status", "")
+        # Mirror the importance tiers from injury_ingest.py
+        if i == 0 and total <= 3:
+            tier = "star"
+        elif i < 2:
+            tier = "starter"
+        else:
+            break  # remaining players are rotation/bench — not key
+        if tier in ("star", "starter") and status in ("Out", "Doubtful"):
+            names.append(inj.get("player", "Unknown"))
+    return names
 
 
 def _load_commentary() -> dict:
@@ -287,8 +319,8 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "health_score_b":    _safe_float(b, "HealthScore", default=1.0),
         "injured_count_a":   _safe_int(a, "InjuredCount"),
         "injured_count_b":   _safe_int(b, "InjuredCount"),
-        "key_players_out_a": _safe_int(a, "KeyPlayersOut"),
-        "key_players_out_b": _safe_int(b, "KeyPlayersOut"),
+        "key_players_out_a": _key_players_out(team_a_name),
+        "key_players_out_b": _key_players_out(team_b_name),
     }
 
     # Commentary — display only, not part of prediction formula
