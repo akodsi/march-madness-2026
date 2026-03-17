@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Matchup, CONFIDENCE_COLORS } from '@/lib/types'
+import { Matchup, CONFIDENCE_PILL } from '@/lib/types'
 import { CARD_H, CARD_W } from '@/lib/bracketSlots'
 import { getLogoUrl, getInitials } from '@/lib/teamLogos'
 
@@ -57,6 +57,7 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
       : pctVal >= 55 ? 'bg-blue-600'
       : 'bg-slate-600'
 
+    const seed    = isA ? raw_stats?.seed_a : raw_stats?.seed_b
     const streak  = isA ? raw_stats?.win_streak_a : raw_stats?.win_streak_b
     const keyOut  = isA ? raw_stats?.key_players_out_a : raw_stats?.key_players_out_b
     const hasStreak = streak !== undefined && streak !== null && Math.abs(streak) >= 3
@@ -67,9 +68,9 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
         onClick={() => handleClick(team)}
         disabled={!ready}
         className={[
-          'flex items-center gap-1.5 px-2 py-1 w-full text-left transition-all',
+          'flex items-center gap-1.5 px-2 py-1 w-full text-left transition-all duration-200',
           'disabled:cursor-default',
-          isWinner ? 'bg-amber-500/20 text-white' : '',
+          isWinner ? 'bg-amber-500/15 text-white border-l-2 border-l-amber-500 pl-1.5' : '',
           isLoser  ? 'opacity-30' : '',
           ready && !picked ? 'hover:bg-white/10 cursor-pointer' : '',
           isA ? 'rounded-t' : 'rounded-b',
@@ -77,12 +78,16 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
       >
         {team ? <TeamLogo name={team} /> : <div className="w-5 h-5 flex-shrink-0" />}
 
-        <div className="relative w-6 h-1.5 bg-slate-700 rounded-full flex-shrink-0">
+        <div className="relative w-8 h-2 bg-slate-700 rounded-full flex-shrink-0">
           <div
-            className={`absolute left-0 top-0 h-full rounded-full ${barColor}`}
+            className={`absolute left-0 top-0 h-full rounded-full transition-all duration-300 ${barColor}`}
             style={{ width: `${pctVal}%` }}
           />
         </div>
+
+        {seed !== undefined && seed !== null && (
+          <span className="text-[9px] font-bold text-slate-500 flex-shrink-0 w-3 text-right">{seed}</span>
+        )}
 
         <span className="flex-1 text-xs font-medium truncate leading-tight">
           {team ?? <span className="text-slate-500 italic">TBD</span>}
@@ -107,19 +112,26 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
     )
   }
 
-  const confColor = confidence ? CONFIDENCE_COLORS[confidence] ?? 'text-slate-500' : 'text-slate-600'
+  const confPill = confidence ? CONFIDENCE_PILL[confidence] ?? 'text-slate-500' : 'text-slate-600'
+  const hasPick = user_pick !== null
 
   return (
     <div
       style={{ width: CARD_W, height: CARD_H }}
-      className="bg-slate-800 border border-slate-700 rounded flex flex-col justify-between overflow-hidden"
+      className={[
+        'rounded flex flex-col justify-between overflow-hidden transition-all duration-200',
+        'bg-slate-800/90 border',
+        hasPick
+          ? 'border-amber-500/40 shadow-md shadow-amber-500/10'
+          : 'border-slate-700 hover:border-slate-500 hover:shadow-lg hover:shadow-blue-500/10 hover:scale-[1.02]',
+      ].join(' ')}
     >
       {teamRow(team_a, pct_a, true)}
 
-      <div className={`flex items-center gap-1 px-2 ${confColor}`} style={{ height: 16 }}>
+      <div className="flex items-center gap-1 px-2" style={{ height: 16 }}>
         <div className="flex-1 border-t border-slate-700" />
         {confidence && ready && (
-          <span className="text-[9px] uppercase tracking-wide leading-none whitespace-nowrap">
+          <span className={`text-[9px] uppercase tracking-wide leading-none whitespace-nowrap px-1.5 py-0.5 rounded-full ${confPill}`}>
             {confidence}
           </span>
         )}

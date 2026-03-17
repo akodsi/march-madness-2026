@@ -71,3 +71,10 @@ export const CONFIDENCE_COLORS: Record<string, string> = {
   'Slight Edge':     'text-yellow-400',
   'Toss-Up':         'text-slate-400',
 }
+
+export const CONFIDENCE_PILL: Record<string, string> = {
+  'Heavy Favorite': 'text-emerald-400 bg-emerald-400/10',
+  'Clear Favorite':  'text-blue-400 bg-blue-400/10',
+  'Slight Edge':     'text-yellow-400 bg-yellow-400/10',
+  'Toss-Up':         'text-slate-400 bg-slate-400/10',
+}

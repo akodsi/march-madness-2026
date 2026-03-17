@@ -41,6 +41,9 @@ export default function RegionBracket({ region, direction, bracket, onPick, onUn
           const slotIds    = slots[roundName] ?? []
           const posIdx     = posRoundIdx(displayIdx)
           const isLastCol  = displayIdx === rounds.length - 1
+          // Previous round's slot IDs for connector highlight
+          const prevRoundName = displayIdx > 0 ? rounds[displayIdx - 1] : null
+          const prevSlotIds   = prevRoundName ? (slots[prevRoundName] ?? []) : []
 
           return (
             <div key={roundName} className="flex items-start">
@@ -49,6 +52,8 @@ export default function RegionBracket({ region, direction, bracket, onPick, onUn
                 <ConnectorLines
                   fromRound={direction === 'ltr' ? posIdx - 1 : posIdx}
                   rtl={direction === 'rtl'}
+                  bracket={bracket}
+                  slotIds={prevSlotIds}
                 />
               )}
 

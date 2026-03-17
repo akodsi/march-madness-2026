@@ -1,11 +1,12 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { BracketData, Matchup } from '@/lib/types'
 import { fetchBracket, makePick, undoPick, resetBracket } from '@/lib/api'
 import RegionBracket from './RegionBracket'
 import FinalFour from './FinalFour'
 import FirstFour from './FirstFour'
 import MatchupDetail from './MatchupDetail'
+import PrintBracket from './PrintBracket'
 
 type Tab = 'first-four' | 'east' | 'midwest' | 'west' | 'south' | 'final-four'
 
@@ -24,6 +25,8 @@ export default function BracketBoard() {
   const [error, setError]                 = useState<string | null>(null)
   const [activeTab, setActiveTab]         = useState<Tab>('east')
   const [detailMatchup, setDetailMatchup] = useState<Matchup | null>(null)
+  const [exporting, setExporting]         = useState(false)
+  const printRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     fetchBracket()
@@ -57,6 +60,19 @@ export default function BracketBoard() {
     setDetailMatchup(null)
   }
 
+  const handleExport = async () => {
+    if (!printRef.current || exporting) return
+    setExporting(true)
+    try {
+      const { exportBracketPdf } = await import('@/lib/exportPdf')
+      await exportBracketPdf(printRef.current)
+    } catch (e: any) {
+      setError(e.message)
+    } finally {
+      setExporting(false)
+    }
+  }
+
   if (loading) return (
     <div className="flex items-center justify-center h-screen text-slate-400">Loading bracket…</div>
   )
@@ -70,21 +86,28 @@ export default function BracketBoard() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-6 py-3">
+      <header className="sticky top-0 z-20 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold tracking-tight">2026 March Madness</h1>
-            <p className="text-xs text-slate-400">
-              {pickedCount} / 67 picks · click a team to pick, click again to undo · click ⓘ to see the breakdown
+          <div className="min-w-0">
+            <h1 className="text-base sm:text-lg font-bold tracking-tight">2026 March Madness</h1>
+            <p className="text-[10px] sm:text-xs text-slate-400 truncate">
+              {pickedCount} / 67 picks · tap a team to pick · tap ⓘ for breakdown
             </p>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-3 text-[10px] text-slate-400">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+            <div className="hidden lg:flex items-center gap-3 text-[10px] text-slate-400">
               <span className="text-emerald-400">■</span> Heavy Favorite
               <span className="text-blue-400">■</span> Clear Favorite
               <span className="text-yellow-400">■</span> Slight Edge
               <span className="text-slate-400">■</span> Toss-Up
             </div>
+            <button
+              onClick={handleExport}
+              disabled={exporting}
+              className="text-xs text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded px-3 py-1 transition-colors disabled:opacity-50"
+            >
+              {exporting ? 'Exporting…' : 'Export PDF'}
+            </button>
             <button
               onClick={handleReset}
               className="text-xs text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded px-3 py-1 transition-colors"
@@ -94,14 +117,14 @@ export default function BracketBoard() {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mt-3">
+        {/* Tabs — scrollable on mobile */}
+        <div className="flex gap-1 mt-3 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {TABS.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={[
-                'px-4 py-1.5 rounded text-xs font-semibold uppercase tracking-wide transition-colors',
+                'px-3 sm:px-4 py-1.5 rounded text-xs font-semibold uppercase tracking-wide transition-colors whitespace-nowrap flex-shrink-0',
                 activeTab === tab.id
                   ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800',
@@ -114,7 +137,8 @@ export default function BracketBoard() {
       </header>
 
       {/* Tab content */}
-      <div className="px-6 py-8 overflow-x-auto">
+      <div className="px-4 sm:px-6 py-6 sm:py-8 overflow-x-auto">
+        <div key={activeTab} className="animate-fade-in">
         {activeTab === 'first-four' && (
           <div>
             <p className="text-xs text-slate-500 uppercase tracking-widest mb-6">
@@ -154,6 +178,7 @@ export default function BracketBoard() {
             <FinalFour bracket={bracket} onPick={handlePick} onUnpick={handleUnpick} onDetail={setDetailMatchup} />
           </div>
         )}
+        </div>
       </div>
 
       {/* Matchup detail modal */}
@@ -165,6 +190,13 @@ export default function BracketBoard() {
           onClose={() => setDetailMatchup(null)}
         />
       )}
+
+      {/* Hidden printable bracket for PDF export */}
+      <div className="fixed left-[-9999px] top-0" aria-hidden="true">
+        <div ref={printRef}>
+          <PrintBracket bracket={bracket} />
+        </div>
+      </div>
     </div>
   )
 }

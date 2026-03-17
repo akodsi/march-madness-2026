@@ -203,6 +203,7 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           ].map(({ name, pct, isA }) => {
             const isPicked = user_pick === name
             const isLoser  = user_pick !== null && user_pick !== name
+            const seed = isA ? raw_stats?.seed_a : raw_stats?.seed_b
             return (
               <div
                 key={name ?? (isA ? 'tbd-a' : 'tbd-b')}
@@ -213,7 +214,12 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                 ].join(' ')}
               >
                 {name && <Logo name={name} size={52} />}
-                <p className="text-sm font-bold text-center text-white leading-tight">{name ?? 'TBD'}</p>
+                <div className="flex items-center gap-1.5">
+                  {seed !== undefined && seed !== null && (
+                    <span className="text-[10px] font-bold text-slate-500 bg-slate-700 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0">{seed}</span>
+                  )}
+                  <p className="text-sm font-bold text-center text-white leading-tight">{name ?? 'TBD'}</p>
+                </div>
                 {pct !== null && (
                   <div className="text-2xl font-black" style={{ color: isPicked ? '#f59e0b' : '#e2e8f0' }}>
                     {pct}%
