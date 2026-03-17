@@ -33,6 +33,18 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] ESPN Coverage section in modal — sentiment indicator (↑/↓/—), team context (record + ranking), up to 2 headlines; hidden until pipeline is run
 - [x] Signal bars updated — momentum and injuries now appear alongside SRS/SOS/seed/travel with correct weights
 
+## Frontend Improvements (v4 — Visual Polish & Export) — all complete
+- [x] Seed numbers — shown before team names on cards (`1 Duke`) and as circular badges in the detail modal
+- [x] Card hover effects — blue glow shadow, subtle scale bump (`hover:scale-[1.02]`), smoother border transitions
+- [x] Pick styling — amber border/shadow on picked cards, amber left border accent on winner row
+- [x] Wider/taller % bars (32×8px) with animated width transitions
+- [x] Confidence pill labels — colored background pills instead of plain text (e.g. emerald pill for "Heavy Favorite")
+- [x] Tab fade transitions — fade-in + slide-up animation on tab switch
+- [x] Connector lines — thicker with rounded caps/joins, highlight blue when feeder game is picked
+- [x] Final Four layout — horizontal mini-bracket with SVG connectors, trophy icon, champion display below when picked
+- [x] Mobile responsiveness — scrollable tab bar, responsive header text/padding, hidden scrollbar on mobile
+- [x] PDF export — "Export PDF" button in header, renders full bracket (4 regions in 2×2 grid + Final Four) to landscape PDF via `jspdf` + `html2canvas`
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -131,15 +143,17 @@ frontend/
 │   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, TeamCommentary)
 │   ├── api.ts                       API client functions
 │   ├── bracketSlots.ts              Slot ordering + layout constants
-│   └── teamLogos.ts                 ESPN logo URL mapping for 68 teams
+│   ├── teamLogos.ts                 ESPN logo URL mapping for 68 teams
+│   └── exportPdf.ts                 PDF export via html2canvas + jsPDF
 └── src/components/
-    ├── BracketBoard.tsx             Tab navigation + state manager
+    ├── BracketBoard.tsx             Tab navigation + state manager + export button
     ├── RegionBracket.tsx            One region's 4 rounds
-    ├── MatchupCard.tsx              Team logos + % bars + streak badge + injury icon + ⓘ button
+    ├── MatchupCard.tsx              Seeds + logos + % bars + streak badge + injury icon + ⓘ button
     ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, commentary, case for each team)
-    ├── ConnectorLines.tsx           SVG bracket connector lines
+    ├── ConnectorLines.tsx           SVG bracket connector lines (with pick-aware highlighting)
     ├── FirstFour.tsx                First Four section
-    └── FinalFour.tsx                Final Four + Championship
+    ├── FinalFour.tsx                Final Four mini-bracket with connectors + trophy
+    └── PrintBracket.tsx             Compact full-bracket layout for PDF export
 ```
 
 ## Build Order
@@ -152,7 +166,8 @@ frontend/
 7. ✅ Frontend v2 — tab navigation, team logos, matchup detail modal with signal breakdown
 8. ✅ Backend v2 — momentum (ESPN schedule), injuries (ESPN API), expert commentary
 9. ✅ Frontend v3 — streak badges, injury icons on cards; momentum/injury/commentary sections in modal
-10. Post-round refresh — update predictions after each round's results (next)
+10. ✅ Frontend v4 — visual polish (hover effects, transitions, seed display, confidence pills), layout improvements (Final Four mini-bracket, mobile responsiveness), PDF export
+11. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash
