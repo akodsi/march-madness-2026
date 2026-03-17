@@ -48,6 +48,12 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 ## Frontend Improvements (v4.1 — Signal Bar Contrast) — all complete
 - [x] Signal breakdown bars — dominant side color-coded by edge strength (emerald ≥75%, blue ≥60%, yellow ≥52%); weaker side darkened to `slate-800` for sharp contrast; 1px gap divider between halves
 
+## Community Commentary (v5) — all complete
+- [x] Google News RSS — up to 4 recent headlines per team from reputable outlets, with source and date; summary blurb from top 3 titles
+- [x] Reddit r/collegebasketball — up to 5 top posts per team (last 30 days), sorted by upvote score; summary blurb from top 3 titles
+- [x] Both sources shown in matchup detail modal as new sections (Google News · r/CollegeBasketball); hidden when no data present
+- [x] Community data stored in `community_2026.json`, merged into commentary at prediction time — display only, not part of weighted formula
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -96,6 +102,8 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | ESPN Schedule API | Game-by-game results for momentum (last 10 W/L, streaks, margins) |
 | ESPN Injuries API | Injury reports + player status for health scores |
 | ESPN Team Summary API | Expert headlines + team context for commentary display |
+| Google News RSS | Recent headlines from reputable outlets (4 per team) |
+| Reddit r/collegebasketball | Top community posts per team (last 30 days, sorted by score) |
 
 ## Key Metrics & Weights (v2)
 | Signal | Weight | What it measures |
@@ -107,7 +115,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | Travel advantage | **10%** | Geographic proximity to game venue |
 | Injuries | **10%** | Roster health — key players out reduce team's score |
 
-**Commentary** (display only): ESPN headlines + team context shown in matchup detail modal. Not part of weighted formula.
+**Commentary** (display only): ESPN headlines + team context, Google News headlines, and Reddit r/collegebasketball posts shown in matchup detail modal. Not part of weighted formula.
 
 Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight Edge (55–64%) · Toss-Up (<55%)
 
@@ -137,13 +145,14 @@ backend/
 │   ├── momentum_ingest.py           Last-10 games, streaks, margin trends from ESPN
 │   ├── injury_ingest.py             ESPN injury reports → health scores
 │   ├── commentary_ingest.py         ESPN headlines + sentiment for display
+│   ├── community_ingest.py          Google News RSS + Reddit posts → community_2026.json
 │   └── torvik_ingest.py             Bart Torvik advanced stats (optional)
 └── data/processed/                  All output CSVs + bracket JSON + commentary JSON
 
 frontend/
 ├── src/app/                         Next.js app shell
 ├── src/lib/
-│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, TeamCommentary)
+│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary)
 │   ├── api.ts                       API client functions
 │   ├── bracketSlots.ts              Slot ordering + layout constants
 │   ├── teamLogos.ts                 ESPN logo URL mapping for 68 teams
@@ -152,7 +161,7 @@ frontend/
     ├── BracketBoard.tsx             Tab navigation + state manager + export button
     ├── RegionBracket.tsx            One region's 4 rounds
     ├── MatchupCard.tsx              Seeds + logos + % bars + streak badge + injury icon + ⓘ button
-    ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, commentary, case for each team)
+    ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, ESPN/Google News/Reddit commentary, case for each team)
     ├── ConnectorLines.tsx           SVG bracket connector lines (with pick-aware highlighting)
     ├── FirstFour.tsx                First Four section
     ├── FinalFour.tsx                Final Four mini-bracket with connectors + trophy
@@ -170,19 +179,21 @@ frontend/
 8. ✅ Backend v2 — momentum (ESPN schedule), injuries (ESPN API), expert commentary
 9. ✅ Frontend v3 — streak badges, injury icons on cards; momentum/injury/commentary sections in modal
 10. ✅ Frontend v4 — visual polish (hover effects, transitions, seed display, confidence pills), layout improvements (Final Four mini-bracket, mobile responsiveness), PDF export
-11. Post-round refresh — update predictions after each round's results (next)
+11. ✅ Community commentary (v5) — Google News RSS + Reddit r/collegebasketball sections in matchup detail modal
+12. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash
 cd backend && source venv/bin/activate
 
-# Full pipeline (7 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, merge)
+# Full pipeline (8 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, community, merge)
 python pipeline/run_pipeline.py
 
 # Individual steps
 python pipeline/momentum_ingest.py     # Last-10 games from ESPN
 python pipeline/injury_ingest.py       # ESPN injury reports
 python pipeline/commentary_ingest.py   # ESPN headlines + sentiment
+python -m pipeline.community_ingest    # Google News RSS + Reddit posts
 python pipeline/tournament_filter.py   # Merge all data into tournament_teams CSV (run after any ingest)
 ```
 Re-run before each round to pick up updated momentum, fresh injury reports, and latest commentary.

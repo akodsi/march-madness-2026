@@ -5,10 +5,20 @@ export interface Headline {
   date: string
 }
 
+export interface RedditPost {
+  title: string
+  score: number
+  date: string
+}
+
 export interface TeamCommentary {
   headlines: Headline[]
   team_context: string
   sentiment: 'positive' | 'neutral' | 'negative'
+  google_news?: Headline[]
+  google_news_summary?: string
+  reddit_posts?: RedditPost[]
+  reddit_summary?: string
 }
 
 export interface Matchup {

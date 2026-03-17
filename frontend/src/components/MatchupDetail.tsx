@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Matchup } from '@/lib/types'
+import { Matchup, RedditPost } from '@/lib/types'
 import { getLogoUrl, getInitials } from '@/lib/teamLogos'
 
 interface Props {
@@ -428,6 +428,95 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                             <p className="text-[9px] text-slate-600 mt-0.5">{h.source} · {h.date}</p>
                           </div>
                         ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Google News section */}
+        {matchup.commentary && ready && (
+          (matchup.commentary.team_a?.google_news?.length || matchup.commentary.team_b?.google_news?.length ||
+           matchup.commentary.team_a?.google_news_summary || matchup.commentary.team_b?.google_news_summary)
+        ) && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Google News</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, data: matchup.commentary.team_a, isA: true },
+                { name: team_b, data: matchup.commentary.team_b, isA: false },
+              ] as const).map(({ name, data, isA }) => {
+                if (!data) return null
+                const isPicked = user_pick === name
+                const hasContent = (data.google_news?.length ?? 0) > 0 || !!data.google_news_summary
+                return (
+                  <div key={isA ? 'gn-a' : 'gn-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
+                    {!hasContent ? (
+                      <p className="text-xs text-slate-500 italic">No recent news found</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {data.google_news_summary && (
+                          <p className="text-[10px] text-slate-400 leading-snug italic">{data.google_news_summary}</p>
+                        )}
+                        {data.google_news && data.google_news.length > 0 && (
+                          <div className="space-y-2">
+                            {data.google_news.slice(0, 2).map((h, i) => (
+                              <div key={i} className="border-l-2 border-slate-600 pl-2">
+                                <p className="text-[10px] font-medium text-slate-300 leading-snug">{h.title}</p>
+                                <p className="text-[9px] text-slate-600 mt-0.5">{h.source} · {h.date}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Reddit r/collegebasketball section */}
+        {matchup.commentary && ready && (
+          (matchup.commentary.team_a?.reddit_posts?.length || matchup.commentary.team_b?.reddit_posts?.length ||
+           matchup.commentary.team_a?.reddit_summary || matchup.commentary.team_b?.reddit_summary)
+        ) && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">r/CollegeBasketball</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, data: matchup.commentary.team_a, isA: true },
+                { name: team_b, data: matchup.commentary.team_b, isA: false },
+              ] as const).map(({ name, data, isA }) => {
+                if (!data) return null
+                const isPicked = user_pick === name
+                const posts: RedditPost[] = data.reddit_posts ?? []
+                const hasContent = posts.length > 0 || !!data.reddit_summary
+                return (
+                  <div key={isA ? 'rd-a' : 'rd-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
+                    {!hasContent ? (
+                      <p className="text-xs text-slate-500 italic">No recent posts found</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {data.reddit_summary && (
+                          <p className="text-[10px] text-slate-400 leading-snug italic">{data.reddit_summary}</p>
+                        )}
+                        {posts.length > 0 && (
+                          <div className="space-y-1.5">
+                            {posts.slice(0, 3).map((p, i) => (
+                              <div key={i} className="border-l-2 border-orange-800/60 pl-2">
+                                <p className="text-[10px] font-medium text-slate-300 leading-snug">{p.title}</p>
+                                <p className="text-[9px] text-orange-400/70 mt-0.5">↑ {p.score} · {p.date}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>

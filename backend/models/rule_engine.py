@@ -56,6 +56,7 @@ SOS_K = 0.18
 _tournament_teams = None
 _seed_history = None
 _commentary = None
+_community = None
 _injury_details = None
 
 
@@ -114,6 +115,18 @@ def _load_commentary() -> dict:
         else:
             _commentary = {}
     return _commentary
+
+
+def _load_community() -> dict:
+    global _community
+    if _community is None:
+        path = PROCESSED_DIR / "community_2026.json"
+        if path.exists():
+            with open(path) as f:
+                _community = json.load(f)
+        else:
+            _community = {}
+    return _community
 
 
 def get_team(name: str) -> pd.Series:
@@ -325,10 +338,16 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
 
     # Commentary — display only, not part of prediction formula
     commentary_data = _load_commentary()
-    commentary = {
-        "team_a": commentary_data.get(team_a_name, {}),
-        "team_b": commentary_data.get(team_b_name, {}),
-    }
+    community_data  = _load_community()
+    commentary = {}
+    for side, team_name in [("team_a", team_a_name), ("team_b", team_b_name)]:
+        base = dict(commentary_data.get(team_name, {}))
+        community = community_data.get(team_name, {})
+        # Merge community fields (google_news, reddit_posts, summaries) into base
+        for key in ("google_news", "google_news_summary", "reddit_posts", "reddit_summary"):
+            if key in community:
+                base[key] = community[key]
+        commentary[side] = base
 
     return {
         "team_a":      team_a_name,

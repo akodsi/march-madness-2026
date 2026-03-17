@@ -27,6 +27,7 @@ from pipeline.geo_ingest import geocode_teams, add_2026_venues, compute_travel_d
 from pipeline.momentum_ingest import fetch_all_momentum, save_momentum
 from pipeline.injury_ingest import fetch_all_injuries, save_injuries
 from pipeline.commentary_ingest import fetch_all_commentary, save_commentary
+from pipeline.community_ingest import fetch_all_community, save_community
 from pipeline.tournament_filter import filter_to_tournament, save_tournament_dataset
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
@@ -80,15 +81,20 @@ def run():
     save_momentum(momentum, CURRENT_YEAR)
 
     # Step 6: Injuries + Commentary
-    print("\n[6/7] Fetching injuries and expert commentary...")
+    print("\n[6/8] Fetching injuries and expert commentary...")
     injury_df, injury_details = fetch_all_injuries(tournament_teams, delay=0.5)
     save_injuries(injury_df, injury_details, CURRENT_YEAR)
 
     commentary = fetch_all_commentary(tournament_teams, delay=0.5)
     save_commentary(commentary, CURRENT_YEAR)
 
+    # Step 7: Community data — Google News RSS + Reddit r/collegebasketball
+    print("\n[7/8] Fetching community data (Google News + Reddit)...")
+    community = fetch_all_community(tournament_teams, delay=1.5)
+    save_community(community, CURRENT_YEAR)
+
     # Final merge — rebuild tournament_teams CSV with all new data columns
-    print("\n[7/7] Merging all data into tournament_teams CSV...")
+    print("\n[8/8] Merging all data into tournament_teams CSV...")
     merged = filter_to_tournament(CURRENT_YEAR)
     save_tournament_dataset(merged)
 
