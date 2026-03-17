@@ -27,6 +27,7 @@ from pipeline.geo_ingest import geocode_teams, add_2026_venues, compute_travel_d
 from pipeline.momentum_ingest import fetch_all_momentum, save_momentum
 from pipeline.injury_ingest import fetch_all_injuries, save_injuries
 from pipeline.commentary_ingest import fetch_all_commentary, save_commentary
+from pipeline.tournament_filter import filter_to_tournament, save_tournament_dataset
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 CURRENT_YEAR = 2026
@@ -72,19 +73,24 @@ def run():
     print(f"  Saved travel_distances_{CURRENT_YEAR}.csv  ({len(distances)} rows)")
 
     # Step 5: Momentum data — last 10 games, streaks, margin trends
-    print("\n[5/6] Fetching momentum data (last 10 games)...")
+    print("\n[5/7] Fetching momentum data (last 10 games)...")
     from pipeline.tournament_filter import build_tournament_teams
     tournament_teams = build_tournament_teams()["Team"].tolist()
     momentum = fetch_all_momentum(tournament_teams, delay=0.5)
     save_momentum(momentum, CURRENT_YEAR)
 
     # Step 6: Injuries + Commentary
-    print("\n[6/6] Fetching injuries and expert commentary...")
+    print("\n[6/7] Fetching injuries and expert commentary...")
     injury_df, injury_details = fetch_all_injuries(tournament_teams, delay=0.5)
     save_injuries(injury_df, injury_details, CURRENT_YEAR)
 
     commentary = fetch_all_commentary(tournament_teams, delay=0.5)
     save_commentary(commentary, CURRENT_YEAR)
+
+    # Final merge — rebuild tournament_teams CSV with all new data columns
+    print("\n[7/7] Merging all data into tournament_teams CSV...")
+    merged = filter_to_tournament(CURRENT_YEAR)
+    save_tournament_dataset(merged)
 
     print("\n" + "=" * 60)
     print("  Pipeline complete. Files in data/processed/:")

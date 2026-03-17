@@ -296,34 +296,39 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                 const streak = isA ? raw_stats.win_streak_a    : raw_stats.win_streak_b
                 const margin = isA ? raw_stats.last10_margin_a : raw_stats.last10_margin_b
                 const isPicked = user_pick === name
+                const hasData = (wins ?? 0) + (losses ?? 0) > 0
                 const winsNum = wins ?? 0
                 return (
                   <div key={isA ? 'mom-a' : 'mom-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
                     <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
-                    <div className="space-y-1.5 text-xs">
-                      <div className="flex justify-between">
-                        <span className="text-slate-400">Last 10</span>
-                        <span className={`font-bold ${winsNum >= 7 ? 'text-emerald-400' : winsNum >= 5 ? 'text-yellow-400' : 'text-red-400'}`}>
-                          {wins ?? '—'}–{losses ?? '—'}
-                        </span>
+                    {!hasData ? (
+                      <p className="text-xs text-slate-500 italic">No schedule data available</p>
+                    ) : (
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Last 10</span>
+                          <span className={`font-bold ${winsNum >= 7 ? 'text-emerald-400' : winsNum >= 5 ? 'text-yellow-400' : 'text-red-400'}`}>
+                            {wins}–{losses}
+                          </span>
+                        </div>
+                        {streak !== undefined && streak !== 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-400">Streak</span>
+                            <span className={`font-bold ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                              {streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`}
+                            </span>
+                          </div>
+                        )}
+                        {margin !== undefined && margin !== 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-400">Avg Margin</span>
+                            <span className={`font-bold ${margin > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                              {margin > 0 ? '+' : ''}{margin.toFixed(1)} ppg
+                            </span>
+                          </div>
+                        )}
                       </div>
-                      {streak !== undefined && streak !== 0 && (
-                        <div className="flex justify-between">
-                          <span className="text-slate-400">Streak</span>
-                          <span className={`font-bold ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                            {streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`}
-                          </span>
-                        </div>
-                      )}
-                      {margin !== undefined && (
-                        <div className="flex justify-between">
-                          <span className="text-slate-400">Avg Margin</span>
-                          <span className={`font-bold ${margin > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                            {margin > 0 ? '+' : ''}{margin.toFixed(1)} ppg
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
                 )
               })}

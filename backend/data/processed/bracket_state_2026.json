@@ -5,19 +5,65 @@
     "region": "Midwest",
     "team_a": "UMBC",
     "team_b": "Howard",
-    "prob_a": 0.5027,
-    "prob_b": 0.4973,
+    "prob_a": 0.5047,
+    "prob_b": 0.4953,
     "pct_a": 50,
     "pct_b": 50,
     "confidence": "Toss-Up",
-    "user_pick": "UMBC",
+    "user_pick": null,
     "winner_slot": "MW_R1_1",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.5072,
       "sos": 0.4996,
+      "momentum": 0.518,
       "seed": 0.5,
-      "travel": 0.5
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": -4.4,
+      "srs_b": -4.6,
+      "sos_a": -11.9,
+      "sos_b": -11.8,
+      "seed_a": 16,
+      "seed_b": 16,
+      "wins_a": 24,
+      "wins_b": 23,
+      "losses_a": 8,
+      "losses_b": 10,
+      "distance_a": 0,
+      "distance_b": 303,
+      "last10_wins_a": 10,
+      "last10_wins_b": 9,
+      "last10_losses_a": 0,
+      "last10_losses_b": 1,
+      "win_streak_a": 12,
+      "win_streak_b": 8,
+      "last10_margin_a": 18.2,
+      "last10_margin_b": 19.0,
+      "momentum_score_a": 1.0,
+      "momentum_score_b": 0.9,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "23-10",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "FF_2": {
@@ -26,19 +72,65 @@
     "region": "Midwest",
     "team_a": "Miami (OH)",
     "team_b": "SMU",
-    "prob_a": 0.2429,
-    "prob_b": 0.7571,
-    "pct_a": 24,
-    "pct_b": 76,
+    "prob_a": 0.3198,
+    "prob_b": 0.6802,
+    "pct_a": 32,
+    "pct_b": 68,
     "confidence": "Clear Favorite",
-    "user_pick": "Miami (OH)",
+    "user_pick": null,
     "winner_slot": "MW_R1_5",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.1934,
       "sos": 0.0518,
+      "momentum": 0.6587,
       "seed": 0.5,
-      "travel": 0.5
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 5.4,
+      "srs_b": 17.3,
+      "sos_a": -5.5,
+      "sos_b": 10.7,
+      "seed_a": 11,
+      "seed_b": 11,
+      "wins_a": 31,
+      "wins_b": 20,
+      "losses_a": 1,
+      "losses_b": 13,
+      "distance_a": 97,
+      "distance_b": 0,
+      "last10_wins_a": 9,
+      "last10_wins_b": 4,
+      "last10_losses_a": 1,
+      "last10_losses_b": 6,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 6.9,
+      "last10_margin_b": 0.9,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.4,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "31-1",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "20-13",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "FF_3": {
@@ -47,19 +139,65 @@
     "region": "West",
     "team_a": "Texas",
     "team_b": "NC State",
-    "prob_a": 0.4475,
-    "prob_b": 0.5525,
-    "pct_a": 45,
-    "pct_b": 55,
-    "confidence": "Slight Edge",
-    "user_pick": "NC State",
+    "prob_a": 0.4811,
+    "prob_b": 0.5189,
+    "pct_a": 48,
+    "pct_b": 52,
+    "confidence": "Toss-Up",
+    "user_pick": null,
     "winner_slot": "W_R1_5",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.4447,
       "sos": 0.4762,
+      "momentum": 0.6275,
       "seed": 0.5,
-      "travel": 0.3451
+      "travel": 0.3451,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 16.2,
+      "srs_b": 18.0,
+      "sos_a": 10.3,
+      "sos_b": 10.8,
+      "seed_a": 11,
+      "seed_b": 11,
+      "wins_a": 18,
+      "wins_b": 20,
+      "losses_a": 14,
+      "losses_b": 13,
+      "distance_a": 512,
+      "distance_b": 127,
+      "last10_wins_a": 5,
+      "last10_wins_b": 3,
+      "last10_losses_a": 5,
+      "last10_losses_b": 7,
+      "win_streak_a": -3,
+      "win_streak_b": -1,
+      "last10_margin_a": -1.1,
+      "last10_margin_b": -7.1,
+      "momentum_score_a": 0.5,
+      "momentum_score_b": 0.3,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "18-14",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "20-13",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "FF_4": {
@@ -68,19 +206,65 @@
     "region": "South",
     "team_a": "Prairie View",
     "team_b": "Lehigh",
-    "prob_a": 0.4214,
-    "prob_b": 0.5786,
-    "pct_a": 42,
-    "pct_b": 58,
+    "prob_a": 0.4378,
+    "prob_b": 0.5622,
+    "pct_a": 44,
+    "pct_b": 56,
     "confidence": "Slight Edge",
-    "user_pick": "Lehigh",
+    "user_pick": null,
     "winner_slot": "S_R1_1",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.3988,
       "sos": 0.3728,
+      "momentum": 0.5,
       "seed": 0.5,
-      "travel": 0.5
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": -12.7,
+      "srs_b": -9.3,
+      "sos_a": -9.9,
+      "sos_b": -7.0,
+      "seed_a": 16,
+      "seed_b": 16,
+      "wins_a": 18,
+      "wins_b": 18,
+      "losses_a": 17,
+      "losses_b": 16,
+      "distance_a": 0,
+      "distance_b": 164,
+      "last10_wins_a": 0,
+      "last10_wins_b": 0,
+      "last10_losses_a": 0,
+      "last10_losses_b": 0,
+      "win_streak_a": 0,
+      "win_streak_b": 0,
+      "last10_margin_a": 0.0,
+      "last10_margin_b": 0.0,
+      "momentum_score_a": 0.0,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_1": {
@@ -89,19 +273,65 @@
     "region": "East",
     "team_a": "Duke",
     "team_b": "Siena",
-    "prob_a": 0.9874,
-    "prob_b": 0.0126,
-    "pct_a": 99,
-    "pct_b": 1,
+    "prob_a": 0.8602,
+    "prob_b": 0.1398,
+    "pct_a": 86,
+    "pct_b": 14,
     "confidence": "Heavy Favorite",
-    "user_pick": "Duke",
+    "user_pick": null,
     "winner_slot": "E_R2_1",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.9867,
       "sos": 0.9799,
-      "seed": 0.993,
-      "travel": 0.9985
+      "momentum": 0.5,
+      "seed": 0.944,
+      "travel": 0.9985,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 31.6,
+      "srs_b": -4.3,
+      "sos_a": 12.4,
+      "sos_b": -9.2,
+      "seed_a": 1,
+      "seed_b": 16,
+      "wins_a": 32,
+      "wins_b": 23,
+      "losses_a": 2,
+      "losses_b": 11,
+      "distance_a": 119,
+      "distance_b": 4025,
+      "last10_wins_a": 10,
+      "last10_wins_b": 0,
+      "last10_losses_a": 0,
+      "last10_losses_b": 0,
+      "win_streak_a": 11,
+      "win_streak_b": 0,
+      "last10_margin_a": 18.6,
+      "last10_margin_b": 0.0,
+      "momentum_score_a": 1.0,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "32-2 \u00b7 Ranked #1",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_2": {
@@ -110,19 +340,65 @@
     "region": "East",
     "team_a": "Ohio State",
     "team_b": "TCU",
-    "prob_a": 0.5759,
-    "prob_b": 0.4241,
-    "pct_a": 58,
-    "pct_b": 42,
+    "prob_a": 0.5501,
+    "prob_b": 0.4499,
+    "pct_a": 55,
+    "pct_b": 45,
     "confidence": "Slight Edge",
-    "user_pick": "Ohio State",
+    "user_pick": null,
     "winner_slot": "E_R2_1",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.598,
       "sos": 0.6128,
-      "seed": 0.519,
-      "travel": 0.5
+      "momentum": 0.4503,
+      "seed": 0.5,
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 19.1,
+      "srs_b": 15.8,
+      "sos_a": 12.1,
+      "sos_b": 9.5,
+      "seed_a": 8,
+      "seed_b": 9,
+      "wins_a": 21,
+      "wins_b": 22,
+      "losses_a": 12,
+      "losses_b": 11,
+      "distance_a": 124,
+      "distance_b": 0,
+      "last10_wins_a": 6,
+      "last10_wins_b": 8,
+      "last10_losses_a": 4,
+      "last10_losses_b": 2,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 4.9,
+      "last10_margin_b": 4.6,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "21-12",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "22-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_3": {
@@ -131,19 +407,65 @@
     "region": "East",
     "team_a": "St. John's (NY)",
     "team_b": "Northern Iowa",
-    "prob_a": 0.7768,
-    "prob_b": 0.2232,
-    "pct_a": 78,
-    "pct_b": 22,
+    "prob_a": 0.7228,
+    "prob_b": 0.2772,
+    "pct_a": 72,
+    "pct_b": 28,
     "confidence": "Clear Favorite",
-    "user_pick": "St. John's (NY)",
+    "user_pick": null,
     "winner_slot": "E_R2_2",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.8418,
       "sos": 0.8431,
-      "seed": 0.647,
-      "travel": 0.6011
+      "momentum": 0.5885,
+      "seed": 0.611,
+      "travel": 0.6011,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 22.4,
+      "srs_b": 8.5,
+      "sos_a": 10.8,
+      "sos_b": 1.5,
+      "seed_a": 5,
+      "seed_b": 12,
+      "wins_a": 28,
+      "wins_b": 23,
+      "losses_a": 6,
+      "losses_b": 12,
+      "distance_a": 133,
+      "distance_b": 379,
+      "last10_wins_a": 9,
+      "last10_wins_b": 6,
+      "last10_losses_a": 1,
+      "last10_losses_b": 4,
+      "win_streak_a": 6,
+      "win_streak_b": -1,
+      "last10_margin_a": 9.8,
+      "last10_margin_b": 3.7,
+      "momentum_score_a": 0.9,
+      "momentum_score_b": 0.6,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "28-6 \u00b7 Ranked #10",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "22-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_4": {
@@ -152,19 +474,65 @@
     "region": "East",
     "team_a": "Kansas",
     "team_b": "California Baptist",
-    "prob_a": 0.8874,
-    "prob_b": 0.1126,
-    "pct_a": 89,
-    "pct_b": 11,
-    "confidence": "Heavy Favorite",
-    "user_pick": "Kansas",
+    "prob_a": 0.7736,
+    "prob_b": 0.2264,
+    "pct_a": 77,
+    "pct_b": 23,
+    "confidence": "Clear Favorite",
+    "user_pick": null,
     "winner_slot": "E_R2_2",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9029,
       "sos": 0.9609,
-      "seed": 0.793,
-      "travel": 0.7933
+      "momentum": 0.369,
+      "seed": 0.778,
+      "travel": 0.7933,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 21.1,
+      "srs_b": 2.5,
+      "sos_a": 14.9,
+      "sos_b": -2.9,
+      "seed_a": 4,
+      "seed_b": 13,
+      "wins_a": 23,
+      "wins_b": 25,
+      "losses_a": 10,
+      "losses_b": 8,
+      "distance_a": 142,
+      "distance_b": 949,
+      "last10_wins_a": 5,
+      "last10_wins_b": 8,
+      "last10_losses_a": 5,
+      "last10_losses_b": 2,
+      "win_streak_a": -1,
+      "win_streak_b": 6,
+      "last10_margin_a": -3.6,
+      "last10_margin_b": 8.4,
+      "momentum_score_a": 0.5,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "23-10 \u00b7 Ranked #17",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "25-8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_5": {
@@ -173,19 +541,65 @@
     "region": "East",
     "team_a": "Louisville",
     "team_b": "South Florida",
-    "prob_a": 0.7484,
-    "prob_b": 0.2516,
-    "pct_a": 75,
-    "pct_b": 25,
+    "prob_a": 0.673,
+    "prob_b": 0.327,
+    "pct_a": 67,
+    "pct_b": 33,
     "confidence": "Clear Favorite",
-    "user_pick": "Louisville",
+    "user_pick": null,
     "winner_slot": "E_R2_3",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.7711,
       "sos": 0.8148,
-      "seed": 0.63,
-      "travel": 0.6732
+      "momentum": 0.3969,
+      "seed": 0.611,
+      "travel": 0.6732,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 23.4,
+      "srs_b": 13.3,
+      "sos_a": 10.8,
+      "sos_b": 2.6,
+      "seed_a": 6,
+      "seed_b": 11,
+      "wins_a": 23,
+      "wins_b": 25,
+      "losses_a": 10,
+      "losses_b": 8,
+      "distance_a": 69,
+      "distance_b": 503,
+      "last10_wins_a": 6,
+      "last10_wins_b": 10,
+      "last10_losses_a": 4,
+      "last10_losses_b": 0,
+      "win_streak_a": -1,
+      "win_streak_b": 11,
+      "last10_margin_a": 6.8,
+      "last10_margin_b": 15.1,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 1.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "23-10 \u00b7 Ranked #23",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "25-8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_6": {
@@ -194,19 +608,65 @@
     "region": "East",
     "team_a": "Michigan State",
     "team_b": "North Dakota State",
-    "prob_a": 0.8905,
-    "prob_b": 0.1095,
-    "pct_a": 89,
-    "pct_b": 11,
-    "confidence": "Heavy Favorite",
-    "user_pick": "Michigan State",
+    "prob_a": 0.7867,
+    "prob_b": 0.2133,
+    "pct_a": 79,
+    "pct_b": 21,
+    "confidence": "Clear Favorite",
+    "user_pick": null,
     "winner_slot": "E_R2_3",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.925,
       "sos": 0.9666,
-      "seed": 0.85,
-      "travel": 0.6869
+      "momentum": 0.4183,
+      "seed": 0.861,
+      "travel": 0.6869,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 23.4,
+      "srs_b": 2.5,
+      "sos_a": 12.9,
+      "sos_b": -5.8,
+      "seed_a": 3,
+      "seed_b": 14,
+      "wins_a": 25,
+      "wins_b": 27,
+      "losses_a": 7,
+      "losses_b": 7,
+      "distance_a": 165,
+      "distance_b": 636,
+      "last10_wins_a": 6,
+      "last10_wins_b": 8,
+      "last10_losses_a": 4,
+      "last10_losses_b": 2,
+      "win_streak_a": -2,
+      "win_streak_b": 4,
+      "last10_margin_a": 1.3,
+      "last10_margin_b": 11.6,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "25-7 \u00b7 Ranked #11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "27-7",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_7": {
@@ -215,19 +675,65 @@
     "region": "East",
     "team_a": "UCLA",
     "team_b": "UCF",
-    "prob_a": 0.5547,
-    "prob_b": 0.4453,
+    "prob_a": 0.554,
+    "prob_b": 0.446,
     "pct_a": 55,
     "pct_b": 45,
     "confidence": "Slight Edge",
-    "user_pick": "UCF",
+    "user_pick": null,
     "winner_slot": "E_R2_4",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.6451,
       "sos": 0.5337,
-      "seed": 0.601,
-      "travel": 0.3092
+      "momentum": 0.6036,
+      "seed": 0.556,
+      "travel": 0.3092,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 18.3,
+      "srs_b": 13.3,
+      "sos_a": 11.6,
+      "sos_b": 10.8,
+      "seed_a": 7,
+      "seed_b": 10,
+      "wins_a": 23,
+      "wins_b": 21,
+      "losses_a": 11,
+      "losses_b": 11,
+      "distance_a": 940,
+      "distance_b": 458,
+      "last10_wins_a": 6,
+      "last10_wins_b": 4,
+      "last10_losses_a": 4,
+      "last10_losses_b": 6,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 1.3,
+      "last10_margin_b": -4.5,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.4,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "23-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "21-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R1_8": {
@@ -236,167 +742,192 @@
     "region": "East",
     "team_a": "Connecticut",
     "team_b": "Furman",
-    "prob_a": 0.8883,
-    "prob_b": 0.1117,
-    "pct_a": 89,
-    "pct_b": 11,
+    "prob_a": 0.8,
+    "prob_b": 0.2,
+    "pct_a": 80,
+    "pct_b": 20,
     "confidence": "Heavy Favorite",
-    "user_pick": "Connecticut",
+    "user_pick": null,
     "winner_slot": "E_R2_4",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9585,
       "sos": 0.9526,
-      "seed": 0.94,
-      "travel": 0.5207
+      "momentum": 0.5372,
+      "seed": 0.917,
+      "travel": 0.5207,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 22.9,
+      "srs_b": -3.2,
+      "sos_a": 10.5,
+      "sos_b": -6.1,
+      "seed_a": 2,
+      "seed_b": 15,
+      "wins_a": 29,
+      "wins_b": 22,
+      "losses_a": 5,
+      "losses_b": 12,
+      "distance_a": 43,
+      "distance_b": 92,
+      "last10_wins_a": 7,
+      "last10_wins_b": 6,
+      "last10_losses_a": 3,
+      "last10_losses_b": 4,
+      "win_streak_a": -1,
+      "win_streak_b": 3,
+      "last10_margin_a": 6.8,
+      "last10_margin_b": 3.8,
+      "momentum_score_a": 0.7,
+      "momentum_score_b": 0.6,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "29-5 \u00b7 Ranked #7",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "22-12",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "E_R2_1": {
     "id": "E_R2_1",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": "Duke",
-    "team_b": "Ohio State",
-    "prob_a": 0.683,
-    "prob_b": 0.317,
-    "pct_a": 68,
-    "pct_b": 32,
-    "confidence": "Clear Favorite",
-    "user_pick": "Duke",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R3_1",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.8174,
-      "sos": 0.5157,
-      "seed": 0.84,
-      "travel": 0.5023
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R2_2": {
     "id": "E_R2_2",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": "St. John's (NY)",
-    "team_b": "Kansas",
-    "prob_a": 0.4537,
-    "prob_b": 0.5463,
-    "pct_a": 45,
-    "pct_b": 55,
-    "confidence": "Toss-Up",
-    "user_pick": "St. John's (NY)",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R3_1",
     "winner_slot_position": "b",
-    "signals": {
-      "srs": 0.5395,
-      "sos": 0.3262,
-      "seed": 0.43,
-      "travel": 0.5038
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R2_3": {
     "id": "E_R2_3",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": "Louisville",
-    "team_b": "Michigan State",
-    "prob_a": 0.4449,
-    "prob_b": 0.5551,
-    "pct_a": 44,
-    "pct_b": 56,
-    "confidence": "Slight Edge",
-    "user_pick": "Louisville",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R3_2",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.4991,
-      "sos": 0.4075,
-      "seed": 0.28,
-      "travel": 0.54
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R2_4": {
     "id": "E_R2_4",
     "round_name": "Round of 32",
     "region": "East",
-    "team_a": "UCF",
-    "team_b": "Connecticut",
-    "prob_a": 0.3401,
-    "prob_b": 0.6599,
-    "pct_a": 34,
-    "pct_b": 66,
-    "confidence": "Clear Favorite",
-    "user_pick": "Connecticut",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R3_2",
     "winner_slot_position": "b",
-    "signals": {
-      "srs": 0.2397,
-      "sos": 0.5121,
-      "seed": 0.27,
-      "travel": 0.3336
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R3_1": {
     "id": "E_R3_1",
     "round_name": "Sweet 16",
     "region": "East",
-    "team_a": "Duke",
-    "team_b": "St. John's (NY)",
-    "prob_a": 0.6653,
-    "prob_b": 0.3347,
-    "pct_a": 67,
-    "pct_b": 33,
-    "confidence": "Clear Favorite",
-    "user_pick": "St. John's (NY)",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R4_1",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.7494,
-      "sos": 0.5706,
-      "seed": 0.79,
-      "travel": 0.5058
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R3_2": {
     "id": "E_R3_2",
     "round_name": "Sweet 16",
     "region": "East",
-    "team_a": "Louisville",
-    "team_b": "Connecticut",
-    "prob_a": 0.5083,
-    "prob_b": 0.4917,
-    "pct_a": 51,
-    "pct_b": 49,
-    "confidence": "Toss-Up",
-    "user_pick": "Connecticut",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "E_R4_1",
     "winner_slot_position": "b",
-    "signals": {
-      "srs": 0.5147,
-      "sos": 0.5135,
-      "seed": 0.5,
-      "travel": 0.489
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "E_R4_1": {
     "id": "E_R4_1",
     "round_name": "Elite 8",
     "region": "East",
-    "team_a": "St. John's (NY)",
-    "team_b": "Connecticut",
-    "prob_a": 0.4924,
-    "prob_b": 0.5076,
-    "pct_a": 49,
-    "pct_b": 51,
-    "confidence": "Toss-Up",
-    "user_pick": "Connecticut",
+    "team_a": null,
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
+    "user_pick": null,
     "winner_slot": "SF_1",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.485,
-      "sos": 0.5135,
-      "seed": 0.5,
-      "travel": 0.4625
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R1_1": {
     "id": "W_R1_1",
@@ -404,10 +935,10 @@
     "region": "West",
     "team_a": "Arizona",
     "team_b": "LIU",
-    "prob_a": 0.9106,
-    "prob_b": 0.0894,
-    "pct_a": 91,
-    "pct_b": 9,
+    "prob_a": 0.8348,
+    "prob_b": 0.1652,
+    "pct_a": 83,
+    "pct_b": 17,
     "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "W_R2_1",
@@ -415,8 +946,54 @@
     "signals": {
       "srs": 0.985,
       "sos": 0.9756,
-      "seed": 0.993,
-      "travel": 0.5
+      "momentum": 0.6735,
+      "seed": 0.944,
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 29.9,
+      "srs_b": -5.0,
+      "sos_a": 12.6,
+      "sos_b": -7.9,
+      "seed_a": 1,
+      "seed_b": 16,
+      "wins_a": 32,
+      "wins_b": 24,
+      "losses_a": 2,
+      "losses_b": 10,
+      "distance_a": 857,
+      "distance_b": 0,
+      "last10_wins_a": 9,
+      "last10_wins_b": 4,
+      "last10_losses_a": 1,
+      "last10_losses_b": 6,
+      "win_streak_a": 9,
+      "win_streak_b": -2,
+      "last10_margin_a": 9.6,
+      "last10_margin_b": -0.8,
+      "momentum_score_a": 0.9,
+      "momentum_score_b": 0.4,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "32-2 \u00b7 Ranked #2",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "15-17",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_2": {
@@ -425,19 +1002,65 @@
     "region": "West",
     "team_a": "Villanova",
     "team_b": "Utah State",
-    "prob_a": 0.5529,
-    "prob_b": 0.4471,
-    "pct_a": 55,
-    "pct_b": 45,
-    "confidence": "Slight Edge",
+    "prob_a": 0.5375,
+    "prob_b": 0.4625,
+    "pct_a": 54,
+    "pct_b": 46,
+    "confidence": "Toss-Up",
     "user_pick": null,
     "winner_slot": "W_R2_1",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.4682,
       "sos": 0.6492,
-      "seed": 0.519,
-      "travel": 0.6201
+      "momentum": 0.4847,
+      "seed": 0.5,
+      "travel": 0.6201,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 16.3,
+      "srs_b": 17.4,
+      "sos_a": 9.9,
+      "sos_b": 6.5,
+      "seed_a": 8,
+      "seed_b": 9,
+      "wins_a": 24,
+      "wins_b": 28,
+      "losses_a": 8,
+      "losses_b": 6,
+      "distance_a": 198,
+      "distance_b": 492,
+      "last10_wins_a": 7,
+      "last10_wins_b": 7,
+      "last10_losses_a": 3,
+      "last10_losses_b": 3,
+      "win_streak_a": -1,
+      "win_streak_b": 4,
+      "last10_margin_a": 0.9,
+      "last10_margin_b": 4.9,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.7,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "28-6",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_3": {
@@ -446,10 +1069,10 @@
     "region": "West",
     "team_a": "Wisconsin",
     "team_b": "High Point",
-    "prob_a": 0.7801,
-    "prob_b": 0.2199,
-    "pct_a": 78,
-    "pct_b": 22,
+    "prob_a": 0.7055,
+    "prob_b": 0.2945,
+    "pct_a": 71,
+    "pct_b": 29,
     "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "W_R2_2",
@@ -457,8 +1080,54 @@
     "signals": {
       "srs": 0.8222,
       "sos": 0.9749,
-      "seed": 0.647,
-      "travel": 0.4114
+      "momentum": 0.4189,
+      "seed": 0.611,
+      "travel": 0.4114,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 19.5,
+      "srs_b": 6.8,
+      "sos_a": 12.4,
+      "sos_b": -7.9,
+      "seed_a": 5,
+      "seed_b": 12,
+      "wins_a": 24,
+      "wins_b": 30,
+      "losses_a": 10,
+      "losses_b": 4,
+      "distance_a": 285,
+      "distance_b": 70,
+      "last10_wins_a": 7,
+      "last10_wins_b": 10,
+      "last10_losses_a": 3,
+      "last10_losses_b": 0,
+      "win_streak_a": -1,
+      "win_streak_b": 14,
+      "last10_margin_a": 6.0,
+      "last10_margin_b": 15.9,
+      "momentum_score_a": 0.7,
+      "momentum_score_b": 1.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-10 \u00b7 Ranked #19",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "30-4",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_4": {
@@ -467,10 +1136,10 @@
     "region": "West",
     "team_a": "Arkansas",
     "team_b": "Hawaii",
-    "prob_a": 0.9085,
-    "prob_b": 0.0915,
-    "pct_a": 91,
-    "pct_b": 9,
+    "prob_a": 0.8111,
+    "prob_b": 0.1889,
+    "pct_a": 81,
+    "pct_b": 19,
     "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "W_R2_2",
@@ -478,30 +1147,73 @@
     "signals": {
       "srs": 0.8918,
       "sos": 0.9483,
-      "seed": 0.793,
-      "travel": 0.9886
+      "momentum": 0.5319,
+      "seed": 0.778,
+      "travel": 0.9886,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 22.4,
+      "srs_b": 4.8,
+      "sos_a": 12.6,
+      "sos_b": -3.6,
+      "seed_a": 4,
+      "seed_b": 13,
+      "wins_a": 26,
+      "wins_b": 24,
+      "losses_a": 8,
+      "losses_b": 8,
+      "distance_a": 206,
+      "distance_b": 2882,
+      "last10_wins_a": 8,
+      "last10_wins_b": 7,
+      "last10_losses_a": 2,
+      "last10_losses_b": 3,
+      "win_streak_a": 5,
+      "win_streak_b": 2,
+      "last10_margin_a": 4.1,
+      "last10_margin_b": 2.1,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.7,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "26-8 \u00b7 Ranked #14",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "24-8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_5": {
     "id": "W_R1_5",
     "round_name": "Round of 64",
     "region": "West",
-    "team_a": "NC State",
+    "team_a": null,
     "team_b": "BYU",
-    "prob_a": 0.4229,
-    "prob_b": 0.5771,
-    "pct_a": 42,
-    "pct_b": 58,
-    "confidence": "Slight Edge",
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
     "user_pick": null,
     "winner_slot": "W_R2_3",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.4104,
-      "sos": 0.4276,
-      "seed": 0.37,
-      "travel": 0.5
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R1_6": {
     "id": "W_R1_6",
@@ -509,10 +1221,10 @@
     "region": "West",
     "team_a": "Gonzaga",
     "team_b": "Kennesaw State",
-    "prob_a": 0.8399,
-    "prob_b": 0.1601,
-    "pct_a": 84,
-    "pct_b": 16,
+    "prob_a": 0.8329,
+    "prob_b": 0.1671,
+    "pct_a": 83,
+    "pct_b": 17,
     "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "W_R2_3",
@@ -520,8 +1232,54 @@
     "signals": {
       "srs": 0.9525,
       "sos": 0.8079,
-      "seed": 0.85,
-      "travel": 0.5935
+      "momentum": 0.9982,
+      "seed": 0.861,
+      "travel": 0.5935,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 25.1,
+      "srs_b": 0.1,
+      "sos_a": 6.0,
+      "sos_b": -2.0,
+      "seed_a": 3,
+      "seed_b": 14,
+      "wins_a": 30,
+      "wins_b": 21,
+      "losses_a": 3,
+      "losses_b": 13,
+      "distance_a": 1,
+      "distance_b": 228,
+      "last10_wins_a": 8,
+      "last10_wins_b": 0,
+      "last10_losses_a": 2,
+      "last10_losses_b": 1,
+      "win_streak_a": 2,
+      "win_streak_b": -1,
+      "last10_margin_a": 13.1,
+      "last10_margin_b": -37.0,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "30-3 \u00b7 Ranked #12",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_7": {
@@ -530,8 +1288,8 @@
     "region": "West",
     "team_a": "Saint Mary's (CA)",
     "team_b": "Missouri",
-    "prob_a": 0.5287,
-    "prob_b": 0.4713,
+    "prob_a": 0.5304,
+    "prob_b": 0.4696,
     "pct_a": 53,
     "pct_b": 47,
     "confidence": "Toss-Up",
@@ -541,8 +1299,54 @@
     "signals": {
       "srs": 0.6399,
       "sos": 0.3586,
-      "seed": 0.601,
-      "travel": 0.5
+      "momentum": 0.6215,
+      "seed": 0.556,
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 17.9,
+      "srs_b": 13.1,
+      "sos_a": 5.5,
+      "sos_b": 8.8,
+      "seed_a": 7,
+      "seed_b": 10,
+      "wins_a": 27,
+      "wins_b": 20,
+      "losses_a": 5,
+      "losses_b": 12,
+      "distance_a": 0,
+      "distance_b": 284,
+      "last10_wins_a": 8,
+      "last10_wins_b": 5,
+      "last10_losses_a": 2,
+      "last10_losses_b": 5,
+      "win_streak_a": -1,
+      "win_streak_b": -3,
+      "last10_margin_a": 12.6,
+      "last10_margin_b": -0.2,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.5,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "27-5 \u00b7 Ranked #22",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "20-12",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R1_8": {
@@ -551,19 +1355,65 @@
     "region": "West",
     "team_a": "Purdue",
     "team_b": "Penn",
-    "prob_a": 0.883,
-    "prob_b": 0.117,
-    "pct_a": 88,
-    "pct_b": 12,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7794,
+    "prob_b": 0.2206,
+    "pct_a": 78,
+    "pct_b": 22,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "W_R2_4",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9584,
       "sos": 0.9455,
-      "seed": 0.94,
-      "travel": 0.5
+      "momentum": 0.4255,
+      "seed": 0.917,
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 25.6,
+      "srs_b": -0.5,
+      "sos_a": 14.1,
+      "sos_b": -1.7,
+      "seed_a": 2,
+      "seed_b": 15,
+      "wins_a": 27,
+      "wins_b": 18,
+      "losses_a": 8,
+      "losses_b": 11,
+      "distance_a": 61,
+      "distance_b": 0,
+      "last10_wins_a": 6,
+      "last10_wins_b": 9,
+      "last10_losses_a": 4,
+      "last10_losses_b": 1,
+      "win_streak_a": 4,
+      "win_streak_b": 5,
+      "last10_margin_a": 5.2,
+      "last10_margin_b": 6.1,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "27-8 \u00b7 Ranked #8",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "18-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "W_R2_1": {
@@ -580,7 +1430,9 @@
     "user_pick": null,
     "winner_slot": "W_R3_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R2_2": {
     "id": "W_R2_2",
@@ -596,7 +1448,9 @@
     "user_pick": null,
     "winner_slot": "W_R3_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R2_3": {
     "id": "W_R2_3",
@@ -612,7 +1466,9 @@
     "user_pick": null,
     "winner_slot": "W_R3_2",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R2_4": {
     "id": "W_R2_4",
@@ -628,7 +1484,9 @@
     "user_pick": null,
     "winner_slot": "W_R3_2",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R3_1": {
     "id": "W_R3_1",
@@ -644,7 +1502,9 @@
     "user_pick": null,
     "winner_slot": "W_R4_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R3_2": {
     "id": "W_R3_2",
@@ -660,7 +1520,9 @@
     "user_pick": null,
     "winner_slot": "W_R4_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "W_R4_1": {
     "id": "W_R4_1",
@@ -676,28 +1538,27 @@
     "user_pick": null,
     "winner_slot": "SF_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R1_1": {
     "id": "MW_R1_1",
     "round_name": "Round of 64",
     "region": "Midwest",
-    "team_a": "UMBC",
+    "team_a": null,
     "team_b": "Michigan",
-    "prob_a": 0.0832,
-    "prob_b": 0.9168,
-    "pct_a": 8,
-    "pct_b": 92,
-    "confidence": "Heavy Favorite",
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
     "user_pick": null,
     "winner_slot": "MW_R2_1",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.0118,
-      "sos": 0.0081,
-      "seed": 0.007,
-      "travel": 0.5
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R1_2": {
     "id": "MW_R1_2",
@@ -705,10 +1566,10 @@
     "region": "Midwest",
     "team_a": "Georgia",
     "team_b": "Saint Louis",
-    "prob_a": 0.6214,
-    "prob_b": 0.3786,
-    "pct_a": 62,
-    "pct_b": 38,
+    "prob_a": 0.5939,
+    "prob_b": 0.4061,
+    "pct_a": 59,
+    "pct_b": 41,
     "confidence": "Slight Edge",
     "user_pick": null,
     "winner_slot": "MW_R2_1",
@@ -716,8 +1577,54 @@
     "signals": {
       "srs": 0.5686,
       "sos": 0.7909,
-      "seed": 0.519,
-      "travel": 0.526
+      "momentum": 0.4867,
+      "seed": 0.5,
+      "travel": 0.526,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 19.6,
+      "srs_b": 17.3,
+      "sos_a": 8.9,
+      "sos_b": 1.5,
+      "seed_a": 8,
+      "seed_b": 9,
+      "wins_a": 22,
+      "wins_b": 28,
+      "losses_a": 10,
+      "losses_b": 5,
+      "distance_a": 169,
+      "distance_b": 231,
+      "last10_wins_a": 6,
+      "last10_wins_b": 6,
+      "last10_losses_a": 4,
+      "last10_losses_b": 4,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 1.8,
+      "last10_margin_b": 5.0,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.6,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "22-10",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "28-5",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R1_3": {
@@ -726,10 +1633,10 @@
     "region": "Midwest",
     "team_a": "Texas Tech",
     "team_b": "Akron",
-    "prob_a": 0.7683,
-    "prob_b": 0.2317,
-    "pct_a": 77,
-    "pct_b": 23,
+    "prob_a": 0.693,
+    "prob_b": 0.307,
+    "pct_a": 69,
+    "pct_b": 31,
     "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_2",
@@ -737,8 +1644,54 @@
     "signals": {
       "srs": 0.8248,
       "sos": 0.9589,
-      "seed": 0.647,
-      "travel": 0.3577
+      "momentum": 0.3929,
+      "seed": 0.611,
+      "travel": 0.3577,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 21.9,
+      "srs_b": 9.0,
+      "sos_a": 14.2,
+      "sos_b": -3.3,
+      "seed_a": 5,
+      "seed_b": 12,
+      "wins_a": 22,
+      "wins_b": 29,
+      "losses_a": 10,
+      "losses_b": 5,
+      "distance_a": 381,
+      "distance_b": 30,
+      "last10_wins_a": 6,
+      "last10_wins_b": 10,
+      "last10_losses_a": 4,
+      "last10_losses_b": 0,
+      "win_streak_a": -3,
+      "win_streak_b": 10,
+      "last10_margin_a": 5.2,
+      "last10_margin_b": 13.8,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 1.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "22-10 \u00b7 Ranked #20",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "29-5",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R1_4": {
@@ -747,19 +1700,65 @@
     "region": "Midwest",
     "team_a": "Alabama",
     "team_b": "Hofstra",
-    "prob_a": 0.825,
-    "prob_b": 0.175,
-    "pct_a": 83,
-    "pct_b": 17,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7512,
+    "prob_b": 0.2488,
+    "pct_a": 75,
+    "pct_b": 25,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_2",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.899,
       "sos": 0.9545,
-      "seed": 0.793,
-      "travel": 0.4008
+      "momentum": 0.5,
+      "seed": 0.778,
+      "travel": 0.4008,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 22.7,
+      "srs_b": 4.5,
+      "sos_a": 14.4,
+      "sos_b": -2.5,
+      "seed_a": 4,
+      "seed_b": 13,
+      "wins_a": 23,
+      "wins_b": 24,
+      "losses_a": 9,
+      "losses_b": 10,
+      "distance_a": 375,
+      "distance_b": 134,
+      "last10_wins_a": 8,
+      "last10_wins_b": 0,
+      "last10_losses_a": 2,
+      "last10_losses_b": 0,
+      "win_streak_a": -1,
+      "win_streak_b": 0,
+      "last10_margin_a": 7.4,
+      "last10_margin_b": 0.0,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "23-9 \u00b7 Ranked #18",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R1_5": {
@@ -767,21 +1766,18 @@
     "round_name": "Round of 64",
     "region": "Midwest",
     "team_a": "Tennessee",
-    "team_b": "Miami (OH)",
-    "prob_a": 0.8065,
-    "prob_b": 0.1935,
-    "pct_a": 81,
-    "pct_b": 19,
-    "confidence": "Heavy Favorite",
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
     "user_pick": null,
     "winner_slot": "MW_R2_3",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.8813,
-      "sos": 0.9588,
-      "seed": 0.63,
-      "travel": 0.4786
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R1_6": {
     "id": "MW_R1_6",
@@ -789,19 +1785,65 @@
     "region": "Midwest",
     "team_a": "Virginia",
     "team_b": "Wright State",
-    "prob_a": 0.8436,
-    "prob_b": 0.1564,
-    "pct_a": 84,
-    "pct_b": 16,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7659,
+    "prob_b": 0.2341,
+    "pct_a": 77,
+    "pct_b": 23,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_3",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9294,
       "sos": 0.923,
-      "seed": 0.85,
-      "travel": 0.4493
+      "momentum": 0.5019,
+      "seed": 0.861,
+      "travel": 0.4493,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 21.6,
+      "srs_b": 0.1,
+      "sos_a": 9.4,
+      "sos_b": -4.4,
+      "seed_a": 3,
+      "seed_b": 14,
+      "wins_a": 29,
+      "wins_b": 23,
+      "losses_a": 5,
+      "losses_b": 11,
+      "distance_a": 233,
+      "distance_b": 111,
+      "last10_wins_a": 8,
+      "last10_wins_b": 8,
+      "last10_losses_a": 2,
+      "last10_losses_b": 2,
+      "win_streak_a": -1,
+      "win_streak_b": 5,
+      "last10_margin_a": 7.0,
+      "last10_margin_b": 6.3,
+      "momentum_score_a": 0.8,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "29-5 \u00b7 Ranked #9",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "23-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R1_7": {
@@ -810,19 +1852,65 @@
     "region": "Midwest",
     "team_a": "Kentucky",
     "team_b": "Santa Clara",
-    "prob_a": 0.6846,
-    "prob_b": 0.3154,
-    "pct_a": 68,
-    "pct_b": 32,
-    "confidence": "Clear Favorite",
+    "prob_a": 0.6145,
+    "prob_b": 0.3855,
+    "pct_a": 61,
+    "pct_b": 39,
+    "confidence": "Slight Edge",
     "user_pick": null,
     "winner_slot": "MW_R2_4",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.6155,
       "sos": 0.7728,
-      "seed": 0.601,
-      "travel": 0.7764
+      "momentum": 0.3563,
+      "seed": 0.556,
+      "travel": 0.7764,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 19.8,
+      "srs_b": 15.9,
+      "sos_a": 12.9,
+      "sos_b": 6.1,
+      "seed_a": 7,
+      "seed_b": 10,
+      "wins_a": 21,
+      "wins_b": 26,
+      "losses_a": 13,
+      "losses_b": 8,
+      "distance_a": 1,
+      "distance_b": 748,
+      "last10_wins_a": 4,
+      "last10_wins_b": 8,
+      "last10_losses_a": 6,
+      "last10_losses_b": 2,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": -1.0,
+      "last10_margin_b": 4.6,
+      "momentum_score_a": 0.4,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "21-13",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "28-5",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R1_8": {
@@ -831,19 +1919,65 @@
     "region": "Midwest",
     "team_a": "Iowa State",
     "team_b": "Tennessee State",
-    "prob_a": 0.8872,
-    "prob_b": 0.1128,
-    "pct_a": 89,
-    "pct_b": 11,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7988,
+    "prob_b": 0.2012,
+    "pct_a": 80,
+    "pct_b": 20,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "MW_R2_4",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9782,
       "sos": 0.9693,
-      "seed": 0.94,
-      "travel": 0.4275
+      "momentum": 0.5239,
+      "seed": 0.917,
+      "travel": 0.4275,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 27.1,
+      "srs_b": -4.5,
+      "sos_a": 10.5,
+      "sos_b": -8.7,
+      "seed_a": 2,
+      "seed_b": 15,
+      "wins_a": 27,
+      "wins_b": 23,
+      "losses_a": 7,
+      "losses_b": 9,
+      "distance_a": 357,
+      "distance_b": 182,
+      "last10_wins_a": 6,
+      "last10_wins_b": 6,
+      "last10_losses_a": 4,
+      "last10_losses_b": 4,
+      "win_streak_a": -1,
+      "win_streak_b": -2,
+      "last10_margin_a": 9.2,
+      "last10_margin_b": 2.5,
+      "momentum_score_a": 0.7,
+      "momentum_score_b": 0.6,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "27-7 \u00b7 Ranked #6",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "12-18",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "MW_R2_1": {
@@ -860,7 +1994,9 @@
     "user_pick": null,
     "winner_slot": "MW_R3_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R2_2": {
     "id": "MW_R2_2",
@@ -876,7 +2012,9 @@
     "user_pick": null,
     "winner_slot": "MW_R3_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R2_3": {
     "id": "MW_R2_3",
@@ -892,7 +2030,9 @@
     "user_pick": null,
     "winner_slot": "MW_R3_2",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R2_4": {
     "id": "MW_R2_4",
@@ -908,7 +2048,9 @@
     "user_pick": null,
     "winner_slot": "MW_R3_2",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R3_1": {
     "id": "MW_R3_1",
@@ -924,7 +2066,9 @@
     "user_pick": null,
     "winner_slot": "MW_R4_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R3_2": {
     "id": "MW_R3_2",
@@ -940,7 +2084,9 @@
     "user_pick": null,
     "winner_slot": "MW_R4_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "MW_R4_1": {
     "id": "MW_R4_1",
@@ -956,28 +2102,27 @@
     "user_pick": null,
     "winner_slot": "SF_2",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R1_1": {
     "id": "S_R1_1",
     "round_name": "Round of 64",
     "region": "South",
     "team_a": "Florida",
-    "team_b": "Lehigh",
-    "prob_a": 0.8973,
-    "prob_b": 0.1027,
-    "pct_a": 90,
-    "pct_b": 10,
-    "confidence": "Heavy Favorite",
+    "team_b": null,
+    "prob_a": null,
+    "prob_b": null,
+    "pct_a": null,
+    "pct_b": null,
+    "confidence": null,
     "user_pick": null,
     "winner_slot": "S_R2_1",
     "winner_slot_position": "a",
-    "signals": {
-      "srs": 0.9886,
-      "sos": 0.9741,
-      "seed": 0.993,
-      "travel": 0.4047
-    }
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R1_2": {
     "id": "S_R1_2",
@@ -985,8 +2130,8 @@
     "region": "South",
     "team_a": "Clemson",
     "team_b": "Iowa",
-    "prob_a": 0.4881,
-    "prob_b": 0.5119,
+    "prob_a": 0.494,
+    "prob_b": 0.506,
     "pct_a": 49,
     "pct_b": 51,
     "confidence": "Toss-Up",
@@ -996,8 +2141,54 @@
     "signals": {
       "srs": 0.44,
       "sos": 0.4915,
-      "seed": 0.519,
-      "travel": 0.5788
+      "momentum": 0.5418,
+      "seed": 0.5,
+      "travel": 0.5788,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 17.0,
+      "srs_b": 19.0,
+      "sos_a": 9.6,
+      "sos_b": 9.8,
+      "seed_a": 8,
+      "seed_b": 9,
+      "wins_a": 24,
+      "wins_b": 21,
+      "losses_a": 10,
+      "losses_b": 12,
+      "distance_a": 119,
+      "distance_b": 310,
+      "last10_wins_a": 4,
+      "last10_wins_b": 3,
+      "last10_losses_a": 6,
+      "last10_losses_b": 7,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": -3.4,
+      "last10_margin_b": -2.5,
+      "momentum_score_a": 0.4,
+      "momentum_score_b": 0.3,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-10",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "21-12",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_3": {
@@ -1006,8 +2197,8 @@
     "region": "South",
     "team_a": "Vanderbilt",
     "team_b": "McNeese",
-    "prob_a": 0.8159,
-    "prob_b": 0.1841,
+    "prob_a": 0.8151,
+    "prob_b": 0.1849,
     "pct_a": 82,
     "pct_b": 18,
     "confidence": "Heavy Favorite",
@@ -1017,8 +2208,54 @@
     "signals": {
       "srs": 0.8595,
       "sos": 0.9222,
-      "seed": 0.647,
-      "travel": 0.656
+      "momentum": 0.9998,
+      "seed": 0.611,
+      "travel": 0.656,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 22.8,
+      "srs_b": 7.7,
+      "sos_a": 11.7,
+      "sos_b": -2.1,
+      "seed_a": 5,
+      "seed_b": 12,
+      "wins_a": 26,
+      "wins_b": 28,
+      "losses_a": 8,
+      "losses_b": 5,
+      "distance_a": 182,
+      "distance_b": 570,
+      "last10_wins_a": 6,
+      "last10_wins_b": 0,
+      "last10_losses_a": 4,
+      "last10_losses_b": 1,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 2.2,
+      "last10_margin_b": -57.0,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "26-8 \u00b7 Ranked #16",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_4": {
@@ -1027,19 +2264,65 @@
     "region": "South",
     "team_a": "Nebraska",
     "team_b": "Troy",
-    "prob_a": 0.8593,
-    "prob_b": 0.1407,
-    "pct_a": 86,
-    "pct_b": 14,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7701,
+    "prob_b": 0.2299,
+    "pct_a": 77,
+    "pct_b": 23,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "S_R2_2",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9356,
       "sos": 0.9376,
-      "seed": 0.793,
-      "travel": 0.5653
+      "momentum": 0.4712,
+      "seed": 0.778,
+      "travel": 0.5653,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 21.5,
+      "srs_b": -0.8,
+      "sos_a": 10.5,
+      "sos_b": -4.6,
+      "seed_a": 4,
+      "seed_b": 13,
+      "wins_a": 26,
+      "wins_b": 22,
+      "losses_a": 6,
+      "losses_b": 11,
+      "distance_a": 220,
+      "distance_b": 377,
+      "last10_wins_a": 6,
+      "last10_wins_b": 7,
+      "last10_losses_a": 4,
+      "last10_losses_b": 3,
+      "win_streak_a": -1,
+      "win_streak_b": 4,
+      "last10_margin_a": 4.7,
+      "last10_margin_b": 5.3,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.7,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "26-6 \u00b7 Ranked #15",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "22-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_5": {
@@ -1048,19 +2331,65 @@
     "region": "South",
     "team_a": "North Carolina",
     "team_b": "VCU",
-    "prob_a": 0.6816,
-    "prob_b": 0.3184,
-    "pct_a": 68,
-    "pct_b": 32,
-    "confidence": "Clear Favorite",
+    "prob_a": 0.6249,
+    "prob_b": 0.3751,
+    "pct_a": 62,
+    "pct_b": 38,
+    "confidence": "Slight Edge",
     "user_pick": null,
     "winner_slot": "S_R2_3",
     "winner_slot_position": "a",
     "signals": {
       "srs": 0.6779,
       "sos": 0.8031,
-      "seed": 0.63,
-      "travel": 0.5
+      "momentum": 0.3977,
+      "seed": 0.611,
+      "travel": 0.5,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 19.4,
+      "srs_b": 13.2,
+      "sos_a": 10.9,
+      "sos_b": 3.1,
+      "seed_a": 6,
+      "seed_b": 11,
+      "wins_a": 24,
+      "wins_b": 27,
+      "losses_a": 8,
+      "losses_b": 7,
+      "distance_a": 110,
+      "distance_b": 0,
+      "last10_wins_a": 6,
+      "last10_wins_b": 9,
+      "last10_losses_a": 4,
+      "last10_losses_b": 1,
+      "win_streak_a": -2,
+      "win_streak_b": 6,
+      "last10_margin_a": -0.5,
+      "last10_margin_b": 7.7,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.9,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-8 \u00b7 Ranked #21",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "27-7",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_6": {
@@ -1069,10 +2398,10 @@
     "region": "South",
     "team_a": "Illinois",
     "team_b": "Queens (NC)",
-    "prob_a": 0.9237,
-    "prob_b": 0.0763,
-    "pct_a": 92,
-    "pct_b": 8,
+    "prob_a": 0.822,
+    "prob_b": 0.178,
+    "pct_a": 82,
+    "pct_b": 18,
     "confidence": "Heavy Favorite",
     "user_pick": null,
     "winner_slot": "S_R2_3",
@@ -1080,8 +2409,54 @@
     "signals": {
       "srs": 0.9726,
       "sos": 0.9541,
-      "seed": 0.85,
-      "travel": 0.8063
+      "momentum": 0.5,
+      "seed": 0.861,
+      "travel": 0.8063,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 26.4,
+      "srs_b": -3.3,
+      "sos_a": 11.9,
+      "sos_b": -5.0,
+      "seed_a": 3,
+      "seed_b": 14,
+      "wins_a": 24,
+      "wins_b": 21,
+      "losses_a": 8,
+      "losses_b": 13,
+      "distance_a": 111,
+      "distance_b": 967,
+      "last10_wins_a": 5,
+      "last10_wins_b": 0,
+      "last10_losses_a": 5,
+      "last10_losses_b": 0,
+      "win_streak_a": -1,
+      "win_streak_b": 0,
+      "last10_margin_a": 10.5,
+      "last10_margin_b": 0.0,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.0,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "24-8 \u00b7 Ranked #13",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_7": {
@@ -1090,10 +2465,10 @@
     "region": "South",
     "team_a": "Miami (FL)",
     "team_b": "Texas A&M",
-    "prob_a": 0.5025,
-    "prob_b": 0.4975,
-    "pct_a": 50,
-    "pct_b": 50,
+    "prob_a": 0.5165,
+    "prob_b": 0.4835,
+    "pct_a": 52,
+    "pct_b": 48,
     "confidence": "Toss-Up",
     "user_pick": null,
     "winner_slot": "S_R2_4",
@@ -1101,8 +2476,54 @@
     "signals": {
       "srs": 0.5383,
       "sos": 0.4409,
-      "seed": 0.601,
-      "travel": 0.4314
+      "momentum": 0.6405,
+      "seed": 0.556,
+      "travel": 0.4314,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 18.0,
+      "srs_b": 16.8,
+      "sos_a": 7.3,
+      "sos_b": 8.6,
+      "seed_a": 7,
+      "seed_b": 10,
+      "wins_a": 25,
+      "wins_b": 21,
+      "losses_a": 8,
+      "losses_b": 11,
+      "distance_a": 657,
+      "distance_b": 492,
+      "last10_wins_a": 7,
+      "last10_wins_b": 4,
+      "last10_losses_a": 3,
+      "last10_losses_b": 6,
+      "win_streak_a": -1,
+      "win_streak_b": -1,
+      "last10_margin_a": 2.8,
+      "last10_margin_b": -5.3,
+      "momentum_score_a": 0.7,
+      "momentum_score_b": 0.4,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "25-8 \u00b7 Ranked #25",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "21-11",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R1_8": {
@@ -1111,19 +2532,65 @@
     "region": "South",
     "team_a": "Houston",
     "team_b": "Idaho",
-    "prob_a": 0.8503,
-    "prob_b": 0.1497,
-    "pct_a": 85,
-    "pct_b": 15,
-    "confidence": "Heavy Favorite",
+    "prob_a": 0.7602,
+    "prob_b": 0.2398,
+    "pct_a": 76,
+    "pct_b": 24,
+    "confidence": "Clear Favorite",
     "user_pick": null,
     "winner_slot": "S_R2_4",
     "winner_slot_position": "b",
     "signals": {
       "srs": 0.9591,
       "sos": 0.933,
-      "seed": 0.94,
-      "travel": 0.305
+      "momentum": 0.4469,
+      "seed": 0.917,
+      "travel": 0.305,
+      "injuries": 0.5
+    },
+    "raw_stats": {
+      "srs_a": 26.2,
+      "srs_b": -0.1,
+      "sos_a": 11.9,
+      "sos_b": -2.7,
+      "seed_a": 2,
+      "seed_b": 15,
+      "wins_a": 28,
+      "wins_b": 21,
+      "losses_a": 6,
+      "losses_b": 14,
+      "distance_a": 562,
+      "distance_b": 67,
+      "last10_wins_a": 6,
+      "last10_wins_b": 8,
+      "last10_losses_a": 4,
+      "last10_losses_b": 2,
+      "win_streak_a": -1,
+      "win_streak_b": 5,
+      "last10_margin_a": 7.5,
+      "last10_margin_b": 9.2,
+      "momentum_score_a": 0.6,
+      "momentum_score_b": 0.8,
+      "health_score_a": 1.0,
+      "health_score_b": 1.0,
+      "injured_count_a": 0,
+      "injured_count_b": 0,
+      "key_players_out_a": [],
+      "key_players_out_b": []
+    },
+    "commentary": {
+      "team_a": {
+        "headlines": [],
+        "team_context": "28-6 \u00b7 Ranked #5",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      },
+      "team_b": {
+        "headlines": [],
+        "team_context": "21-14",
+        "sentiment": "neutral",
+        "last_updated": "2026-03-16"
+      }
     }
   },
   "S_R2_1": {
@@ -1140,7 +2607,9 @@
     "user_pick": null,
     "winner_slot": "S_R3_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R2_2": {
     "id": "S_R2_2",
@@ -1156,7 +2625,9 @@
     "user_pick": null,
     "winner_slot": "S_R3_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R2_3": {
     "id": "S_R2_3",
@@ -1172,7 +2643,9 @@
     "user_pick": null,
     "winner_slot": "S_R3_2",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R2_4": {
     "id": "S_R2_4",
@@ -1188,7 +2661,9 @@
     "user_pick": null,
     "winner_slot": "S_R3_2",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R3_1": {
     "id": "S_R3_1",
@@ -1204,7 +2679,9 @@
     "user_pick": null,
     "winner_slot": "S_R4_1",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R3_2": {
     "id": "S_R3_2",
@@ -1220,7 +2697,9 @@
     "user_pick": null,
     "winner_slot": "S_R4_1",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "S_R4_1": {
     "id": "S_R4_1",
@@ -1236,13 +2715,15 @@
     "user_pick": null,
     "winner_slot": "SF_2",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "SF_1": {
     "id": "SF_1",
     "round_name": "Final Four",
     "region": "National",
-    "team_a": "Connecticut",
+    "team_a": null,
     "team_b": null,
     "prob_a": null,
     "prob_b": null,
@@ -1252,7 +2733,9 @@
     "user_pick": null,
     "winner_slot": "CHAMP",
     "winner_slot_position": "a",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "SF_2": {
     "id": "SF_2",
@@ -1268,7 +2751,9 @@
     "user_pick": null,
     "winner_slot": "CHAMP",
     "winner_slot_position": "b",
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   },
   "CHAMP": {
     "id": "CHAMP",
@@ -1284,6 +2769,8 @@
     "user_pick": null,
     "winner_slot": null,
     "winner_slot_position": null,
-    "signals": null
+    "signals": null,
+    "raw_stats": null,
+    "commentary": null
   }
 }

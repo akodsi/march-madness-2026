@@ -1,0 +1,410 @@
+{
+  "Duke": {
+    "headlines": [],
+    "team_context": "32-2 \u00b7 Ranked #1",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Siena": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Connecticut": {
+    "headlines": [],
+    "team_context": "29-5 \u00b7 Ranked #7",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Furman": {
+    "headlines": [],
+    "team_context": "22-12",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Michigan State": {
+    "headlines": [],
+    "team_context": "25-7 \u00b7 Ranked #11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "North Dakota State": {
+    "headlines": [],
+    "team_context": "27-7",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Kansas": {
+    "headlines": [],
+    "team_context": "23-10 \u00b7 Ranked #17",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "California Baptist": {
+    "headlines": [],
+    "team_context": "25-8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "St. John's (NY)": {
+    "headlines": [],
+    "team_context": "28-6 \u00b7 Ranked #10",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Northern Iowa": {
+    "headlines": [],
+    "team_context": "22-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Louisville": {
+    "headlines": [],
+    "team_context": "23-10 \u00b7 Ranked #23",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "South Florida": {
+    "headlines": [],
+    "team_context": "25-8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "UCLA": {
+    "headlines": [],
+    "team_context": "23-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "UCF": {
+    "headlines": [],
+    "team_context": "21-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Ohio State": {
+    "headlines": [],
+    "team_context": "21-12",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "TCU": {
+    "headlines": [],
+    "team_context": "22-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Arizona": {
+    "headlines": [],
+    "team_context": "32-2 \u00b7 Ranked #2",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "LIU": {
+    "headlines": [],
+    "team_context": "15-17",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Purdue": {
+    "headlines": [],
+    "team_context": "27-8 \u00b7 Ranked #8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Penn": {
+    "headlines": [],
+    "team_context": "18-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Gonzaga": {
+    "headlines": [],
+    "team_context": "30-3 \u00b7 Ranked #12",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Kennesaw State": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Arkansas": {
+    "headlines": [],
+    "team_context": "26-8 \u00b7 Ranked #14",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Hawaii": {
+    "headlines": [],
+    "team_context": "24-8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Wisconsin": {
+    "headlines": [],
+    "team_context": "24-10 \u00b7 Ranked #19",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "High Point": {
+    "headlines": [],
+    "team_context": "30-4",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "BYU": {
+    "headlines": [],
+    "team_context": "23-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Texas": {
+    "headlines": [],
+    "team_context": "18-14",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "NC State": {
+    "headlines": [],
+    "team_context": "20-13",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Saint Mary's (CA)": {
+    "headlines": [],
+    "team_context": "27-5 \u00b7 Ranked #22",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Missouri": {
+    "headlines": [],
+    "team_context": "20-12",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Villanova": {
+    "headlines": [],
+    "team_context": "24-8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Utah State": {
+    "headlines": [],
+    "team_context": "28-6",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Michigan": {
+    "headlines": [],
+    "team_context": "31-3 \u00b7 Ranked #3",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "UMBC": {
+    "headlines": [],
+    "team_context": "24-8",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Howard": {
+    "headlines": [],
+    "team_context": "23-10",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Iowa State": {
+    "headlines": [],
+    "team_context": "27-7 \u00b7 Ranked #6",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Tennessee State": {
+    "headlines": [],
+    "team_context": "12-18",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Virginia": {
+    "headlines": [],
+    "team_context": "29-5 \u00b7 Ranked #9",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Wright State": {
+    "headlines": [],
+    "team_context": "23-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Alabama": {
+    "headlines": [],
+    "team_context": "23-9 \u00b7 Ranked #18",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Hofstra": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Texas Tech": {
+    "headlines": [],
+    "team_context": "22-10 \u00b7 Ranked #20",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Akron": {
+    "headlines": [],
+    "team_context": "29-5",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Tennessee": {
+    "headlines": [],
+    "team_context": "22-11 \u00b7 Ranked #23",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Miami (OH)": {
+    "headlines": [],
+    "team_context": "31-1",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "SMU": {
+    "headlines": [],
+    "team_context": "20-13",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Kentucky": {
+    "headlines": [],
+    "team_context": "21-13",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Santa Clara": {
+    "headlines": [],
+    "team_context": "28-5",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Georgia": {
+    "headlines": [],
+    "team_context": "22-10",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Saint Louis": {
+    "headlines": [],
+    "team_context": "28-5",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Florida": {
+    "headlines": [],
+    "team_context": "26-7 \u00b7 Ranked #4",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Prairie View": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Lehigh": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Houston": {
+    "headlines": [],
+    "team_context": "28-6 \u00b7 Ranked #5",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Idaho": {
+    "headlines": [],
+    "team_context": "21-14",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Illinois": {
+    "headlines": [],
+    "team_context": "24-8 \u00b7 Ranked #13",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Queens (NC)": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Nebraska": {
+    "headlines": [],
+    "team_context": "26-6 \u00b7 Ranked #15",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Troy": {
+    "headlines": [],
+    "team_context": "22-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Vanderbilt": {
+    "headlines": [],
+    "team_context": "26-8 \u00b7 Ranked #16",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "McNeese": {
+    "headlines": [],
+    "team_context": "",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "North Carolina": {
+    "headlines": [],
+    "team_context": "24-8 \u00b7 Ranked #21",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "VCU": {
+    "headlines": [],
+    "team_context": "27-7",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Miami (FL)": {
+    "headlines": [],
+    "team_context": "25-8 \u00b7 Ranked #25",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Texas A&M": {
+    "headlines": [],
+    "team_context": "21-11",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Clemson": {
+    "headlines": [],
+    "team_context": "24-10",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  },
+  "Iowa": {
+    "headlines": [],
+    "team_context": "21-12",
+    "sentiment": "neutral",
+    "last_updated": "2026-03-16"
+  }
+}
