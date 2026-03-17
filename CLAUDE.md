@@ -25,6 +25,14 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Matchup detail modal — click ⓘ on any card to see full breakdown: signal bars, plain-English "case for each team", pick/undo buttons
 - [x] Raw stats passed from backend — SRS, SOS, seed, record, travel distance available in every matchup for the detail modal
 
+## Frontend Improvements (v3) — all complete
+- [x] Streak badges on cards — `W11` / `L3` shown inline on each team row when streak ≥ 3 games
+- [x] Injury warning icon — `⚠` shown on card when key players are out
+- [x] Momentum section in modal — last-10 record (color-coded), current streak, avg margin per game; "No schedule data available" for small schools not in ESPN
+- [x] Injury Report section in modal — health score bar (green/yellow/red), injured player count, key players out by name; hidden when all teams healthy
+- [x] ESPN Coverage section in modal — sentiment indicator (↑/↓/—), team context (record + ranking), up to 2 headlines; hidden until pipeline is run
+- [x] Signal bars updated — momentum and injuries now appear alongside SRS/SOS/seed/travel with correct weights
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -104,7 +112,7 @@ backend/
 │   ├── rule_engine.py               6-signal weighted probability calculator + commentary
 │   └── bracket.py                   Full bracket tree with pick/cascade logic
 ├── pipeline/
-│   ├── run_pipeline.py              Master pipeline runner (6 steps)
+│   ├── run_pipeline.py              Master pipeline runner (7 steps — ends with tournament_filter merge)
 │   ├── stats_ingest.py              Sports-Reference scraper
 │   ├── kaggle_ingest.py             Historical tournament data loader
 │   ├── geo_ingest.py                Campus geocoding + travel distances
@@ -120,15 +128,15 @@ backend/
 frontend/
 ├── src/app/                         Next.js app shell
 ├── src/lib/
-│   ├── types.ts                     TypeScript interfaces (Matchup with raw_stats)
+│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, TeamCommentary)
 │   ├── api.ts                       API client functions
 │   ├── bracketSlots.ts              Slot ordering + layout constants
 │   └── teamLogos.ts                 ESPN logo URL mapping for 68 teams
 └── src/components/
     ├── BracketBoard.tsx             Tab navigation + state manager
     ├── RegionBracket.tsx            One region's 4 rounds
-    ├── MatchupCard.tsx              Team logos + % bars + ⓘ info button
-    ├── MatchupDetail.tsx            Full breakdown modal (signals, case for each team)
+    ├── MatchupCard.tsx              Team logos + % bars + streak badge + injury icon + ⓘ button
+    ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, commentary, case for each team)
     ├── ConnectorLines.tsx           SVG bracket connector lines
     ├── FirstFour.tsx                First Four section
     └── FinalFour.tsx                Final Four + Championship
@@ -143,22 +151,24 @@ frontend/
 6. ✅ Frontend — full bracket UI, confidence %, click-to-pick, live cascade
 7. ✅ Frontend v2 — tab navigation, team logos, matchup detail modal with signal breakdown
 8. ✅ Backend v2 — momentum (ESPN schedule), injuries (ESPN API), expert commentary
-9. Post-round refresh — update predictions after each round's results (next)
-10. Frontend v3 — display momentum, injuries, and commentary in matchup detail modal
+9. ✅ Frontend v3 — streak badges, injury icons on cards; momentum/injury/commentary sections in modal
+10. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash
 cd backend && source venv/bin/activate
 
-# Full pipeline (6 steps — stats, seeds, profiles, travel, momentum, injuries+commentary)
+# Full pipeline (7 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, merge)
 python pipeline/run_pipeline.py
 
-# Individual new steps
+# Individual steps
 python pipeline/momentum_ingest.py     # Last-10 games from ESPN
 python pipeline/injury_ingest.py       # ESPN injury reports
 python pipeline/commentary_ingest.py   # ESPN headlines + sentiment
+python pipeline/tournament_filter.py   # Merge all data into tournament_teams CSV (run after any ingest)
 ```
 Re-run before each round to pick up updated momentum, fresh injury reports, and latest commentary.
+**Important:** Always restart the backend after re-running the pipeline — uvicorn caches team data in memory.
 
 ## Future Model Upgrade Path
 Swap `WEIGHTS` dict in `rule_engine.py` for quick re-weighting. Full model upgrade (ELO, logistic regression, ML) only requires reimplementing `predict()` — the bracket model and frontend are decoupled from prediction logic. The 6-signal architecture makes it easy to add or remove signals without touching the bracket or frontend.
