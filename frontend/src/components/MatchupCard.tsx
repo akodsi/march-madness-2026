@@ -36,7 +36,7 @@ function TeamLogo({ name }: { name: string }) {
 }
 
 export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Props) {
-  const { id, team_a, team_b, pct_a, pct_b, confidence, user_pick } = matchup
+  const { id, team_a, team_b, pct_a, pct_b, confidence, user_pick, raw_stats } = matchup
   const ready  = team_a !== null && team_b !== null
   const picked = user_pick !== null
 
@@ -56,6 +56,11 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
       : pctVal >= 65 ? 'bg-emerald-600'
       : pctVal >= 55 ? 'bg-blue-600'
       : 'bg-slate-600'
+
+    const streak  = isA ? raw_stats?.win_streak_a : raw_stats?.win_streak_b
+    const keyOut  = isA ? raw_stats?.key_players_out_a : raw_stats?.key_players_out_b
+    const hasStreak = streak !== undefined && streak !== null && Math.abs(streak) >= 3
+    const hasInjury = keyOut !== undefined && keyOut.length > 0
 
     return (
       <button
@@ -82,6 +87,15 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
         <span className="flex-1 text-xs font-medium truncate leading-tight">
           {team ?? <span className="text-slate-500 italic">TBD</span>}
         </span>
+
+        {hasStreak && streak !== undefined && (
+          <span className={`text-[8px] font-bold px-0.5 rounded flex-shrink-0 leading-tight ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            {streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`}
+          </span>
+        )}
+        {hasInjury && (
+          <span className="text-orange-400 text-[9px] flex-shrink-0" title="Key players out">⚠</span>
+        )}
 
         {ready && (
           <span className={`text-xs font-bold flex-shrink-0 ${isWinner ? 'text-amber-400' : 'text-slate-300'}`}>

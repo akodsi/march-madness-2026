@@ -50,7 +50,7 @@ function signalEdge(prob: number): { edge: string; color: string } {
 }
 
 function buildCase(
-  teamName: string,
+  _teamName: string,
   isA: boolean,
   signals: Record<string, number>,
   raw: NonNullable<Matchup['raw_stats']>
@@ -111,18 +111,55 @@ function buildCase(
     }
   }
 
+  // Momentum
+  const last10Wins   = isA ? raw.last10_wins_a   : raw.last10_wins_b
+  const last10Losses = isA ? raw.last10_losses_a : raw.last10_losses_b
+  const streak       = isA ? raw.win_streak_a    : raw.win_streak_b
+  const margin       = isA ? raw.last10_margin_a : raw.last10_margin_b
+  const momentumSig  = signals.momentum !== undefined ? (isA ? signals.momentum : 1 - signals.momentum) : undefined
+
+  if (last10Wins !== undefined && last10Losses !== undefined) {
+    const marginStr = margin !== undefined ? `, avg margin ${margin > 0 ? '+' : ''}${margin.toFixed(1)} ppg` : ''
+    if (momentumSig !== undefined && momentumSig >= 0.55) {
+      bullets.push(`Hot team — ${last10Wins}-${last10Losses} in last 10${marginStr}`)
+    } else if (momentumSig !== undefined && momentumSig <= 0.45) {
+      bullets.push(`Cold stretch — ${last10Wins}-${last10Losses} in last 10${marginStr}`)
+    } else {
+      bullets.push(`Last 10 games: ${last10Wins}-${last10Losses}${marginStr}`)
+    }
+  }
+  if (streak !== undefined && Math.abs(streak) >= 3) {
+    bullets.push(`On a ${streak > 0 ? `${streak}-game win` : `${Math.abs(streak)}-game losing`} streak`)
+  }
+
+  // Injuries
+  const healthScore = isA ? raw.health_score_a : raw.health_score_b
+  const keyOut      = isA ? raw.key_players_out_a : raw.key_players_out_b
+  if (healthScore !== undefined) {
+    const healthPct = Math.round(healthScore * 100)
+    if (healthPct >= 90) {
+      bullets.push(`Healthy roster heading into the tournament`)
+    } else if (keyOut && keyOut.length > 0) {
+      bullets.push(`Injury concerns: ${keyOut.join(', ')} out (health ${healthPct}%)`)
+    } else if (healthPct < 70) {
+      bullets.push(`Significant injuries — roster health at ${healthPct}%`)
+    }
+  }
+
   return bullets
 }
 
 const SIGNAL_LABELS: Record<string, string> = {
-  srs:    'Team Quality (SRS)',
-  sos:    'Schedule Strength',
-  seed:   'Seed History',
-  travel: 'Travel Advantage',
+  srs:      'Team Quality (SRS)',
+  sos:      'Schedule Strength',
+  seed:     'Seed History',
+  travel:   'Travel Advantage',
+  momentum: 'Momentum',
+  injuries: 'Injury Impact',
 }
 
 const WEIGHTS: Record<string, number> = {
-  srs: 40, sos: 30, seed: 15, travel: 15,
+  srs: 30, sos: 25, seed: 10, travel: 10, momentum: 15, injuries: 10,
 }
 
 export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Props) {
@@ -209,7 +246,6 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
             <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Signal Breakdown</h3>
             <div className="space-y-2.5">
               {Object.entries(signals).map(([key, probA]) => {
-                const probB = 1 - probA
                 const pctA  = Math.round(probA * 100)
                 const pctB  = 100 - pctA
                 const { edge: edgeA, color: colorA } = signalEdge(probA)
@@ -246,6 +282,145 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           </div>
         )}
 
+        {/* Momentum section */}
+        {raw_stats && ready && raw_stats.last10_wins_a !== undefined && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Momentum (Last 10 Games)</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, isA: true },
+                { name: team_b, isA: false },
+              ] as const).map(({ name, isA }) => {
+                const wins   = isA ? raw_stats.last10_wins_a   : raw_stats.last10_wins_b
+                const losses = isA ? raw_stats.last10_losses_a : raw_stats.last10_losses_b
+                const streak = isA ? raw_stats.win_streak_a    : raw_stats.win_streak_b
+                const margin = isA ? raw_stats.last10_margin_a : raw_stats.last10_margin_b
+                const isPicked = user_pick === name
+                const winsNum = wins ?? 0
+                return (
+                  <div key={isA ? 'mom-a' : 'mom-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Last 10</span>
+                        <span className={`font-bold ${winsNum >= 7 ? 'text-emerald-400' : winsNum >= 5 ? 'text-yellow-400' : 'text-red-400'}`}>
+                          {wins ?? '—'}–{losses ?? '—'}
+                        </span>
+                      </div>
+                      {streak !== undefined && (
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Streak</span>
+                          <span className={`font-bold ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`}
+                          </span>
+                        </div>
+                      )}
+                      {margin !== undefined && (
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Avg Margin</span>
+                          <span className={`font-bold ${margin > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {margin > 0 ? '+' : ''}{margin.toFixed(1)} ppg
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Injuries section */}
+        {raw_stats && ready && raw_stats.health_score_a !== undefined && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Injury Report</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, isA: true },
+                { name: team_b, isA: false },
+              ] as const).map(({ name, isA }) => {
+                const health  = isA ? raw_stats.health_score_a  : raw_stats.health_score_b
+                const count   = isA ? raw_stats.injured_count_a : raw_stats.injured_count_b
+                const keyOut  = isA ? raw_stats.key_players_out_a : raw_stats.key_players_out_b
+                const healthPct = Math.round((health ?? 1) * 100)
+                const healthColor = healthPct >= 90 ? 'bg-emerald-500' : healthPct >= 70 ? 'bg-yellow-500' : 'bg-red-500'
+                const isPicked = user_pick === name
+                return (
+                  <div key={isA ? 'inj-a' : 'inj-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
+                    <div className="space-y-1.5 text-xs">
+                      <div>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-slate-400">Health Score</span>
+                          <span className="font-bold text-white">{healthPct}%</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${healthColor}`} style={{ width: `${healthPct}%` }} />
+                        </div>
+                      </div>
+                      {count !== undefined && count > 0 ? (
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Injured</span>
+                          <span className="font-bold text-orange-400">{count} player{count !== 1 ? 's' : ''}</span>
+                        </div>
+                      ) : (
+                        <p className="text-emerald-400">No significant injuries</p>
+                      )}
+                      {keyOut && keyOut.length > 0 && (
+                        <div>
+                          <span className="text-slate-400 block mb-0.5">Key players out:</span>
+                          <span className="text-red-400 leading-snug">{keyOut.join(', ')}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Commentary section */}
+        {matchup.commentary && ready && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">ESPN Coverage</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, data: matchup.commentary.team_a, isA: true },
+                { name: team_b, data: matchup.commentary.team_b, isA: false },
+              ] as const).map(({ name, data, isA }) => {
+                if (!data) return null
+                const isPicked = user_pick === name
+                const sentimentColor = data.sentiment === 'positive' ? 'text-emerald-400' : data.sentiment === 'negative' ? 'text-red-400' : 'text-slate-400'
+                const sentimentLabel = data.sentiment === 'positive' ? '↑ Positive' : data.sentiment === 'negative' ? '↓ Negative' : '— Neutral'
+                return (
+                  <div key={isA ? 'com-a' : 'com-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <p className="text-xs font-semibold text-white truncate">{name}</p>
+                      <span className={`text-[10px] font-bold flex-shrink-0 ml-1 ${sentimentColor}`}>{sentimentLabel}</span>
+                    </div>
+                    {data.team_context && (
+                      <p className="text-[10px] text-slate-400 mb-2">{data.team_context}</p>
+                    )}
+                    {data.headlines && data.headlines.length > 0 && (
+                      <div className="space-y-2">
+                        {data.headlines.slice(0, 2).map((h, i) => (
+                          <div key={i} className="border-l-2 border-slate-600 pl-2">
+                            <p className="text-[10px] font-medium text-slate-300 leading-snug">{h.title}</p>
+                            {h.summary && <p className="text-[9px] text-slate-500 mt-0.5 leading-snug">{h.summary}</p>}
+                            <p className="text-[9px] text-slate-600 mt-0.5">{h.source} · {h.date}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Case for each team */}
         {signals && raw_stats && ready && team_a && team_b && (
           <div className="grid grid-cols-2 gap-4 px-6 py-4">
@@ -254,7 +429,6 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
               { name: team_b, isA: false },
             ].map(({ name, isA }) => {
               const bullets = buildCase(name, isA, signals, raw_stats)
-              const winPct  = isA ? pct_a : pct_b
               const isPicked = user_pick === name
 
               return (

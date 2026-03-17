@@ -1,3 +1,16 @@
+export interface Headline {
+  title: string
+  summary: string
+  source: string
+  date: string
+}
+
+export interface TeamCommentary {
+  headlines: Headline[]
+  team_context: string
+  sentiment: 'positive' | 'neutral' | 'negative'
+}
+
 export interface Matchup {
   id: string
   round_name: string
@@ -20,6 +33,20 @@ export interface Matchup {
     wins_a: number; wins_b: number
     losses_a: number; losses_b: number
     distance_a: number; distance_b: number
+    // Momentum
+    last10_wins_a?: number; last10_wins_b?: number
+    last10_losses_a?: number; last10_losses_b?: number
+    win_streak_a?: number; win_streak_b?: number
+    last10_margin_a?: number; last10_margin_b?: number
+    momentum_score_a?: number; momentum_score_b?: number
+    // Injuries
+    health_score_a?: number; health_score_b?: number
+    injured_count_a?: number; injured_count_b?: number
+    key_players_out_a?: string[]; key_players_out_b?: string[]
+  } | null
+  commentary: {
+    team_a: TeamCommentary
+    team_b: TeamCommentary
   } | null
 }
 
