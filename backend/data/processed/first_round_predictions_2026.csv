@@ -1,0 +1,33 @@
+Region,SeedA,TeamA,SeedB,TeamB,PredictedWinner,Confidence_pct,Confidence,WinProb_A,Signal_SRS,Signal_SOS,Signal_Seed,Signal_Travel
+East,1,Duke,16,Siena,Duke,98.7,Very High,0.9874,0.9867,0.9799,0.993,0.9985
+East,2,Connecticut,15,Furman,Connecticut,88.8,Very High,0.8883,0.9585,0.9526,0.94,0.5207
+East,3,Michigan State,14,North Dakota State,Michigan State,89.1,Very High,0.8905,0.925,0.9666,0.85,0.6869
+East,4,Kansas,13,California Baptist,Kansas,88.7,Very High,0.8874,0.9029,0.9609,0.793,0.7933
+East,5,St. John's (NY),12,Northern Iowa,St. John's (NY),77.7,High,0.7768,0.8418,0.8431,0.647,0.6011
+East,6,Louisville,11,South Florida,Louisville,74.8,High,0.7484,0.7711,0.8148,0.63,0.6732
+East,7,UCLA,10,UCF,UCLA,55.5,Moderate,0.5547,0.6451,0.5337,0.601,0.3092
+East,8,Ohio State,9,TCU,Ohio State,57.6,Moderate,0.5759,0.598,0.6128,0.519,0.5
+Midwest,1,Michigan,16,UMBC,Michigan,91.7,Very High,0.9168,0.9882,0.9919,0.993,0.5
+Midwest,2,Iowa State,15,Tennessee State,Iowa State,88.7,Very High,0.8872,0.9782,0.9693,0.94,0.4275
+Midwest,3,Virginia,14,Wright State,Virginia,84.4,Very High,0.8436,0.9294,0.923,0.85,0.4493
+Midwest,4,Alabama,13,Hofstra,Alabama,82.5,Very High,0.825,0.899,0.9545,0.793,0.4008
+Midwest,5,Texas Tech,12,Akron,Texas Tech,76.8,High,0.7683,0.8248,0.9589,0.647,0.3577
+Midwest,6,Tennessee,11,Miami (OH),Tennessee,80.6,Very High,0.8065,0.8813,0.9588,0.63,0.4786
+Midwest,7,Kentucky,10,Santa Clara,Kentucky,68.5,High,0.6846,0.6155,0.7728,0.601,0.7764
+Midwest,8,Georgia,9,Saint Louis,Georgia,62.1,Moderate,0.6214,0.5686,0.7909,0.519,0.526
+South,1,Florida,16,Prairie View,Florida,91.6,Very High,0.9163,0.9924,0.9844,0.993,0.5
+South,2,Houston,15,Idaho,Houston,85.0,Very High,0.8503,0.9591,0.933,0.94,0.305
+South,3,Illinois,14,Queens (NC),Illinois,92.4,Very High,0.9237,0.9726,0.9541,0.85,0.8063
+South,4,Nebraska,13,Troy,Nebraska,85.9,Very High,0.8593,0.9356,0.9376,0.793,0.5653
+South,5,Vanderbilt,12,McNeese,Vanderbilt,81.6,Very High,0.8159,0.8595,0.9222,0.647,0.656
+South,6,North Carolina,11,VCU,North Carolina,68.2,High,0.6816,0.6779,0.8031,0.63,0.5
+South,7,Miami (FL),10,Texas A&M,Miami (FL),50.2,Low,0.5025,0.5383,0.4409,0.601,0.4314
+South,8,Clemson,9,Iowa,Iowa,51.2,Low,0.4881,0.44,0.4915,0.519,0.5788
+West,1,Arizona,16,LIU,Arizona,91.1,Very High,0.9106,0.985,0.9756,0.993,0.5
+West,2,Purdue,15,Penn,Purdue,88.3,Very High,0.883,0.9584,0.9455,0.94,0.5
+West,3,Gonzaga,14,Kennesaw State,Gonzaga,84.0,Very High,0.8399,0.9525,0.8079,0.85,0.5935
+West,4,Arkansas,13,Hawaii,Arkansas,90.8,Very High,0.9085,0.8918,0.9483,0.793,0.9886
+West,5,Wisconsin,12,High Point,Wisconsin,78.0,High,0.7801,0.8222,0.9749,0.647,0.4114
+West,6,BYU,11,Texas,BYU,60.5,Moderate,0.605,0.6421,0.5956,0.63,0.5
+West,7,Saint Mary's (CA),10,Missouri,Saint Mary's (CA),52.9,Low,0.5287,0.6399,0.3586,0.601,0.5
+West,8,Villanova,9,Utah State,Villanova,55.3,Moderate,0.5529,0.4682,0.6492,0.519,0.6201
