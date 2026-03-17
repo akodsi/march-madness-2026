@@ -257,21 +257,26 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                 const { edge: edgeA, color: colorA } = signalEdge(probA)
                 const weight = WEIGHTS[key] ?? 0
 
+                const dominantColor = (pct: number) =>
+                  pct >= 75 ? 'bg-emerald-600' : pct >= 60 ? 'bg-blue-600' : pct >= 52 ? 'bg-yellow-500' : 'bg-slate-600'
+                const barColorA = pctA >= pctB ? dominantColor(pctA) : 'bg-slate-800'
+                const barColorB = pctB >  pctA ? dominantColor(pctB) : 'bg-slate-800'
+
                 return (
                   <div key={key}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-slate-400">{SIGNAL_LABELS[key] ?? key}</span>
                       <span className="text-[10px] text-slate-600">{weight}% weight</span>
                     </div>
-                    <div className="flex h-4 rounded overflow-hidden text-[9px] font-bold">
+                    <div className="flex h-4 rounded overflow-hidden text-[9px] font-bold gap-px bg-slate-900">
                       <div
-                        className={`flex items-center justify-center bg-slate-700 transition-all ${pctA > pctB ? 'text-white' : 'text-slate-400'}`}
+                        className={`flex items-center justify-center transition-all ${barColorA} ${pctA > pctB ? 'text-white' : 'text-slate-500'}`}
                         style={{ width: `${pctA}%` }}
                       >
                         {pctA > 20 ? `${pctA}%` : ''}
                       </div>
                       <div
-                        className={`flex items-center justify-center bg-slate-600 transition-all ${pctB > pctA ? 'text-white' : 'text-slate-400'}`}
+                        className={`flex items-center justify-center transition-all ${barColorB} ${pctB > pctA ? 'text-white' : 'text-slate-500'}`}
                         style={{ width: `${pctB}%` }}
                       >
                         {pctB > 20 ? `${pctB}%` : ''}
