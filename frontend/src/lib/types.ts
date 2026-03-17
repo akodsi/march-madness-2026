@@ -13,6 +13,14 @@ export interface Matchup {
   winner_slot: string | null
   winner_slot_position: string | null
   signals: Record<string, number> | null
+  raw_stats: {
+    srs_a: number; srs_b: number
+    sos_a: number; sos_b: number
+    seed_a: number; seed_b: number
+    wins_a: number; wins_b: number
+    losses_a: number; losses_b: number
+    distance_a: number; distance_b: number
+  } | null
 }
 
 export type BracketData = Record<string, Matchup>

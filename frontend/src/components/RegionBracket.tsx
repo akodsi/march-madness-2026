@@ -1,5 +1,5 @@
 'use client'
-import { BracketData, Region, Direction } from '@/lib/types'
+import { BracketData, Matchup, Region, Direction } from '@/lib/types'
 import {
   REGION_SLOTS, CARD_W, CARD_H, COL_GAP, REGION_H, cardY,
 } from '@/lib/bracketSlots'
@@ -12,11 +12,12 @@ interface Props {
   bracket: BracketData
   onPick: (id: string, winner: string) => void
   onUnpick: (id: string) => void
+  onDetail: (matchup: Matchup) => void
 }
 
 const ROUNDS_LTR = ['Round of 64', 'Round of 32', 'Sweet 16', 'Elite 8']
 
-export default function RegionBracket({ region, direction, bracket, onPick, onUnpick }: Props) {
+export default function RegionBracket({ region, direction, bracket, onPick, onUnpick, onDetail }: Props) {
   const rounds = direction === 'ltr' ? ROUNDS_LTR : [...ROUNDS_LTR].reverse()
   const slots  = REGION_SLOTS[region]
 
@@ -65,7 +66,7 @@ export default function RegionBracket({ region, direction, bracket, onPick, onUn
                       className="absolute"
                       style={{ top: cardY(posIdx, slotIdx), left: 0 }}
                     >
-                      <MatchupCard matchup={m} onPick={onPick} onUnpick={onUnpick} />
+                      <MatchupCard matchup={m} onPick={onPick} onUnpick={onUnpick} onDetail={onDetail} />
                     </div>
                   )
                 })}

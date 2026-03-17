@@ -188,6 +188,29 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
     else:
         label = "Toss-Up"
 
+    def _safe_float(series, key, default=0.0):
+        val = series.get(key)
+        return round(float(val), 1) if not pd.isna(val) else default
+
+    def _safe_int(series, key, default=0):
+        val = series.get(key)
+        return int(val) if not pd.isna(val) else default
+
+    raw_stats = {
+        "srs_a":      _safe_float(a, "SRS"),
+        "srs_b":      _safe_float(b, "SRS"),
+        "sos_a":      _safe_float(a, "SOS"),
+        "sos_b":      _safe_float(b, "SOS"),
+        "seed_a":     _safe_int(a, "Seed"),
+        "seed_b":     _safe_int(b, "Seed"),
+        "wins_a":     _safe_int(a, "Wins"),
+        "wins_b":     _safe_int(b, "Wins"),
+        "losses_a":   _safe_int(a, "Losses"),
+        "losses_b":   _safe_int(b, "Losses"),
+        "distance_a": _safe_int(a, "NearestVenueMiles"),
+        "distance_b": _safe_int(b, "NearestVenueMiles"),
+    }
+
     return {
         "team_a":     team_a_name,
         "team_b":     team_b_name,
@@ -198,6 +221,7 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "confidence": label,
         "signals":    {k: round(v, 4) for k, v in signals.items()},
         "weights":    WEIGHTS,
+        "raw_stats":  raw_stats,
     }
 
 
