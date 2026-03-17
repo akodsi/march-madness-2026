@@ -282,8 +282,8 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           </div>
         )}
 
-        {/* Momentum section */}
-        {raw_stats && ready && raw_stats.last10_wins_a !== undefined && (
+        {/* Momentum section — only render when pipeline has been run (at least 1 tracked game) */}
+        {raw_stats && ready && ((raw_stats.last10_wins_a ?? 0) + (raw_stats.last10_losses_a ?? 0) > 0) && (
           <div className="px-6 py-4 border-b border-slate-800">
             <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Momentum (Last 10 Games)</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -307,7 +307,7 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                           {wins ?? '—'}–{losses ?? '—'}
                         </span>
                       </div>
-                      {streak !== undefined && (
+                      {streak !== undefined && streak !== 0 && (
                         <div className="flex justify-between">
                           <span className="text-slate-400">Streak</span>
                           <span className={`font-bold ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
@@ -331,8 +331,8 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           </div>
         )}
 
-        {/* Injuries section */}
-        {raw_stats && ready && raw_stats.health_score_a !== undefined && (
+        {/* Injuries section — only render when pipeline has been run (any team not at default 100%) or has injuries */}
+        {raw_stats && ready && ((raw_stats.health_score_a ?? 1) < 1 || (raw_stats.health_score_b ?? 1) < 1 || (raw_stats.injured_count_a ?? 0) > 0 || (raw_stats.injured_count_b ?? 0) > 0) && (
           <div className="px-6 py-4 border-b border-slate-800">
             <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Injury Report</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -381,8 +381,8 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           </div>
         )}
 
-        {/* Commentary section */}
-        {matchup.commentary && ready && (
+        {/* Commentary section — only render when pipeline has populated actual content */}
+        {matchup.commentary && ready && (matchup.commentary.team_a?.team_context || matchup.commentary.team_b?.team_context || matchup.commentary.team_a?.headlines?.length || matchup.commentary.team_b?.headlines?.length) && (
           <div className="px-6 py-4 border-b border-slate-800">
             <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">ESPN Coverage</h3>
             <div className="grid grid-cols-2 gap-4">
