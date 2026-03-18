@@ -69,7 +69,13 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Champion likelihood flows through bracket API (`champion_likelihood.team_a` / `team_b`) — display only, not part of weighted prediction formula
 - [x] TypeScript types added (`ChampionCheck`, `ChampionLikelihood` interfaces)
 - [x] Pipeline step 8/9 fetches Torvik + AP data before final merge; 24-hour JSON caching
-- [ ] Frontend rendering of champion checks (deferred — data ready for display)
+- [x] Frontend rendering of champion checks — modal section + full comparison page
+
+## Champion Likelihood Frontend (v6.1) — all complete
+- [x] Champion Profile section in matchup detail modal — side-by-side grid per team, fraction header ("5/8 checks passed") color-coded, proximity rules show ordinal rank values (e.g. "5th"), binary rules show ✓/✗, hard filter failures get red "ELIMINATED" banner
+- [x] Champion Comparison page (`/champion` route) — sortable table of all 68 teams with logo, seed, score, and every check column; click any column header to sort; eliminated teams dimmed with toggle; legend at bottom
+- [x] New backend endpoint `GET /champion-likelihood` — returns all 68 teams scored and sorted by champion likelihood
+- [x] "Champion Profiles" button in bracket header linking to `/champion`; "Back to Bracket" link on champion page
 
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
@@ -107,6 +113,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | POST | `/bracket/{id}/pick` | Submit a pick `{"winner": "Team Name"}` |
 | DELETE | `/bracket/{id}/pick` | Undo a pick, clears downstream |
 | POST | `/bracket/reset` | Wipe all picks |
+| GET | `/champion-likelihood` | All 68 teams scored against champion patterns, sorted by score |
 
 ## Data Sources
 | Source | Purpose |
@@ -151,7 +158,7 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 ## File Structure
 ```
 backend/
-├── main.py                          FastAPI app (5 endpoints)
+├── main.py                          FastAPI app (6 endpoints)
 ├── models/
 │   ├── rule_engine.py               6-signal weighted probability calculator + commentary + champion likelihood
 │   ├── champion_rules.py            Champion-pattern scoring (hard filters + soft score from Torvik/AP data)
@@ -173,7 +180,8 @@ backend/
 └── data/processed/                  All output CSVs + bracket JSON + commentary JSON
 
 frontend/
-├── src/app/                         Next.js app shell
+├── src/app/                         Next.js app shell (/ bracket, /champion comparison)
+│   └── champion/page.tsx            Champion Profiles full-page sortable table
 ├── src/lib/
 │   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary, ChampionCheck, ChampionLikelihood)
 │   ├── api.ts                       API client functions
@@ -181,10 +189,10 @@ frontend/
 │   ├── teamLogos.ts                 ESPN logo URL mapping for 68 teams
 │   └── exportPdf.ts                 PDF export via html2canvas + jsPDF
 └── src/components/
-    ├── BracketBoard.tsx             Tab navigation + state manager + export button
+    ├── BracketBoard.tsx             Tab navigation + state manager + export button + champion profiles link
     ├── RegionBracket.tsx            One region's 4 rounds
     ├── MatchupCard.tsx              Seeds + logos + % bars + streak badge + injury icon + ⓘ button
-    ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, ESPN/Google News/Reddit commentary, case for each team)
+    ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, ESPN/Google News/Reddit commentary, champion profile, case for each team)
     ├── ConnectorLines.tsx           SVG bracket connector lines (with pick-aware highlighting)
     ├── FirstFour.tsx                First Four section
     ├── FinalFour.tsx                Final Four mini-bracket with connectors + trophy
@@ -205,7 +213,8 @@ frontend/
 11. ✅ Community commentary (v5) — Google News RSS + Reddit r/collegebasketball sections in matchup detail modal
 12. ✅ Frontend v5.1 — polished Google News and Reddit sections (callout blurbs, Reddit orange accent, readable source/date)
 13. ✅ Champion likelihood (v6) — Torvik efficiency + AP Poll → per-rule champion-pattern scoring (backend only, frontend deferred)
-14. Post-round refresh — update predictions after each round's results (next)
+14. ✅ Champion likelihood frontend (v6.1) — modal section + `/champion` comparison page + new API endpoint
+15. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash

@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 sys.path.insert(0, str(Path(__file__).parent))
 from models.bracket import Bracket, BRACKET_STATE_FILE
+from models.champion_rules import score_all_teams
 
 app = FastAPI(title="March Madness Predictor 2026")
 
@@ -62,3 +63,8 @@ def undo_pick(matchup_id: str):
     updated = b.unpick(matchup_id)
     b.save()
     return {"updated": updated, "bracket": b.to_dict()}
+
+
+@app.get("/champion-likelihood")
+def champion_likelihood():
+    return score_all_teams()

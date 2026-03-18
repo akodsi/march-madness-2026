@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Matchup, RedditPost } from '@/lib/types'
+import { Matchup, RedditPost, ChampionLikelihood, ChampionCheck } from '@/lib/types'
 import { getLogoUrl, getInitials } from '@/lib/teamLogos'
 
 interface Props {
@@ -36,6 +36,13 @@ function Logo({ name, size = 48 }: { name: string; size?: number }) {
       onError={() => setFailed(true)}
     />
   )
+}
+
+/** Ordinal suffix for rank numbers (1st, 2nd, 3rd, 4th…) */
+function getSuffix(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = n % 100
+  return s[(v - 20) % 10] || s[v] || s[0]
 }
 
 /** Convert a signal probability (0–1) to a descriptive edge string */
@@ -529,6 +536,96 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                         )}
                       </div>
                     )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Champion Profile section */}
+        {matchup.champion_likelihood && ready && team_a && team_b && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <div className="flex items-baseline gap-2 mb-3">
+              <h3 className="text-xs uppercase tracking-widest text-slate-500">Champion Profile</h3>
+              <span className="text-[9px] text-slate-600 normal-case tracking-normal">historically-validated patterns</span>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, data: matchup.champion_likelihood.team_a, isA: true },
+                { name: team_b, data: matchup.champion_likelihood.team_b, isA: false },
+              ] as const).map(({ name, data, isA }) => {
+                if (!data) return null
+                const isPicked = user_pick === name
+                const totalChecks = data.checks.length
+                const passedChecks = data.checks.filter((c: ChampionCheck) => c.passed === true).length
+                const fractionColor = data.hard_filter_failed
+                  ? 'text-red-400'
+                  : passedChecks >= totalChecks * 0.6
+                    ? 'text-emerald-400'
+                    : 'text-yellow-400'
+
+                // Proximity rules show rank values; binary rules show ✓/✗
+                const PROXIMITY_RULES = new Set([
+                  'torvik_overall_top25', 'torvik_overall_top6',
+                  'torvik_adjD_top25', 'torvik_adjD_top7',
+                  'torvik_adjO_top40', 'torvik_adjO_top21',
+                ])
+
+                return (
+                  <div key={isA ? 'champ-a' : 'champ-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-xs font-semibold text-white truncate">{name}</p>
+                      <span className={`text-xs font-bold ${fractionColor}`}>
+                        {passedChecks}/{totalChecks}
+                      </span>
+                    </div>
+
+                    {data.hard_filter_failed && (
+                      <div className="bg-red-500/10 border border-red-500/30 rounded px-2 py-1.5 mb-2">
+                        <p className="text-[10px] font-bold text-red-400">ELIMINATED — No champion has ever failed these checks</p>
+                      </div>
+                    )}
+
+                    <div className="space-y-1">
+                      {data.checks.map((check: ChampionCheck) => {
+                        const isProximity = PROXIMITY_RULES.has(check.rule_id)
+                        const passed = check.passed
+                        const isHardFail = check.is_hard && passed === false
+
+                        return (
+                          <div
+                            key={check.rule_id}
+                            className={`flex items-center justify-between gap-2 text-[10px] py-0.5 ${isHardFail ? 'bg-red-500/5 -mx-1 px-1 rounded' : ''}`}
+                            title={check.detail}
+                          >
+                            <span className={`truncate ${isHardFail ? 'text-red-400 font-semibold' : 'text-slate-400'}`}>
+                              {check.label}
+                            </span>
+                            {isProximity && check.value !== null ? (
+                              <span className={`font-bold flex-shrink-0 ${
+                                passed === true ? 'text-emerald-400' : passed === false ? (isHardFail ? 'text-red-400' : 'text-red-400/70') : 'text-slate-500'
+                              }`}>
+                                {check.value}{check.value !== null ? getSuffix(check.value) : ''}
+                              </span>
+                            ) : (
+                              <span className={`flex-shrink-0 ${
+                                passed === true ? 'text-emerald-400' : passed === false ? (isHardFail ? 'text-red-400' : 'text-red-400/70') : 'text-slate-500'
+                              }`}>
+                                {passed === true ? '✓' : passed === false ? '✗' : '—'}
+                              </span>
+                            )}
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    <div className="mt-2 pt-2 border-t border-slate-700/50 flex items-center justify-between">
+                      <span className="text-[10px] text-slate-500">Score</span>
+                      <span className={`text-xs font-bold ${data.score >= 60 ? 'text-emerald-400' : data.score >= 30 ? 'text-yellow-400' : 'text-red-400'}`}>
+                        {data.score}
+                      </span>
+                    </div>
                   </div>
                 )
               })}

@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useCallback, useRef } from 'react'
+import Link from 'next/link'
 import { BracketData, Matchup } from '@/lib/types'
 import { fetchBracket, makePick, undoPick, resetBracket } from '@/lib/api'
 import RegionBracket from './RegionBracket'
@@ -101,6 +102,12 @@ export default function BracketBoard() {
               <span className="text-yellow-400">■</span> Slight Edge
               <span className="text-slate-400">■</span> Toss-Up
             </div>
+            <Link
+              href="/champion"
+              className="text-xs text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded px-3 py-1 transition-colors"
+            >
+              Champion Profiles
+            </Link>
             <button
               onClick={handleExport}
               disabled={exporting}

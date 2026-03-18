@@ -39,6 +39,8 @@ export interface ChampionLikelihood {
   hard_filter_failed: boolean
   reasons: string[]
   warnings: string[]
+  seed?: number
+  region?: string
   raw_values: {
     torvik_overall_rank: number | null
     torvik_adjO_rank: number | null

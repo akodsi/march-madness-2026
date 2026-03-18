@@ -388,6 +388,8 @@ def score_all_teams() -> list[dict]:
         name = row["Team"]
         seed = int(row["Seed"])
         result = score_champion_likelihood(name, seed)
+        result["seed"] = seed
+        result["region"] = row.get("Region", "")
         results.append(result)
 
     results.sort(key=lambda x: x["score"], reverse=True)

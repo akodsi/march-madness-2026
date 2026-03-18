@@ -1,4 +1,4 @@
-import { BracketData } from './types'
+import { BracketData, ChampionLikelihood } from './types'
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
 
@@ -28,3 +28,6 @@ export const undoPick = (matchupId: string): Promise<{ updated: string[]; bracke
 
 export const resetBracket = (): Promise<BracketData> =>
   request('/bracket/reset', { method: 'POST' })
+
+export const fetchChampionLikelihood = (): Promise<ChampionLikelihood[]> =>
+  request('/champion-likelihood')
