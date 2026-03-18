@@ -25,6 +25,7 @@ import math
 import json
 import pandas as pd
 from pathlib import Path
+from models.champion_rules import score_champion_likelihood
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 
@@ -349,6 +350,12 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
                 base[key] = community[key]
         commentary[side] = base
 
+    # Champion likelihood — display only, not part of prediction formula
+    seed_a = int(a.get("Seed", 16))
+    seed_b = int(b.get("Seed", 16))
+    champ_a = score_champion_likelihood(team_a_name, seed_a)
+    champ_b = score_champion_likelihood(team_b_name, seed_b)
+
     return {
         "team_a":      team_a_name,
         "team_b":      team_b_name,
@@ -361,6 +368,10 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "weights":     WEIGHTS,
         "raw_stats":   raw_stats,
         "commentary":  commentary,
+        "champion_likelihood": {
+            "team_a": champ_a,
+            "team_b": champ_b,
+        },
     }
 
 

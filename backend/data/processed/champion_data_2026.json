@@ -1,0 +1,614 @@
+{
+  "Duke": {
+    "torvik_overall_rank": 1,
+    "torvik_adjO_rank": 4,
+    "torvik_adjD_rank": 1,
+    "torvik_adjOE": 128.2,
+    "torvik_adjDE": 90.8,
+    "torvik_adjEM": 37.3,
+    "ap_rank": 1
+  },
+  "Siena": {
+    "torvik_overall_rank": 186,
+    "torvik_adjO_rank": 197,
+    "torvik_adjD_rank": 176,
+    "torvik_adjOE": 107.2,
+    "torvik_adjDE": 108.9,
+    "torvik_adjEM": -1.7,
+    "ap_rank": null
+  },
+  "Connecticut": {
+    "torvik_overall_rank": 10,
+    "torvik_adjO_rank": 25,
+    "torvik_adjD_rank": 12,
+    "torvik_adjOE": 123.1,
+    "torvik_adjDE": 95.0,
+    "torvik_adjEM": 28.1,
+    "ap_rank": null
+  },
+  "Furman": {
+    "torvik_overall_rank": 195,
+    "torvik_adjO_rank": 203,
+    "torvik_adjD_rank": 181,
+    "torvik_adjOE": 106.9,
+    "torvik_adjDE": 109.0,
+    "torvik_adjEM": -2.1,
+    "ap_rank": null
+  },
+  "Michigan State": {
+    "torvik_overall_rank": 12,
+    "torvik_adjO_rank": 28,
+    "torvik_adjD_rank": 16,
+    "torvik_adjOE": 122.9,
+    "torvik_adjDE": 96.2,
+    "torvik_adjEM": 26.7,
+    "ap_rank": 11
+  },
+  "North Dakota State": {
+    "torvik_overall_rank": 116,
+    "torvik_adjO_rank": 122,
+    "torvik_adjD_rank": 120,
+    "torvik_adjOE": 111.5,
+    "torvik_adjDE": 106.0,
+    "torvik_adjEM": 5.4,
+    "ap_rank": null
+  },
+  "Kansas": {
+    "torvik_overall_rank": 23,
+    "torvik_adjO_rank": 58,
+    "torvik_adjD_rank": 11,
+    "torvik_adjOE": 117.8,
+    "torvik_adjDE": 94.4,
+    "torvik_adjEM": 23.4,
+    "ap_rank": 17
+  },
+  "California Baptist": {
+    "torvik_overall_rank": 98,
+    "torvik_adjO_rank": 193,
+    "torvik_adjD_rank": 37,
+    "torvik_adjOE": 107.5,
+    "torvik_adjDE": 100.3,
+    "torvik_adjEM": 7.2,
+    "ap_rank": null
+  },
+  "St. John's (NY)": {
+    "torvik_overall_rank": 19,
+    "torvik_adjO_rank": 43,
+    "torvik_adjD_rank": 10,
+    "torvik_adjOE": 119.8,
+    "torvik_adjDE": 94.1,
+    "torvik_adjEM": 25.7,
+    "ap_rank": null
+  },
+  "Northern Iowa": {
+    "torvik_overall_rank": 74,
+    "torvik_adjO_rank": 151,
+    "torvik_adjD_rank": 25,
+    "torvik_adjOE": 109.8,
+    "torvik_adjDE": 98.6,
+    "torvik_adjEM": 11.2,
+    "ap_rank": null
+  },
+  "Louisville": {
+    "torvik_overall_rank": 18,
+    "torvik_adjO_rank": 21,
+    "torvik_adjD_rank": 23,
+    "torvik_adjOE": 124.0,
+    "torvik_adjDE": 98.2,
+    "torvik_adjEM": 25.8,
+    "ap_rank": 23
+  },
+  "South Florida": {
+    "torvik_overall_rank": 50,
+    "torvik_adjO_rank": 67,
+    "torvik_adjD_rank": 42,
+    "torvik_adjOE": 116.8,
+    "torvik_adjDE": 101.4,
+    "torvik_adjEM": 15.4,
+    "ap_rank": null
+  },
+  "UCLA": {
+    "torvik_overall_rank": 24,
+    "torvik_adjO_rank": 17,
+    "torvik_adjD_rank": 51,
+    "torvik_adjOE": 124.6,
+    "torvik_adjDE": 101.8,
+    "torvik_adjEM": 22.8,
+    "ap_rank": null
+  },
+  "UCF": {
+    "torvik_overall_rank": 56,
+    "torvik_adjO_rank": 39,
+    "torvik_adjD_rank": 114,
+    "torvik_adjOE": 120.0,
+    "torvik_adjDE": 105.7,
+    "torvik_adjEM": 14.3,
+    "ap_rank": null
+  },
+  "Ohio State": {
+    "torvik_overall_rank": 22,
+    "torvik_adjO_rank": 13,
+    "torvik_adjD_rank": 47,
+    "torvik_adjOE": 125.2,
+    "torvik_adjDE": 101.6,
+    "torvik_adjEM": 23.6,
+    "ap_rank": null
+  },
+  "TCU": {
+    "torvik_overall_rank": 51,
+    "torvik_adjO_rank": 84,
+    "torvik_adjD_rank": 30,
+    "torvik_adjOE": 114.9,
+    "torvik_adjDE": 99.7,
+    "torvik_adjEM": 15.2,
+    "ap_rank": null
+  },
+  "Arizona": {
+    "torvik_overall_rank": 3,
+    "torvik_adjO_rank": 9,
+    "torvik_adjD_rank": 3,
+    "torvik_adjOE": 126.9,
+    "torvik_adjDE": 91.4,
+    "torvik_adjEM": 35.5,
+    "ap_rank": 2
+  },
+  "LIU": {
+    "torvik_overall_rank": 234,
+    "torvik_adjO_rank": 270,
+    "torvik_adjD_rank": 196,
+    "torvik_adjOE": 103.7,
+    "torvik_adjDE": 109.8,
+    "torvik_adjEM": -6.1,
+    "ap_rank": null
+  },
+  "Purdue": {
+    "torvik_overall_rank": 6,
+    "torvik_adjO_rank": 1,
+    "torvik_adjD_rank": 36,
+    "torvik_adjOE": 133.3,
+    "torvik_adjDE": 100.3,
+    "torvik_adjEM": 33.0,
+    "ap_rank": 8
+  },
+  "Penn": {
+    "torvik_overall_rank": 147,
+    "torvik_adjO_rank": 212,
+    "torvik_adjD_rank": 104,
+    "torvik_adjOE": 106.6,
+    "torvik_adjDE": 105.4,
+    "torvik_adjEM": 1.1,
+    "ap_rank": null
+  },
+  "Gonzaga": {
+    "torvik_overall_rank": 15,
+    "torvik_adjO_rank": 37,
+    "torvik_adjD_rank": 9,
+    "torvik_adjOE": 120.3,
+    "torvik_adjDE": 94.0,
+    "torvik_adjEM": 26.3,
+    "ap_rank": 12
+  },
+  "Kennesaw State": {
+    "torvik_overall_rank": 145,
+    "torvik_adjO_rank": 130,
+    "torvik_adjD_rank": 191,
+    "torvik_adjOE": 110.9,
+    "torvik_adjDE": 109.4,
+    "torvik_adjEM": 1.5,
+    "ap_rank": null
+  },
+  "Arkansas": {
+    "torvik_overall_rank": 16,
+    "torvik_adjO_rank": 5,
+    "torvik_adjD_rank": 48,
+    "torvik_adjOE": 128.0,
+    "torvik_adjDE": 101.7,
+    "torvik_adjEM": 26.3,
+    "ap_rank": 14
+  },
+  "Hawaii": {
+    "torvik_overall_rank": 117,
+    "torvik_adjO_rank": 207,
+    "torvik_adjD_rank": 52,
+    "torvik_adjOE": 106.9,
+    "torvik_adjDE": 101.9,
+    "torvik_adjEM": 5.0,
+    "ap_rank": null
+  },
+  "Wisconsin": {
+    "torvik_overall_rank": 20,
+    "torvik_adjO_rank": 8,
+    "torvik_adjD_rank": 49,
+    "torvik_adjOE": 127.2,
+    "torvik_adjDE": 101.7,
+    "torvik_adjEM": 25.5,
+    "ap_rank": 19
+  },
+  "High Point": {
+    "torvik_overall_rank": 93,
+    "torvik_adjO_rank": 73,
+    "torvik_adjD_rank": 148,
+    "torvik_adjOE": 115.7,
+    "torvik_adjDE": 107.5,
+    "torvik_adjEM": 8.2,
+    "ap_rank": null
+  },
+  "BYU": {
+    "torvik_overall_rank": 30,
+    "torvik_adjO_rank": 16,
+    "torvik_adjD_rank": 88,
+    "torvik_adjOE": 124.8,
+    "torvik_adjDE": 104.4,
+    "torvik_adjEM": 20.4,
+    "ap_rank": null
+  },
+  "Texas": {
+    "torvik_overall_rank": 43,
+    "torvik_adjO_rank": 22,
+    "torvik_adjD_rank": 125,
+    "torvik_adjOE": 124.0,
+    "torvik_adjDE": 106.4,
+    "torvik_adjEM": 17.6,
+    "ap_rank": null
+  },
+  "NC State": {
+    "torvik_overall_rank": 36,
+    "torvik_adjO_rank": 20,
+    "torvik_adjD_rank": 90,
+    "torvik_adjOE": 124.1,
+    "torvik_adjDE": 104.7,
+    "torvik_adjEM": 19.4,
+    "ap_rank": null
+  },
+  "Saint Mary's (CA)": {
+    "torvik_overall_rank": 26,
+    "torvik_adjO_rank": 48,
+    "torvik_adjD_rank": 21,
+    "torvik_adjOE": 119.4,
+    "torvik_adjDE": 97.6,
+    "torvik_adjEM": 21.8,
+    "ap_rank": null
+  },
+  "Missouri": {
+    "torvik_overall_rank": 45,
+    "torvik_adjO_rank": 40,
+    "torvik_adjD_rank": 68,
+    "torvik_adjOE": 119.9,
+    "torvik_adjDE": 103.1,
+    "torvik_adjEM": 16.9,
+    "ap_rank": null
+  },
+  "Villanova": {
+    "torvik_overall_rank": 38,
+    "torvik_adjO_rank": 45,
+    "torvik_adjD_rank": 38,
+    "torvik_adjOE": 119.6,
+    "torvik_adjDE": 100.6,
+    "torvik_adjEM": 19.0,
+    "ap_rank": null
+  },
+  "Utah State": {
+    "torvik_overall_rank": 29,
+    "torvik_adjO_rank": 26,
+    "torvik_adjD_rank": 55,
+    "torvik_adjOE": 123.0,
+    "torvik_adjDE": 102.1,
+    "torvik_adjEM": 20.9,
+    "ap_rank": null
+  },
+  "Michigan": {
+    "torvik_overall_rank": 2,
+    "torvik_adjO_rank": 6,
+    "torvik_adjD_rank": 2,
+    "torvik_adjOE": 127.7,
+    "torvik_adjDE": 91.1,
+    "torvik_adjEM": 36.6,
+    "ap_rank": 3
+  },
+  "UMBC": {
+    "torvik_overall_rank": 191,
+    "torvik_adjO_rank": 180,
+    "torvik_adjD_rank": 205,
+    "torvik_adjOE": 108.2,
+    "torvik_adjDE": 110.1,
+    "torvik_adjEM": -1.9,
+    "ap_rank": null
+  },
+  "Howard": {
+    "torvik_overall_rank": 203,
+    "torvik_adjO_rank": 259,
+    "torvik_adjD_rank": 135,
+    "torvik_adjOE": 104.4,
+    "torvik_adjDE": 106.9,
+    "torvik_adjEM": -2.5,
+    "ap_rank": null
+  },
+  "Iowa State": {
+    "torvik_overall_rank": 8,
+    "torvik_adjO_rank": 23,
+    "torvik_adjD_rank": 6,
+    "torvik_adjOE": 123.8,
+    "torvik_adjDE": 92.7,
+    "torvik_adjEM": 31.1,
+    "ap_rank": 6
+  },
+  "Tennessee State": {
+    "torvik_overall_rank": 218,
+    "torvik_adjO_rank": 188,
+    "torvik_adjD_rank": 237,
+    "torvik_adjOE": 107.8,
+    "torvik_adjDE": 111.9,
+    "torvik_adjEM": -4.0,
+    "ap_rank": null
+  },
+  "Virginia": {
+    "torvik_overall_rank": 14,
+    "torvik_adjO_rank": 29,
+    "torvik_adjD_rank": 14,
+    "torvik_adjOE": 122.3,
+    "torvik_adjDE": 95.9,
+    "torvik_adjEM": 26.4,
+    "ap_rank": 9
+  },
+  "Wright State": {
+    "torvik_overall_rank": 130,
+    "torvik_adjO_rank": 110,
+    "torvik_adjD_rank": 182,
+    "torvik_adjOE": 112.4,
+    "torvik_adjDE": 109.1,
+    "torvik_adjEM": 3.3,
+    "ap_rank": null
+  },
+  "Alabama": {
+    "torvik_overall_rank": 13,
+    "torvik_adjO_rank": 3,
+    "torvik_adjD_rank": 67,
+    "torvik_adjOE": 129.5,
+    "torvik_adjDE": 102.8,
+    "torvik_adjEM": 26.7,
+    "ap_rank": 18
+  },
+  "Hofstra": {
+    "torvik_overall_rank": 91,
+    "torvik_adjO_rank": 98,
+    "torvik_adjD_rank": 95,
+    "torvik_adjOE": 113.2,
+    "torvik_adjDE": 104.9,
+    "torvik_adjEM": 8.3,
+    "ap_rank": null
+  },
+  "Texas Tech": {
+    "torvik_overall_rank": 11,
+    "torvik_adjO_rank": 10,
+    "torvik_adjD_rank": 27,
+    "torvik_adjOE": 126.3,
+    "torvik_adjDE": 98.8,
+    "torvik_adjEM": 27.5,
+    "ap_rank": 20
+  },
+  "Akron": {
+    "torvik_overall_rank": 68,
+    "torvik_adjO_rank": 64,
+    "torvik_adjD_rank": 103,
+    "torvik_adjOE": 117.2,
+    "torvik_adjDE": 105.4,
+    "torvik_adjEM": 11.8,
+    "ap_rank": null
+  },
+  "Tennessee": {
+    "torvik_overall_rank": 17,
+    "torvik_adjO_rank": 32,
+    "torvik_adjD_rank": 13,
+    "torvik_adjOE": 121.5,
+    "torvik_adjDE": 95.5,
+    "torvik_adjEM": 26.0,
+    "ap_rank": 23
+  },
+  "Miami (OH)": {
+    "torvik_overall_rank": 87,
+    "torvik_adjO_rank": 68,
+    "torvik_adjD_rank": 149,
+    "torvik_adjOE": 116.7,
+    "torvik_adjDE": 107.6,
+    "torvik_adjEM": 9.1,
+    "ap_rank": null
+  },
+  "SMU": {
+    "torvik_overall_rank": 42,
+    "torvik_adjO_rank": 27,
+    "torvik_adjD_rank": 96,
+    "torvik_adjOE": 123.0,
+    "torvik_adjDE": 105.0,
+    "torvik_adjEM": 18.0,
+    "ap_rank": null
+  },
+  "Kentucky": {
+    "torvik_overall_rank": 31,
+    "torvik_adjO_rank": 41,
+    "torvik_adjD_rank": 31,
+    "torvik_adjOE": 119.9,
+    "torvik_adjDE": 100.0,
+    "torvik_adjEM": 19.9,
+    "ap_rank": null
+  },
+  "Santa Clara": {
+    "torvik_overall_rank": 28,
+    "torvik_adjO_rank": 15,
+    "torvik_adjD_rank": 79,
+    "torvik_adjOE": 125.0,
+    "torvik_adjDE": 103.8,
+    "torvik_adjEM": 21.2,
+    "ap_rank": null
+  },
+  "Georgia": {
+    "torvik_overall_rank": 34,
+    "torvik_adjO_rank": 18,
+    "torvik_adjD_rank": 92,
+    "torvik_adjOE": 124.4,
+    "torvik_adjDE": 104.8,
+    "torvik_adjEM": 19.6,
+    "ap_rank": null
+  },
+  "Saint Louis": {
+    "torvik_overall_rank": 44,
+    "torvik_adjO_rank": 46,
+    "torvik_adjD_rank": 62,
+    "torvik_adjOE": 119.5,
+    "torvik_adjDE": 102.3,
+    "torvik_adjEM": 17.1,
+    "ap_rank": null
+  },
+  "Florida": {
+    "torvik_overall_rank": 4,
+    "torvik_adjO_rank": 11,
+    "torvik_adjD_rank": 4,
+    "torvik_adjOE": 126.1,
+    "torvik_adjDE": 92.3,
+    "torvik_adjEM": 33.8,
+    "ap_rank": 4
+  },
+  "Prairie View": {
+    "torvik_overall_rank": 280,
+    "torvik_adjO_rank": 303,
+    "torvik_adjD_rank": 227,
+    "torvik_adjOE": 101.5,
+    "torvik_adjDE": 111.4,
+    "torvik_adjEM": -9.9,
+    "ap_rank": null
+  },
+  "Lehigh": {
+    "torvik_overall_rank": 284,
+    "torvik_adjO_rank": 289,
+    "torvik_adjD_rank": 263,
+    "torvik_adjOE": 102.6,
+    "torvik_adjDE": 112.8,
+    "torvik_adjEM": -10.2,
+    "ap_rank": null
+  },
+  "Houston": {
+    "torvik_overall_rank": 7,
+    "torvik_adjO_rank": 12,
+    "torvik_adjD_rank": 5,
+    "torvik_adjOE": 125.4,
+    "torvik_adjDE": 92.4,
+    "torvik_adjEM": 32.9,
+    "ap_rank": 5
+  },
+  "Idaho": {
+    "torvik_overall_rank": 136,
+    "torvik_adjO_rank": 166,
+    "torvik_adjD_rank": 121,
+    "torvik_adjOE": 108.9,
+    "torvik_adjDE": 106.2,
+    "torvik_adjEM": 2.7,
+    "ap_rank": null
+  },
+  "Illinois": {
+    "torvik_overall_rank": 5,
+    "torvik_adjO_rank": 2,
+    "torvik_adjD_rank": 24,
+    "torvik_adjOE": 132.0,
+    "torvik_adjDE": 98.2,
+    "torvik_adjEM": 33.7,
+    "ap_rank": 13
+  },
+  "Queens (NC)": {
+    "torvik_overall_rank": 199,
+    "torvik_adjO_rank": 85,
+    "torvik_adjD_rank": 317,
+    "torvik_adjOE": 114.7,
+    "torvik_adjDE": 117.1,
+    "torvik_adjEM": -2.4,
+    "ap_rank": null
+  },
+  "Nebraska": {
+    "torvik_overall_rank": 21,
+    "torvik_adjO_rank": 63,
+    "torvik_adjD_rank": 7,
+    "torvik_adjOE": 117.2,
+    "torvik_adjDE": 93.5,
+    "torvik_adjEM": 23.7,
+    "ap_rank": 15
+  },
+  "Troy": {
+    "torvik_overall_rank": 142,
+    "torvik_adjO_rank": 135,
+    "torvik_adjD_rank": 180,
+    "torvik_adjOE": 110.7,
+    "torvik_adjDE": 109.0,
+    "torvik_adjEM": 1.7,
+    "ap_rank": null
+  },
+  "Vanderbilt": {
+    "torvik_overall_rank": 9,
+    "torvik_adjO_rank": 7,
+    "torvik_adjD_rank": 29,
+    "torvik_adjOE": 127.5,
+    "torvik_adjDE": 99.4,
+    "torvik_adjEM": 28.1,
+    "ap_rank": 16
+  },
+  "McNeese": {
+    "torvik_overall_rank": 77,
+    "torvik_adjO_rank": 100,
+    "torvik_adjD_rank": 56,
+    "torvik_adjOE": 113.2,
+    "torvik_adjDE": 102.2,
+    "torvik_adjEM": 11.0,
+    "ap_rank": null
+  },
+  "North Carolina": {
+    "torvik_overall_rank": 27,
+    "torvik_adjO_rank": 33,
+    "torvik_adjD_rank": 32,
+    "torvik_adjOE": 121.4,
+    "torvik_adjDE": 100.0,
+    "torvik_adjEM": 21.4,
+    "ap_rank": 21
+  },
+  "VCU": {
+    "torvik_overall_rank": 47,
+    "torvik_adjO_rank": 49,
+    "torvik_adjD_rank": 69,
+    "torvik_adjOE": 119.2,
+    "torvik_adjDE": 103.1,
+    "torvik_adjEM": 16.1,
+    "ap_rank": null
+  },
+  "Miami (FL)": {
+    "torvik_overall_rank": 33,
+    "torvik_adjO_rank": 34,
+    "torvik_adjD_rank": 45,
+    "torvik_adjOE": 121.1,
+    "torvik_adjDE": 101.5,
+    "torvik_adjEM": 19.6,
+    "ap_rank": null
+  },
+  "Texas A&M": {
+    "torvik_overall_rank": 40,
+    "torvik_adjO_rank": 42,
+    "torvik_adjD_rank": 44,
+    "torvik_adjOE": 119.9,
+    "torvik_adjDE": 101.5,
+    "torvik_adjEM": 18.4,
+    "ap_rank": null
+  },
+  "Clemson": {
+    "torvik_overall_rank": 35,
+    "torvik_adjO_rank": 69,
+    "torvik_adjD_rank": 20,
+    "torvik_adjOE": 116.6,
+    "torvik_adjDE": 97.0,
+    "torvik_adjEM": 19.5,
+    "ap_rank": null
+  },
+  "Iowa": {
+    "torvik_overall_rank": 25,
+    "torvik_adjO_rank": 30,
+    "torvik_adjD_rank": 35,
+    "torvik_adjOE": 122.1,
+    "torvik_adjDE": 100.2,
+    "torvik_adjEM": 21.9,
+    "ap_rank": null
+  }
+}

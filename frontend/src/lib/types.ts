@@ -21,6 +21,35 @@ export interface TeamCommentary {
   reddit_summary?: string
 }
 
+export interface ChampionCheck {
+  rule_id: string
+  label: string
+  passed: boolean | null
+  value: number | null
+  threshold: number
+  detail: string
+  points: number
+  is_hard: boolean
+}
+
+export interface ChampionLikelihood {
+  team: string
+  score: number
+  checks: ChampionCheck[]
+  hard_filter_failed: boolean
+  reasons: string[]
+  warnings: string[]
+  raw_values: {
+    torvik_overall_rank: number | null
+    torvik_adjO_rank: number | null
+    torvik_adjD_rank: number | null
+    torvik_adjOE: number | null
+    torvik_adjDE: number | null
+    torvik_adjEM: number | null
+    ap_rank: number | null
+  }
+}
+
 export interface Matchup {
   id: string
   round_name: string
@@ -57,6 +86,10 @@ export interface Matchup {
   commentary: {
     team_a: TeamCommentary
     team_b: TeamCommentary
+  } | null
+  champion_likelihood: {
+    team_a: ChampionLikelihood
+    team_b: ChampionLikelihood
   } | null
 }
 

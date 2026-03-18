@@ -28,6 +28,7 @@ from pipeline.momentum_ingest import fetch_all_momentum, save_momentum
 from pipeline.injury_ingest import fetch_all_injuries, save_injuries
 from pipeline.commentary_ingest import fetch_all_commentary, save_commentary
 from pipeline.community_ingest import fetch_all_community, save_community
+from pipeline.champion_ingest import fetch_champion_data, save_champion_data
 from pipeline.tournament_filter import filter_to_tournament, save_tournament_dataset
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
@@ -93,8 +94,13 @@ def run():
     community = fetch_all_community(tournament_teams, delay=1.5)
     save_community(community, CURRENT_YEAR)
 
+    # Step 8: Champion profile data — Torvik efficiency ranks + AP Poll
+    print("\n[8/9] Fetching champion profile data (Torvik ranks + AP Poll)...")
+    champion = fetch_champion_data(tournament_teams)
+    save_champion_data(champion)
+
     # Final merge — rebuild tournament_teams CSV with all new data columns
-    print("\n[8/8] Merging all data into tournament_teams CSV...")
+    print("\n[9/9] Merging all data into tournament_teams CSV...")
     merged = filter_to_tournament(CURRENT_YEAR)
     save_tournament_dataset(merged)
 
