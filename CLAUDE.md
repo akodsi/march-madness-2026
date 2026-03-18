@@ -60,6 +60,17 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Google News source/date — bumped from `text-slate-600` to `text-slate-500` for readability while staying de-emphasized
 - [x] Section headers — added muted sub-labels ("recent headlines" / "community posts") alongside the uppercase title
 
+## Champion Likelihood (v6 — Backend Only) — all complete
+- [x] Bart Torvik efficiency data — AdjOE, AdjDE, AdjEM ranks for all D1 teams via session-authenticated CSV (free KenPom substitute)
+- [x] AP Poll Top 25 — current week's rankings from ESPN public API
+- [x] Hard filters — historically-validated rules that nearly all champions pass (top-25 Torvik overall, top-25 AdjDE, seed ≤ 8)
+- [x] Soft scoring — bonus points for AP top-12, top-40 AdjOE, top-15 overall, top-10 AdjDE, top-3 seed
+- [x] Per-rule structured checks — each rule returns `rule_id`, `label`, `passed`, `value`, `threshold`, `detail`, `points`, `is_hard` for frontend rendering
+- [x] Champion likelihood flows through bracket API (`champion_likelihood.team_a` / `team_b`) — display only, not part of weighted prediction formula
+- [x] TypeScript types added (`ChampionCheck`, `ChampionLikelihood` interfaces)
+- [x] Pipeline step 8/9 fetches Torvik + AP data before final merge; 24-hour JSON caching
+- [ ] Frontend rendering of champion checks (deferred — data ready for display)
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -92,7 +103,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 ## API Endpoints
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats, signals, commentary) |
+| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats, signals, commentary, champion_likelihood) |
 | POST | `/bracket/{id}/pick` | Submit a pick `{"winner": "Team Name"}` |
 | DELETE | `/bracket/{id}/pick` | Undo a pick, clears downstream |
 | POST | `/bracket/reset` | Wipe all picks |
@@ -110,6 +121,8 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | ESPN Team Summary API | Expert headlines + team context for commentary display |
 | Google News RSS | Recent headlines from reputable outlets (4 per team) |
 | Reddit r/collegebasketball | Top community posts per team (last 30 days, sorted by score) |
+| [Bart Torvik](https://barttorvik.com) | Team-level AdjOE/AdjDE/AdjEM efficiency ranks (free KenPom substitute) |
+| ESPN Rankings API | AP Poll Top 25 for champion-pattern scoring |
 
 ## Key Metrics & Weights (v2)
 | Signal | Weight | What it measures |
@@ -122,6 +135,8 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | Injuries | **10%** | Roster health — key players out reduce team's score |
 
 **Commentary** (display only): ESPN headlines + team context, Google News headlines, and Reddit r/collegebasketball posts shown in matchup detail modal. Not part of weighted formula.
+
+**Champion Likelihood** (display only): Torvik efficiency ranks + AP Poll scored against historically-validated champion patterns. Hard filters (top-25 overall, top-25 defense, seed ≤ 8) plus soft score bonuses. Per-rule pass/fail checks available in API for frontend rendering.
 
 Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight Edge (55–64%) · Toss-Up (<55%)
 
@@ -138,10 +153,11 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 backend/
 ├── main.py                          FastAPI app (5 endpoints)
 ├── models/
-│   ├── rule_engine.py               6-signal weighted probability calculator + commentary
+│   ├── rule_engine.py               6-signal weighted probability calculator + commentary + champion likelihood
+│   ├── champion_rules.py            Champion-pattern scoring (hard filters + soft score from Torvik/AP data)
 │   └── bracket.py                   Full bracket tree with pick/cascade logic
 ├── pipeline/
-│   ├── run_pipeline.py              Master pipeline runner (7 steps — ends with tournament_filter merge)
+│   ├── run_pipeline.py              Master pipeline runner (9 steps — ends with tournament_filter merge)
 │   ├── stats_ingest.py              Sports-Reference scraper
 │   ├── kaggle_ingest.py             Historical tournament data loader
 │   ├── geo_ingest.py                Campus geocoding + travel distances
@@ -152,13 +168,14 @@ backend/
 │   ├── injury_ingest.py             ESPN injury reports → health scores
 │   ├── commentary_ingest.py         ESPN headlines + sentiment for display
 │   ├── community_ingest.py          Google News RSS + Reddit posts → community_2026.json
+│   ├── champion_ingest.py           Bart Torvik efficiency ranks + ESPN AP Poll → champion_data_2026.json
 │   └── torvik_ingest.py             Bart Torvik advanced stats (optional)
 └── data/processed/                  All output CSVs + bracket JSON + commentary JSON
 
 frontend/
 ├── src/app/                         Next.js app shell
 ├── src/lib/
-│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary)
+│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary, ChampionCheck, ChampionLikelihood)
 │   ├── api.ts                       API client functions
 │   ├── bracketSlots.ts              Slot ordering + layout constants
 │   ├── teamLogos.ts                 ESPN logo URL mapping for 68 teams
@@ -187,13 +204,14 @@ frontend/
 10. ✅ Frontend v4 — visual polish (hover effects, transitions, seed display, confidence pills), layout improvements (Final Four mini-bracket, mobile responsiveness), PDF export
 11. ✅ Community commentary (v5) — Google News RSS + Reddit r/collegebasketball sections in matchup detail modal
 12. ✅ Frontend v5.1 — polished Google News and Reddit sections (callout blurbs, Reddit orange accent, readable source/date)
-13. Post-round refresh — update predictions after each round's results (next)
+13. ✅ Champion likelihood (v6) — Torvik efficiency + AP Poll → per-rule champion-pattern scoring (backend only, frontend deferred)
+14. Post-round refresh — update predictions after each round's results (next)
 
 ## Running the Pipeline
 ```bash
 cd backend && source venv/bin/activate
 
-# Full pipeline (8 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, community, merge)
+# Full pipeline (9 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, community, champion, merge)
 python pipeline/run_pipeline.py
 
 # Individual steps
@@ -201,6 +219,7 @@ python pipeline/momentum_ingest.py     # Last-10 games from ESPN
 python pipeline/injury_ingest.py       # ESPN injury reports
 python pipeline/commentary_ingest.py   # ESPN headlines + sentiment
 python -m pipeline.community_ingest    # Google News RSS + Reddit posts
+python pipeline/champion_ingest.py     # Bart Torvik ranks + AP Poll
 python pipeline/tournament_filter.py   # Merge all data into tournament_teams CSV (run after any ingest)
 ```
 Re-run before each round to pick up updated momentum, fresh injury reports, and latest commentary.
