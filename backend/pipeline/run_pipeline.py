@@ -29,6 +29,7 @@ from pipeline.injury_ingest import fetch_all_injuries, save_injuries
 from pipeline.commentary_ingest import fetch_all_commentary, save_commentary
 from pipeline.community_ingest import fetch_all_community, save_community
 from pipeline.champion_ingest import fetch_champion_data, save_champion_data
+from pipeline.odds_ingest import fetch_all_odds, save_odds
 from pipeline.tournament_filter import filter_to_tournament, save_tournament_dataset
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
@@ -99,8 +100,15 @@ def run():
     champion = fetch_champion_data(tournament_teams)
     save_champion_data(champion)
 
+    # Step 9: Vegas odds — moneylines + spreads from DraftKings
+    print("\n[9/10] Fetching Vegas odds (DraftKings via The Odds API)...")
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / ".env")
+    odds = fetch_all_odds()
+    save_odds(odds)
+
     # Final merge — rebuild tournament_teams CSV with all new data columns
-    print("\n[9/9] Merging all data into tournament_teams CSV...")
+    print("\n[10/10] Merging all data into tournament_teams CSV...")
     merged = filter_to_tournament(CURRENT_YEAR)
     save_tournament_dataset(merged)
 

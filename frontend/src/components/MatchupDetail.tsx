@@ -300,6 +300,119 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           </div>
         )}
 
+        {/* Vegas Odds section — only render when odds data exists */}
+        {raw_stats && ready && raw_stats.no_vig_prob_a !== undefined && raw_stats.no_vig_prob_b !== undefined && (
+          <div className="px-6 py-4 border-b border-slate-800">
+            <div className="flex items-baseline gap-2 mb-3">
+              <h3 className="text-xs uppercase tracking-widest text-slate-500">Vegas Odds</h3>
+              <span className="text-[9px] text-slate-600 normal-case tracking-normal">{raw_stats.odds_source?.toLowerCase() ?? 'sportsbook'} lines</span>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {([
+                { name: team_a, isA: true },
+                { name: team_b, isA: false },
+              ] as const).map(({ name, isA }) => {
+                const moneyline = isA ? raw_stats.moneyline_a : raw_stats.moneyline_b
+                const spread = isA ? raw_stats.spread_a : raw_stats.spread_b
+                const noVigProb = isA ? raw_stats.no_vig_prob_a! : raw_stats.no_vig_prob_b!
+                const isPicked = user_pick === name
+                const isFavorite = noVigProb > 0.5
+                const mlColor = isFavorite ? 'text-emerald-400' : 'text-red-400'
+
+                return (
+                  <div key={isA ? 'odds-a' : 'odds-b'} className={`rounded-lg p-3 ${isPicked ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-slate-800/60'}`}>
+                    <p className="text-xs font-semibold text-white mb-2 truncate">{name}</p>
+                    <div className="space-y-1.5 text-xs">
+                      {moneyline !== undefined && (
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Moneyline</span>
+                          <span className={`font-bold ${mlColor}`}>
+                            {moneyline > 0 ? '+' : ''}{moneyline}
+                          </span>
+                        </div>
+                      )}
+                      {spread !== undefined && (
+                        <div className="flex justify-between">
+                          <span className="text-slate-400">Spread</span>
+                          <span className="font-bold text-white">
+                            {spread > 0 ? '+' : ''}{spread.toFixed(1)}
+                          </span>
+                        </div>
+                      )}
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">Win Prob</span>
+                        <span className={`font-bold ${isFavorite ? 'text-emerald-400' : 'text-slate-300'}`}>
+                          {Math.round(noVigProb * 100)}%
+                        </span>
+                      </div>
+                      <div className="mt-1">
+                        <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${isFavorite ? 'bg-emerald-500' : 'bg-slate-600'}`}
+                            style={{ width: `${Math.round(noVigProb * 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Model vs Vegas comparison */}
+            {pct_a !== null && pct_b !== null && (
+              <div className="mt-3">
+                <div className="flex justify-between text-[10px] text-slate-400 mb-1.5">
+                  <span>{team_a?.split(' ')[0]}</span>
+                  <span>{team_b?.split(' ')[0]}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-4 text-xs">
+                  {([
+                    { modelPct: pct_a, vegasPct: Math.round(raw_stats.no_vig_prob_a! * 100) },
+                    { modelPct: pct_b, vegasPct: Math.round(raw_stats.no_vig_prob_b! * 100) },
+                  ] as const).map(({ modelPct, vegasPct }, i) => (
+                    <div key={i} className="flex justify-center gap-3 text-center">
+                      <div>
+                        <span className="text-slate-500 text-[10px] block">Model</span>
+                        <span className="font-bold text-white">{modelPct}%</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 text-[10px] block">Vegas</span>
+                        <span className="font-bold text-white">{vegasPct}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {(() => {
+                  const vegasA = Math.round(raw_stats.no_vig_prob_a! * 100)
+                  const diff = Math.abs(pct_a - vegasA)
+                  if (diff >= 10) {
+                    const modelFavA = pct_a > pct_b
+                    const vegasFavA = vegasA > 50
+                    const disagreeOnWinner = modelFavA !== vegasFavA
+                    return (
+                      <div className="mt-2 bg-amber-500/10 border border-amber-500/20 rounded px-3 py-2">
+                        <p className="text-[10px] text-amber-400">
+                          {disagreeOnWinner
+                            ? '⚡ Model and Vegas disagree on the favorite'
+                            : `⚡ Model sees this ${pct_a > vegasA ? (modelFavA ? 'more' : 'less') : (modelFavA ? 'less' : 'more')} lopsided than Vegas — ${diff}pt gap`
+                          }
+                        </p>
+                      </div>
+                    )
+                  }
+                  return (
+                    <div className="mt-2 bg-slate-800/60 rounded px-3 py-2">
+                      <p className="text-[10px] text-slate-500">Model and Vegas broadly agree</p>
+                    </div>
+                  )
+                })()}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Momentum section — only render when pipeline has been run (at least 1 tracked game) */}
         {raw_stats && ready && ((raw_stats.last10_wins_a ?? 0) + (raw_stats.last10_losses_a ?? 0) > 0) && (
           <div className="px-6 py-4 border-b border-slate-800">

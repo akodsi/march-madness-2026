@@ -60,8 +60,10 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
     const seed    = isA ? raw_stats?.seed_a : raw_stats?.seed_b
     const streak  = isA ? raw_stats?.win_streak_a : raw_stats?.win_streak_b
     const keyOut  = isA ? raw_stats?.key_players_out_a : raw_stats?.key_players_out_b
+    const spread  = isA ? raw_stats?.spread_a : raw_stats?.spread_b
     const hasStreak = streak !== undefined && streak !== null && Math.abs(streak) >= 3
     const hasInjury = keyOut !== undefined && keyOut.length > 0
+    const hasSpread = spread !== undefined && spread !== null && spread < 0
 
     return (
       <button
@@ -97,6 +99,9 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
           <span className={`text-[8px] font-bold px-0.5 rounded flex-shrink-0 leading-tight ${streak > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
             {streak > 0 ? `W${streak}` : `L${Math.abs(streak)}`}
           </span>
+        )}
+        {hasSpread && spread !== undefined && spread !== null && (
+          <span className="text-[8px] font-medium text-slate-500 flex-shrink-0 leading-tight">{spread.toFixed(1)}</span>
         )}
         {hasInjury && (
           <span className="text-orange-400 text-[9px] flex-shrink-0" title="Key players out">⚠</span>

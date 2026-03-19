@@ -77,6 +77,15 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] New backend endpoint `GET /champion-likelihood` — returns all 68 teams scored and sorted by champion likelihood
 - [x] "Champion Profiles" button in bracket header linking to `/champion`; "Back to Bracket" link on champion page
 
+## Vegas Odds (v7 — Backend Only) — all complete
+- [x] DraftKings moneyline + spread for all Round of 64 matchups via The Odds API (free tier, 500 req/month)
+- [x] Implied win probability from American moneylines (raw with vig + no-vig normalized)
+- [x] NIT/non-tournament games filtered out automatically using bracket roster
+- [x] Odds flow through bracket API (`raw_stats.moneyline_a/b`, `spread_a/b`, `no_vig_prob_a/b`) — display only, not part of weighted prediction formula
+- [x] TypeScript types added for all odds fields in `raw_stats`
+- [x] Pipeline step 9/10 fetches odds before final merge; API key stored in `.env`
+- [x] Bracket matchup corrections: Missouri ↔ Texas A&M (South/West swap), Penn ↔ Queens NC (South/West swap) — verified against DraftKings lines
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -109,7 +118,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 ## API Endpoints
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats, signals, commentary, champion_likelihood) |
+| GET | `/bracket` | Full bracket state (67 matchups, includes raw_stats, signals, commentary, champion_likelihood, vegas odds) |
 | POST | `/bracket/{id}/pick` | Submit a pick `{"winner": "Team Name"}` |
 | DELETE | `/bracket/{id}/pick` | Undo a pick, clears downstream |
 | POST | `/bracket/reset` | Wipe all picks |
@@ -130,6 +139,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | Reddit r/collegebasketball | Top community posts per team (last 30 days, sorted by score) |
 | [Bart Torvik](https://barttorvik.com) | Team-level AdjOE/AdjDE/AdjEM efficiency ranks (free KenPom substitute) |
 | ESPN Rankings API | AP Poll Top 25 for champion-pattern scoring |
+| [The Odds API](https://the-odds-api.com/) | DraftKings moneyline + spread for tournament matchups (free tier) |
 
 ## Key Metrics & Weights (v2)
 | Signal | Weight | What it measures |
@@ -144,6 +154,8 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 **Commentary** (display only): ESPN headlines + team context, Google News headlines, and Reddit r/collegebasketball posts shown in matchup detail modal. Not part of weighted formula.
 
 **Champion Likelihood** (display only): Torvik efficiency ranks + AP Poll scored against historically-validated champion patterns. Hard filters (top-25 overall, top-25 defense, seed ≤ 8) plus soft score bonuses. Per-rule pass/fail checks available in API for frontend rendering.
+
+**Vegas Odds** (display only): DraftKings moneyline + spread per matchup. Implied win % (no-vig normalized) shown alongside model predictions for comparison. Not part of weighted formula — Vegas lines already incorporate the same signals the model uses, so blending would double-count.
 
 Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight Edge (55–64%) · Toss-Up (<55%)
 
@@ -160,11 +172,11 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 backend/
 ├── main.py                          FastAPI app (6 endpoints)
 ├── models/
-│   ├── rule_engine.py               6-signal weighted probability calculator + commentary + champion likelihood
+│   ├── rule_engine.py               6-signal weighted probability calculator + commentary + champion likelihood + vegas odds
 │   ├── champion_rules.py            Champion-pattern scoring (hard filters + soft score from Torvik/AP data)
 │   └── bracket.py                   Full bracket tree with pick/cascade logic
 ├── pipeline/
-│   ├── run_pipeline.py              Master pipeline runner (9 steps — ends with tournament_filter merge)
+│   ├── run_pipeline.py              Master pipeline runner (10 steps — ends with tournament_filter merge)
 │   ├── stats_ingest.py              Sports-Reference scraper
 │   ├── kaggle_ingest.py             Historical tournament data loader
 │   ├── geo_ingest.py                Campus geocoding + travel distances
@@ -176,6 +188,7 @@ backend/
 │   ├── commentary_ingest.py         ESPN headlines + sentiment for display
 │   ├── community_ingest.py          Google News RSS + Reddit posts → community_2026.json
 │   ├── champion_ingest.py           Bart Torvik efficiency ranks + ESPN AP Poll → champion_data_2026.json
+│   ├── odds_ingest.py               DraftKings moneyline + spread via The Odds API → odds_2026.json
 │   └── torvik_ingest.py             Bart Torvik advanced stats (optional)
 └── data/processed/                  All output CSVs + bracket JSON + commentary JSON
 
@@ -214,13 +227,15 @@ frontend/
 12. ✅ Frontend v5.1 — polished Google News and Reddit sections (callout blurbs, Reddit orange accent, readable source/date)
 13. ✅ Champion likelihood (v6) — Torvik efficiency + AP Poll → per-rule champion-pattern scoring (backend only, frontend deferred)
 14. ✅ Champion likelihood frontend (v6.1) — modal section + `/champion` comparison page + new API endpoint
-15. Post-round refresh — update predictions after each round's results (next)
+15. ✅ Vegas odds (v7) — DraftKings moneyline + spread via The Odds API (backend only, frontend deferred)
+16. Vegas odds frontend (v7.1) — odds section in matchup detail modal + card indicators (next)
+17. Post-round refresh — update predictions after each round's results
 
 ## Running the Pipeline
 ```bash
 cd backend && source venv/bin/activate
 
-# Full pipeline (9 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, community, champion, merge)
+# Full pipeline (10 steps — stats, seeds, profiles, travel, momentum, injuries+commentary, community, champion, odds, merge)
 python pipeline/run_pipeline.py
 
 # Individual steps
@@ -229,6 +244,7 @@ python pipeline/injury_ingest.py       # ESPN injury reports
 python pipeline/commentary_ingest.py   # ESPN headlines + sentiment
 python -m pipeline.community_ingest    # Google News RSS + Reddit posts
 python pipeline/champion_ingest.py     # Bart Torvik ranks + AP Poll
+python pipeline/odds_ingest.py         # DraftKings moneyline + spread (requires ODDS_API_KEY in .env)
 python pipeline/tournament_filter.py   # Merge all data into tournament_teams CSV (run after any ingest)
 ```
 Re-run before each round to pick up updated momentum, fresh injury reports, and latest commentary.

@@ -84,6 +84,12 @@ export interface Matchup {
     health_score_a?: number; health_score_b?: number
     injured_count_a?: number; injured_count_b?: number
     key_players_out_a?: string[]; key_players_out_b?: string[]
+    // Vegas odds (display only)
+    moneyline_a?: number; moneyline_b?: number
+    spread_a?: number; spread_b?: number
+    implied_prob_a?: number; implied_prob_b?: number
+    no_vig_prob_a?: number; no_vig_prob_b?: number
+    odds_source?: string
   } | null
   commentary: {
     team_a: TeamCommentary

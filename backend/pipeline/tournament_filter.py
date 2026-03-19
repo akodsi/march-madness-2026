@@ -42,19 +42,19 @@ BRACKET_2026 = [
     # ── WEST REGION (No. 1 seed: Arizona) ────────────────────────────────────
     ("West",  1, "Arizona",            "LIU",                 False),
     ("West", 16, "LIU",                "Arizona",             False),
-    ("West",  2, "Purdue",             "Penn",                False),
-    ("West", 15, "Penn",               "Purdue",              False),
+    ("West",  2, "Purdue",             "Queens (NC)",         False),
+    ("West", 15, "Queens (NC)",        "Purdue",              False),
     ("West",  3, "Gonzaga",            "Kennesaw State",      False),
     ("West", 14, "Kennesaw State",     "Gonzaga",             False),
-    ("West",  4, "Arkansas",           "Hawaii",              False),
-    ("West", 13, "Hawaii",             "Arkansas",            False),
+    ("West",  4, "Arkansas",           "Hawaii",             False),
+    ("West", 13, "Hawaii",            "Arkansas",            False),
     ("West",  5, "Wisconsin",          "High Point",          False),
     ("West", 12, "High Point",         "Wisconsin",           False),
     ("West",  6, "BYU",                "Texas",               False),  # Texas won First Four
     ("West", 11, "Texas",              "BYU",                 False),  # First Four winner
     ("West", 11, "NC State",           "Texas",               True),   # First Four loser
-    ("West",  7, "Saint Mary's (CA)",  "Missouri",            False),
-    ("West", 10, "Missouri",           "Saint Mary's (CA)",   False),
+    ("West",  7, "Saint Mary's (CA)",  "Texas A&M",           False),
+    ("West", 10, "Texas A&M",          "Saint Mary's (CA)",   False),
     ("West",  8, "Villanova",          "Utah State",          False),
     ("West",  9, "Utah State",         "Villanova",           False),
 
@@ -84,16 +84,16 @@ BRACKET_2026 = [
     ("South", 16, "Lehigh",            "Prairie View",        True),   # First Four loser
     ("South",  2, "Houston",           "Idaho",               False),
     ("South", 15, "Idaho",             "Houston",             False),
-    ("South",  3, "Illinois",          "Queens (NC)",         False),
-    ("South", 14, "Queens (NC)",       "Illinois",            False),
+    ("South",  3, "Illinois",          "Penn",                False),
+    ("South", 14, "Penn",              "Illinois",            False),
     ("South",  4, "Nebraska",          "Troy",                False),
     ("South", 13, "Troy",              "Nebraska",            False),
     ("South",  5, "Vanderbilt",        "McNeese",             False),
     ("South", 12, "McNeese",           "Vanderbilt",          False),
     ("South",  6, "North Carolina",    "VCU",                 False),
     ("South", 11, "VCU",               "North Carolina",      False),
-    ("South",  7, "Miami (FL)",        "Texas A&M",           False),
-    ("South", 10, "Texas A&M",         "Miami (FL)",          False),
+    ("South",  7, "Miami (FL)",        "Missouri",            False),
+    ("South", 10, "Missouri",          "Miami (FL)",          False),
     ("South",  8, "Clemson",           "Iowa",                False),
     ("South",  9, "Iowa",              "Clemson",             False),
 ]

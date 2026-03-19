@@ -140,11 +140,11 @@ class Bracket:
         A("W_R1_1", "Round of 64", "West", "Arizona",          "LIU",               "W_R2_1", "a")
         A("W_R1_2", "Round of 64", "West", "Villanova",        "Utah State",        "W_R2_1", "b")
         A("W_R1_3", "Round of 64", "West", "Wisconsin",        "High Point",        "W_R2_2", "a")
-        A("W_R1_4", "Round of 64", "West", "Arkansas",         "Hawaii",            "W_R2_2", "b")
+        A("W_R1_4", "Round of 64", "West", "Arkansas",         "Hawaii",           "W_R2_2", "b")
         A("W_R1_5", "Round of 64", "West", None,               "BYU",               "W_R2_3", "a")  # FF_3 winner vs BYU
         A("W_R1_6", "Round of 64", "West", "Gonzaga",          "Kennesaw State",    "W_R2_3", "b")
-        A("W_R1_7", "Round of 64", "West", "Saint Mary's (CA)","Missouri",          "W_R2_4", "a")
-        A("W_R1_8", "Round of 64", "West", "Purdue",           "Penn",              "W_R2_4", "b")
+        A("W_R1_7", "Round of 64", "West", "Saint Mary's (CA)","Texas A&M",         "W_R2_4", "a")
+        A("W_R1_8", "Round of 64", "West", "Purdue",           "Queens (NC)",       "W_R2_4", "b")
 
         A("W_R2_1", "Round of 32", "West", None, None, "W_R3_1", "a")
         A("W_R2_2", "Round of 32", "West", None, None, "W_R3_1", "b")
@@ -180,8 +180,8 @@ class Bracket:
         A("S_R1_3",  "Round of 64", "South", "Vanderbilt",    "McNeese",      "S_R2_2", "a")
         A("S_R1_4",  "Round of 64", "South", "Nebraska",      "Troy",         "S_R2_2", "b")
         A("S_R1_5",  "Round of 64", "South", "North Carolina","VCU",          "S_R2_3", "a")
-        A("S_R1_6",  "Round of 64", "South", "Illinois",      "Queens (NC)",  "S_R2_3", "b")
-        A("S_R1_7",  "Round of 64", "South", "Miami (FL)",    "Texas A&M",    "S_R2_4", "a")
+        A("S_R1_6",  "Round of 64", "South", "Illinois",      "Penn",         "S_R2_3", "b")
+        A("S_R1_7",  "Round of 64", "South", "Miami (FL)",    "Missouri",     "S_R2_4", "a")
         A("S_R1_8",  "Round of 64", "South", "Houston",       "Idaho",        "S_R2_4", "b")
 
         A("S_R2_1",  "Round of 32", "South", None, None, "S_R3_1", "a")

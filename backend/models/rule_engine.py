@@ -59,6 +59,7 @@ _seed_history = None
 _commentary = None
 _community = None
 _injury_details = None
+_odds = None
 
 
 def _load_teams() -> pd.DataFrame:
@@ -128,6 +129,25 @@ def _load_community() -> dict:
         else:
             _community = {}
     return _community
+
+
+def _load_odds() -> dict:
+    global _odds
+    if _odds is None:
+        path = PROCESSED_DIR / "odds_2026.json"
+        if path.exists():
+            with open(path) as f:
+                _odds = json.load(f)
+        else:
+            _odds = {}
+    return _odds
+
+
+def _find_odds(team_a: str, team_b: str) -> dict:
+    """Look up odds for a matchup (key is alphabetical 'TeamA vs TeamB')."""
+    odds = _load_odds()
+    key = f"{min(team_a, team_b)} vs {max(team_a, team_b)}"
+    return odds.get(key)
 
 
 def get_team(name: str) -> pd.Series:
@@ -336,6 +356,22 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "key_players_out_a": _key_players_out(team_a_name),
         "key_players_out_b": _key_players_out(team_b_name),
     }
+
+    # Vegas odds — display only, not part of prediction formula
+    matchup_odds = _find_odds(team_a_name, team_b_name)
+    if matchup_odds:
+        # Map odds to team_a / team_b regardless of alphabetical key ordering
+        odds_a_key = "a" if matchup_odds["team_a"] == team_a_name else "b"
+        odds_b_key = "b" if odds_a_key == "a" else "a"
+        raw_stats["moneyline_a"] = matchup_odds.get(f"moneyline_{odds_a_key}")
+        raw_stats["moneyline_b"] = matchup_odds.get(f"moneyline_{odds_b_key}")
+        raw_stats["spread_a"] = matchup_odds.get(f"spread_{odds_a_key}")
+        raw_stats["spread_b"] = matchup_odds.get(f"spread_{odds_b_key}")
+        raw_stats["implied_prob_a"] = matchup_odds.get(f"implied_prob_{odds_a_key}")
+        raw_stats["implied_prob_b"] = matchup_odds.get(f"implied_prob_{odds_b_key}")
+        raw_stats["no_vig_prob_a"] = matchup_odds.get(f"no_vig_prob_{odds_a_key}")
+        raw_stats["no_vig_prob_b"] = matchup_odds.get(f"no_vig_prob_{odds_b_key}")
+        raw_stats["odds_source"] = matchup_odds.get("source", "DraftKings")
 
     # Commentary — display only, not part of prediction formula
     commentary_data = _load_commentary()
