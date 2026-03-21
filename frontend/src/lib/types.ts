@@ -103,6 +103,85 @@ export interface Matchup {
 
 export type BracketData = Record<string, Matchup>
 
+// ── Post-Tournament Analysis Types ──────────────────────────────────
+
+export interface SignalGrade {
+  signal: string
+  correct: number
+  total: number
+  accuracy: number
+  weight: number
+}
+
+export interface AnalysisRecord {
+  correct: number
+  total: number
+  accuracy: number
+}
+
+export interface VegasGame {
+  matchup_id: string
+  round_name: string
+  region: string
+  team_a: string
+  team_b: string
+  seed_a: number | null
+  seed_b: number | null
+  model_pick: string
+  model_conf: number
+  vegas_pick: string | null
+  vegas_conf: number | null
+  actual_winner: string
+  actual_score_a: number | null
+  actual_score_b: number | null
+  model_correct: boolean
+  vegas_correct: boolean | null
+}
+
+export interface UpsetSignal {
+  signal: string
+  prob_a: number
+  picked: string
+  called_upset: boolean
+  weight: number
+}
+
+export interface UpsetDetail {
+  matchup_id: string
+  round_name: string
+  region: string
+  favorite: string
+  favorite_seed: number
+  underdog: string
+  underdog_seed: number
+  actual_score_a: number | null
+  actual_score_b: number | null
+  model_pick: string
+  model_had_upset: boolean
+  model_confidence: number
+  signals: UpsetSignal[]
+}
+
+export interface AnalysisData {
+  signal_report_card: {
+    total_games: number
+    model: AnalysisRecord | null
+    signals: SignalGrade[]
+  }
+  vegas_vs_model: {
+    total_games: number
+    model_record: AnalysisRecord | null
+    vegas_record: AnalysisRecord | null
+    games: VegasGame[]
+  }
+  upset_autopsy: {
+    total_upsets: number
+    total_games: number
+    upset_rate: number
+    upsets: UpsetDetail[]
+  }
+}
+
 export type Region = 'East' | 'West' | 'Midwest' | 'South'
 export type Direction = 'ltr' | 'rtl'
 

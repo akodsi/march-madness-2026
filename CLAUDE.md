@@ -86,6 +86,18 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] Pipeline step 9/10 fetches odds before final merge; API key stored in `.env`
 - [x] Bracket matchup corrections: Missouri ↔ Texas A&M (South/West swap), Penn ↔ Queens NC (South/West swap) — verified against DraftKings lines
 
+## Post-Tournament Analysis (v8) — all complete
+- [x] Results data layer — `results_2026.json` stores actual winners + scores per matchup; merged into bracket at load time
+- [x] `actual_winner`, `actual_score_a`, `actual_score_b` fields added to Matchup dataclass
+- [x] Analysis engine (`analysis_engine.py`) — three analysis functions computed from completed matchups
+- [x] Signal Report Card — grades each of the 6 signals as standalone predictors (accuracy bars, sorted by performance)
+- [x] Vegas vs. Model — head-to-head comparison of model picks vs Vegas implied picks, with disagreement games highlighted
+- [x] Upset Autopsy — per-upset breakdown showing which signals saw it coming vs missed, with "Called It" / "Missed" badges
+- [x] New `GET /analysis` endpoint returning all three sections
+- [x] Separate `/analysis` page (not part of bracket UI) — tabbed dashboard with Signal Report Card, Vegas vs. Model, Upset Autopsy
+- [x] "Post-Game Analysis" nav link in bracket header
+- [x] TypeScript types added (`AnalysisData`, `SignalGrade`, `VegasGame`, `UpsetDetail` interfaces)
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -123,6 +135,7 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | DELETE | `/bracket/{id}/pick` | Undo a pick, clears downstream |
 | POST | `/bracket/reset` | Wipe all picks |
 | GET | `/champion-likelihood` | All 68 teams scored against champion patterns, sorted by score |
+| GET | `/analysis` | Post-tournament analysis: signal report card, vegas vs model, upset autopsy |
 
 ## Data Sources
 | Source | Purpose |
@@ -174,7 +187,8 @@ backend/
 ├── models/
 │   ├── rule_engine.py               6-signal weighted probability calculator + commentary + champion likelihood + vegas odds
 │   ├── champion_rules.py            Champion-pattern scoring (hard filters + soft score from Torvik/AP data)
-│   └── bracket.py                   Full bracket tree with pick/cascade logic
+│   ├── analysis_engine.py           Post-tournament analysis (signal report card, vegas vs model, upset autopsy)
+│   └── bracket.py                   Full bracket tree with pick/cascade logic + actual results merge
 ├── pipeline/
 │   ├── run_pipeline.py              Master pipeline runner (10 steps — ends with tournament_filter merge)
 │   ├── stats_ingest.py              Sports-Reference scraper
@@ -190,19 +204,21 @@ backend/
 │   ├── champion_ingest.py           Bart Torvik efficiency ranks + ESPN AP Poll → champion_data_2026.json
 │   ├── odds_ingest.py               DraftKings moneyline + spread via The Odds API → odds_2026.json
 │   └── torvik_ingest.py             Bart Torvik advanced stats (optional)
-└── data/processed/                  All output CSVs + bracket JSON + commentary JSON
+└── data/processed/                  All output CSVs + bracket JSON + commentary JSON + results JSON
 
 frontend/
-├── src/app/                         Next.js app shell (/ bracket, /champion comparison)
-│   └── champion/page.tsx            Champion Profiles full-page sortable table
+├── src/app/                         Next.js app shell (/ bracket, /champion comparison, /analysis)
+│   ├── champion/page.tsx            Champion Profiles full-page sortable table
+│   └── analysis/page.tsx            Post-Tournament Analysis dashboard
 ├── src/lib/
-│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary, ChampionCheck, ChampionLikelihood)
+│   ├── types.ts                     TypeScript interfaces (Matchup, raw_stats, Headline, RedditPost, TeamCommentary, ChampionCheck, ChampionLikelihood, AnalysisData)
 │   ├── api.ts                       API client functions
 │   ├── bracketSlots.ts              Slot ordering + layout constants
 │   ├── teamLogos.ts                 ESPN logo URL mapping for 68 teams
 │   └── exportPdf.ts                 PDF export via html2canvas + jsPDF
 └── src/components/
-    ├── BracketBoard.tsx             Tab navigation + state manager + export button + champion profiles link
+    ├── BracketBoard.tsx             Tab navigation + state manager + export button + champion profiles + analysis links
+    ├── AnalysisDashboard.tsx        Post-tournament analysis (signal report card, vegas vs model, upset autopsy)
     ├── RegionBracket.tsx            One region's 4 rounds
     ├── MatchupCard.tsx              Seeds + logos + % bars + streak badge + injury icon + ⓘ button
     ├── MatchupDetail.tsx            Full breakdown modal (signals, momentum, injuries, ESPN/Google News/Reddit commentary, champion profile, case for each team)
@@ -228,8 +244,9 @@ frontend/
 13. ✅ Champion likelihood (v6) — Torvik efficiency + AP Poll → per-rule champion-pattern scoring (backend only, frontend deferred)
 14. ✅ Champion likelihood frontend (v6.1) — modal section + `/champion` comparison page + new API endpoint
 15. ✅ Vegas odds (v7) — DraftKings moneyline + spread via The Odds API (backend only, frontend deferred)
-16. Vegas odds frontend (v7.1) — odds section in matchup detail modal + card indicators (next)
-17. Post-round refresh — update predictions after each round's results
+16. ✅ Vegas odds frontend (v7.1) — odds section in matchup detail modal + card indicators
+17. ✅ Post-tournament analysis (v8) — signal report card, vegas vs model, upset autopsy on `/analysis` page
+18. Post-round refresh — update predictions after each round's results
 
 ## Running the Pipeline
 ```bash

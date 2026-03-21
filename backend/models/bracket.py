@@ -29,6 +29,7 @@ from typing import Optional
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 BRACKET_STATE_FILE = PROCESSED_DIR / "bracket_state_2026.json"
+RESULTS_FILE = PROCESSED_DIR / "results_2026.json"
 
 
 @dataclass
@@ -50,6 +51,9 @@ class Matchup:
     raw_stats: Optional[dict] = field(default=None)
     commentary: Optional[dict] = field(default=None)
     champion_likelihood: Optional[dict] = field(default=None)
+    actual_winner: Optional[str] = field(default=None)
+    actual_score_a: Optional[int] = field(default=None)
+    actual_score_b: Optional[int] = field(default=None)
 
     def is_ready(self) -> bool:
         """Both teams are known — probabilities can be calculated."""
@@ -390,6 +394,15 @@ class Bracket:
                             b.pick(mid, data["user_pick"])
                         except Exception:
                             pass
+        # Merge actual results if available
+        if RESULTS_FILE.exists():
+            with open(RESULTS_FILE) as f:
+                results = json.load(f)
+            for mid, res in results.items():
+                if mid in b.matchups and res.get("winner"):
+                    b.matchups[mid].actual_winner = res["winner"]
+                    b.matchups[mid].actual_score_a = res.get("score_a")
+                    b.matchups[mid].actual_score_b = res.get("score_b")
         return b
 
     # -----------------------------------------------------------------------

@@ -108,6 +108,12 @@ export default function BracketBoard() {
             >
               Champion Profiles
             </Link>
+            <Link
+              href="/analysis"
+              className="text-xs text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 rounded px-3 py-1 transition-colors"
+            >
+              Post-Game Analysis
+            </Link>
             <button
               onClick={handleExport}
               disabled={exporting}

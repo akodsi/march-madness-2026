@@ -1,4 +1,4 @@
-import { BracketData, ChampionLikelihood } from './types'
+import { BracketData, ChampionLikelihood, AnalysisData } from './types'
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
 
@@ -31,3 +31,6 @@ export const resetBracket = (): Promise<BracketData> =>
 
 export const fetchChampionLikelihood = (): Promise<ChampionLikelihood[]> =>
   request('/champion-likelihood')
+
+export const fetchAnalysis = (): Promise<AnalysisData> =>
+  request('/analysis')

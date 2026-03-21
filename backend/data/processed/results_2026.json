@@ -1,0 +1,44 @@
+{
+  "_comment": "Actual 2026 NCAA Tournament results. team_a/team_b positions match bracket.py.",
+
+  "FF_1":    { "winner": "Howard",         "score_a": 83, "score_b": 86 },
+  "FF_2":    { "winner": "Miami (OH)",      "score_a": 89, "score_b": 79 },
+  "FF_3":    { "winner": "Texas",           "score_a": 68, "score_b": 66 },
+  "FF_4":    { "winner": "Prairie View",    "score_a": 67, "score_b": 55 },
+
+  "E_R1_1":  { "winner": "Duke",            "score_a": 71, "score_b": 65 },
+  "E_R1_2":  { "winner": "TCU",             "score_a": 64, "score_b": 66 },
+  "E_R1_3":  { "winner": "St. John's (NY)", "score_a": 79, "score_b": 53 },
+  "E_R1_4":  { "winner": "Kansas",          "score_a": null, "score_b": null },
+  "E_R1_5":  { "winner": "Louisville",      "score_a": 83, "score_b": 79 },
+  "E_R1_6":  { "winner": "Michigan State",  "score_a": 92, "score_b": 67 },
+  "E_R1_7":  { "winner": "UCLA",            "score_a": 75, "score_b": 71 },
+  "E_R1_8":  { "winner": "Connecticut",     "score_a": null, "score_b": null },
+
+  "W_R1_1":  { "winner": "Arizona",         "score_a": 92, "score_b": 58 },
+  "W_R1_2":  { "winner": "Utah State",      "score_a": 76, "score_b": 86 },
+  "W_R1_3":  { "winner": "High Point",      "score_a": 82, "score_b": 83 },
+  "W_R1_4":  { "winner": "Arkansas",        "score_a": 97, "score_b": 78 },
+  "W_R1_5":  { "winner": "Texas",           "score_a": 79, "score_b": 71 },
+  "W_R1_6":  { "winner": "Gonzaga",         "score_a": 73, "score_b": 64 },
+  "W_R1_7":  { "winner": "Texas A&M",       "score_a": 50, "score_b": 63 },
+  "W_R1_8":  { "winner": "Purdue",          "score_a": 104, "score_b": 71 },
+
+  "MW_R1_1": { "winner": "Michigan",        "score_a": 80, "score_b": 101 },
+  "MW_R1_2": { "winner": "Saint Louis",     "score_a": 77, "score_b": 102 },
+  "MW_R1_3": { "winner": "Texas Tech",      "score_a": 91, "score_b": 71 },
+  "MW_R1_4": { "winner": "Alabama",         "score_a": 90, "score_b": 70 },
+  "MW_R1_5": { "winner": "Tennessee",       "score_a": 78, "score_b": 56 },
+  "MW_R1_6": { "winner": "Virginia",        "score_a": 82, "score_b": 73 },
+  "MW_R1_7": { "winner": "Kentucky",        "score_a": 89, "score_b": 84 },
+  "MW_R1_8": { "winner": "Iowa State",      "score_a": 108, "score_b": 74 },
+
+  "S_R1_1":  { "winner": "Florida",         "score_a": null, "score_b": null },
+  "S_R1_2":  { "winner": "Iowa",            "score_a": 61, "score_b": 67 },
+  "S_R1_3":  { "winner": "Vanderbilt",      "score_a": 78, "score_b": 68 },
+  "S_R1_4":  { "winner": "Nebraska",        "score_a": 76, "score_b": 47 },
+  "S_R1_5":  { "winner": "VCU",             "score_a": 78, "score_b": 82 },
+  "S_R1_6":  { "winner": "Illinois",        "score_a": 105, "score_b": 70 },
+  "S_R1_7":  { "winner": "Miami (FL)",      "score_a": null, "score_b": null },
+  "S_R1_8":  { "winner": "Houston",         "score_a": 78, "score_b": 47 }
+}
