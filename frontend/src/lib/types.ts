@@ -52,6 +52,27 @@ export interface ChampionLikelihood {
   }
 }
 
+export interface UpsetAlert {
+  active: boolean
+  underdog: string
+  underdog_adjD_rank: number
+  favorite: string
+  favorite_adjD_rank: number | null
+  seed_gap: number
+  nudge_pct: number
+  reason: string
+}
+
+export interface VegasDisagreement {
+  level: 'agree' | 'disagree_winner' | 'disagree_confidence'
+  model_prob_a: number
+  vegas_prob_a: number
+  diff_pct: number
+  model_favors?: string
+  vegas_favors?: string
+  message: string
+}
+
 export interface Matchup {
   id: string
   round_name: string
@@ -74,6 +95,11 @@ export interface Matchup {
     wins_a: number; wins_b: number
     losses_a: number; losses_b: number
     distance_a: number; distance_b: number
+    // Torvik efficiency
+    torvik_adjEM_a?: number | null; torvik_adjEM_b?: number | null
+    torvik_adjOE_a?: number | null; torvik_adjOE_b?: number | null
+    torvik_adjDE_a?: number | null; torvik_adjDE_b?: number | null
+    torvik_overall_rank_a?: number | null; torvik_overall_rank_b?: number | null
     // Momentum
     last10_wins_a?: number; last10_wins_b?: number
     last10_losses_a?: number; last10_losses_b?: number
@@ -99,6 +125,8 @@ export interface Matchup {
     team_a: ChampionLikelihood
     team_b: ChampionLikelihood
   } | null
+  upset_alert?: UpsetAlert | null
+  vegas_disagreement?: VegasDisagreement | null
 }
 
 export type BracketData = Record<string, Matchup>

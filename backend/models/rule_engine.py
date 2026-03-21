@@ -1,30 +1,34 @@
 """
-Rule-based prediction engine.
+Rule-based prediction engine (v2 — post-R64 recalibration).
 
 For any two tournament teams, produces a win probability (0–1) for Team A
-by combining six signals with explicit weights.
+by combining four weighted signals, plus upset detection and Vegas disagreement.
 
-Weights:
-    SRS delta         30%  — best single predictor of team quality
-    SOS               25%  — adjusts for strength of competition faced
-    Momentum          15%  — recent form (last 10 games, margin trend)
-    Seed history      10%  — historical matchup rates, down-weighted
-    Travel advantage  10%  — geographic proximity to venue
-    Injuries          10%  — roster health / key players out
+Weighted signals (sum to 1.0):
+    SRS delta         30%  — team quality from Sports-Reference
+    SOS               20%  — schedule difficulty (recalibrated, gentler curve)
+    Torvik AdjEM      30%  — possession-adjusted efficiency margin (new)
+    Seed history      20%  — historical matchup rates (upweighted)
 
-Commentary from expert sources is passed through for display but does NOT
-affect the probability calculation.
+Display-only signals (0% weight, shown in modal for context):
+    Momentum, Travel, Injuries — removed from formula after R64 analysis
+    showed 47%, 50%, 25% accuracy respectively.
 
-All signals are converted to a [0, 1] win probability before weighting,
-then combined into a final probability and confidence label.
+Post-processing:
+    Upset heuristic   — nudges probability toward underdog when they have
+                        elite Torvik defense (top-40 AdjDE) and seed gap ≥ 4
+    Vegas disagreement — flags games where model and Vegas lines diverge by
+                         ≥10 percentage points (informational, not in formula)
 
-Weights are defined in WEIGHTS dict — easy to adjust in future iterations.
+Commentary and champion likelihood are passed through for display only.
 """
 
+from __future__ import annotations
 import math
 import json
 import pandas as pd
 from pathlib import Path
+from typing import Optional
 from models.champion_rules import score_champion_likelihood
 
 PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
@@ -33,22 +37,25 @@ PROCESSED_DIR = Path(__file__).parent.parent / "data" / "processed"
 # Weights — must sum to 1.0
 # ---------------------------------------------------------------------------
 WEIGHTS = {
-    "srs":       0.30,   # Efficiency/quality delta
-    "sos":       0.25,   # Strength of schedule delta
-    "momentum":  0.15,   # Recent form (last 10 W/L + margin trend)
-    "seed":      0.10,   # Historical seed matchup win rate
-    "travel":    0.10,   # Geographic proximity advantage
-    "injuries":  0.10,   # Roster health comparison
+    "srs":       0.30,   # Efficiency/quality delta (Sports-Reference)
+    "sos":       0.20,   # Strength of schedule delta
+    "torvik":    0.30,   # Torvik AdjEM (adjusted efficiency margin) delta
+    "seed":      0.20,   # Historical seed matchup win rate
 }
+
+# Legacy signals — kept at 0 weight for display only (proven unreliable in R64)
+DISPLAY_ONLY_SIGNALS = {"momentum", "travel", "injuries"}
 
 assert abs(sum(WEIGHTS.values()) - 1.0) < 1e-9, "Weights must sum to 1.0"
 
 # Sigmoid steepness for SRS and SOS conversions.
 # At k=0.12, a 10-point SRS gap → ~75% win prob. At 20 points → ~91%.
 SRS_K = 0.12
-# SOS ranges tighter than SRS, so steeper curve needed.
-# At k=0.18, a 10-point SOS gap → ~83% win prob.
-SOS_K = 0.18
+# SOS measures schedule difficulty, not direct quality — gentler curve.
+# At k=0.10, a 10-point SOS gap → ~73% win prob (was 0.18 → 83%, too aggressive).
+SOS_K = 0.10
+# Torvik AdjEM: similar scale to SRS but possession-adjusted. Use same steepness.
+TORVIK_K = 0.12
 
 
 # ---------------------------------------------------------------------------
@@ -60,6 +67,7 @@ _commentary = None
 _community = None
 _injury_details = None
 _odds = None
+_champion_data = None
 
 
 def _load_teams() -> pd.DataFrame:
@@ -131,6 +139,18 @@ def _load_community() -> dict:
     return _community
 
 
+def _load_champion_data() -> dict:
+    global _champion_data
+    if _champion_data is None:
+        path = PROCESSED_DIR / "champion_data_2026.json"
+        if path.exists():
+            with open(path) as f:
+                _champion_data = json.load(f)
+        else:
+            _champion_data = {}
+    return _champion_data
+
+
 def _load_odds() -> dict:
     global _odds
     if _odds is None:
@@ -184,6 +204,22 @@ def sos_prob(team_a: pd.Series, team_b: pd.Series) -> float:
     if pd.isna(a) or pd.isna(b):
         return 0.5
     return _sigmoid(float(a) - float(b), SOS_K)
+
+
+def torvik_prob(team_a_name: str, team_b_name: str) -> float:
+    """
+    Win probability based on Torvik AdjEM (adjusted efficiency margin) delta.
+    AdjEM = AdjOE - AdjDE — captures both offensive and defensive quality
+    in a single possession-adjusted number. Higher = better team.
+    """
+    champ_data = _load_champion_data()
+    a_data = champ_data.get(team_a_name, {})
+    b_data = champ_data.get(team_b_name, {})
+    a_em = a_data.get("torvik_adjEM")
+    b_em = b_data.get("torvik_adjEM")
+    if a_em is None or b_em is None:
+        return 0.5
+    return _sigmoid(float(a_em) - float(b_em), TORVIK_K)
 
 
 def seed_prob(team_a: pd.Series, team_b: pd.Series) -> float:
@@ -270,6 +306,144 @@ def injury_prob(team_a: pd.Series, team_b: pd.Series) -> float:
 
 
 # ---------------------------------------------------------------------------
+# Upset detection heuristic
+# ---------------------------------------------------------------------------
+
+# Thresholds for upset adjustment
+UPSET_SEED_GAP = 4         # Only apply when seed gap ≥ 4 (e.g. 5 vs 12)
+UPSET_MAX_NUDGE = 0.05     # Cap the adjustment at 5 percentage points
+UPSET_DEFENSE_THRESHOLD = 40  # Underdog's AdjDE rank must be top-40
+
+
+def _upset_adjustment(
+    prob_a: float,
+    seed_a: int, seed_b: int,
+    team_a_name: str, team_b_name: str,
+) -> tuple[float, Optional[dict]]:
+    """
+    Nudge probability toward the underdog when defensive efficiency mismatch exists.
+    Returns (adjusted_prob_a, upset_info_dict_or_None).
+
+    Logic: When there's a big seed gap but the underdog has elite Torvik defense
+    (top-40 AdjDE), the game is likely to be low-possession grind where upsets
+    happen. Apply a small nudge (capped at 5%) toward the underdog.
+    """
+    seed_gap = abs(seed_a - seed_b)
+    if seed_gap < UPSET_SEED_GAP:
+        return prob_a, None
+
+    # Determine favorite/underdog
+    if seed_a < seed_b:
+        fav_name, dog_name = team_a_name, team_b_name
+        fav_is_a = True
+    else:
+        fav_name, dog_name = team_b_name, team_a_name
+        fav_is_a = False
+
+    champ_data = _load_champion_data()
+    dog_data = champ_data.get(dog_name, {})
+    fav_data = champ_data.get(fav_name, {})
+    dog_adjD = dog_data.get("torvik_adjD_rank")
+    fav_adjD = fav_data.get("torvik_adjD_rank")
+
+    if dog_adjD is None:
+        return prob_a, None
+
+    # Underdog must have strong defense (top-40)
+    if dog_adjD > UPSET_DEFENSE_THRESHOLD:
+        return prob_a, None
+
+    # Scale nudge: better defense = bigger nudge, larger seed gap = bigger nudge
+    defense_factor = (UPSET_DEFENSE_THRESHOLD - dog_adjD) / UPSET_DEFENSE_THRESHOLD
+    gap_factor = min(seed_gap / 12, 1.0)  # normalize: 12-seed gap = max
+    nudge = UPSET_MAX_NUDGE * defense_factor * gap_factor
+
+    # Apply nudge toward underdog
+    if fav_is_a:
+        adjusted = max(prob_a - nudge, 0.35)  # don't flip the favorite
+    else:
+        adjusted = min(prob_a + nudge, 0.65)
+
+    upset_info = {
+        "active": True,
+        "underdog": dog_name,
+        "underdog_adjD_rank": dog_adjD,
+        "favorite": fav_name,
+        "favorite_adjD_rank": fav_adjD,
+        "seed_gap": seed_gap,
+        "nudge_pct": round(abs(adjusted - prob_a) * 100, 1),
+        "reason": f"{dog_name} has elite defense (#{dog_adjD} AdjDE) — potential grind-it-out upset",
+    }
+    return adjusted, upset_info
+
+
+# ---------------------------------------------------------------------------
+# Vegas–Model disagreement detector
+# ---------------------------------------------------------------------------
+
+VEGAS_DISAGREE_THRESHOLD = 0.10  # 10 percentage point gap
+
+
+def _vegas_disagreement(prob_a: float, team_a: str, team_b: str) -> Optional[dict]:
+    """
+    Compare model probability to Vegas no-vig probability.
+    Returns disagreement info when the gap exceeds threshold.
+    """
+    matchup_odds = _find_odds(team_a, team_b)
+    if not matchup_odds:
+        return None
+
+    # Map to team_a/team_b
+    if matchup_odds["team_a"] == team_a:
+        vegas_a = matchup_odds.get("no_vig_prob_a")
+    else:
+        vegas_a = matchup_odds.get("no_vig_prob_b")
+
+    if vegas_a is None:
+        return None
+
+    diff = prob_a - vegas_a
+    abs_diff = abs(diff)
+
+    if abs_diff < VEGAS_DISAGREE_THRESHOLD:
+        return {
+            "level": "agree",
+            "model_prob_a": round(prob_a, 4),
+            "vegas_prob_a": round(vegas_a, 4),
+            "diff_pct": round(abs_diff * 100, 1),
+            "message": "Model and Vegas broadly agree",
+        }
+
+    # Determine who each side favors
+    model_fav = team_a if prob_a > 0.5 else team_b
+    vegas_fav = team_a if vegas_a > 0.5 else team_b
+    disagree_on_winner = model_fav != vegas_fav
+
+    if disagree_on_winner:
+        level = "disagree_winner"
+        msg = f"Model picks {model_fav}, Vegas picks {vegas_fav} — they disagree on the winner"
+    elif diff > 0:
+        # Model more confident in team_a than Vegas
+        more_confident_in = team_a if prob_a > 0.5 else team_b
+        level = "disagree_confidence"
+        msg = f"Model is {round(abs_diff * 100)}pts more confident in {more_confident_in} than Vegas"
+    else:
+        more_confident_in = team_a if vegas_a > 0.5 else team_b
+        level = "disagree_confidence"
+        msg = f"Vegas is {round(abs_diff * 100)}pts more confident in {more_confident_in} than Model"
+
+    return {
+        "level": level,
+        "model_prob_a": round(prob_a, 4),
+        "vegas_prob_a": round(vegas_a, 4),
+        "diff_pct": round(abs_diff * 100, 1),
+        "model_favors": model_fav,
+        "vegas_favors": vegas_fav,
+        "message": msg,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Core prediction function
 # ---------------------------------------------------------------------------
 
@@ -289,16 +463,28 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
     a = get_team(team_a_name)
     b = get_team(team_b_name)
 
+    # Weighted signals — these drive the prediction
     signals = {
         "srs":       srs_prob(a, b),
         "sos":       sos_prob(a, b),
-        "momentum":  momentum_prob(a, b),
+        "torvik":    torvik_prob(team_a_name, team_b_name),
         "seed":      seed_prob(a, b),
+    }
+
+    # Display-only signals — still calculated for the modal but 0 weight
+    display_signals = {
+        "momentum":  momentum_prob(a, b),
         "travel":    travel_prob(a, b),
         "injuries":  injury_prob(a, b),
     }
 
     prob_a = sum(WEIGHTS[k] * v for k, v in signals.items())
+
+    # Upset detection heuristic — nudge toward underdog when defense mismatch exists
+    seed_a_val = int(a.get("Seed", 8))
+    seed_b_val = int(b.get("Seed", 8))
+    prob_a, upset_info = _upset_adjustment(prob_a, seed_a_val, seed_b_val, team_a_name, team_b_name)
+
     prob_b = 1.0 - prob_a
 
     # Round to whole percentages that sum to 100
@@ -357,6 +543,22 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "key_players_out_b": _key_players_out(team_b_name),
     }
 
+    # Torvik efficiency stats
+    champ_data = _load_champion_data()
+    a_torvik = champ_data.get(team_a_name, {})
+    b_torvik = champ_data.get(team_b_name, {})
+    raw_stats["torvik_adjEM_a"] = a_torvik.get("torvik_adjEM")
+    raw_stats["torvik_adjEM_b"] = b_torvik.get("torvik_adjEM")
+    raw_stats["torvik_adjOE_a"] = a_torvik.get("torvik_adjOE")
+    raw_stats["torvik_adjOE_b"] = b_torvik.get("torvik_adjOE")
+    raw_stats["torvik_adjDE_a"] = a_torvik.get("torvik_adjDE")
+    raw_stats["torvik_adjDE_b"] = b_torvik.get("torvik_adjDE")
+    raw_stats["torvik_overall_rank_a"] = a_torvik.get("torvik_overall_rank")
+    raw_stats["torvik_overall_rank_b"] = b_torvik.get("torvik_overall_rank")
+
+    # Vegas–Model disagreement detection
+    vegas_disagree = _vegas_disagreement(prob_a, team_a_name, team_b_name)
+
     # Vegas odds — display only, not part of prediction formula
     matchup_odds = _find_odds(team_a_name, team_b_name)
     if matchup_odds:
@@ -392,6 +594,9 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
     champ_a = score_champion_likelihood(team_a_name, seed_a)
     champ_b = score_champion_likelihood(team_b_name, seed_b)
 
+    # Merge weighted + display-only signals for frontend rendering
+    all_signals = {**signals, **display_signals}
+
     return {
         "team_a":      team_a_name,
         "team_b":      team_b_name,
@@ -400,14 +605,16 @@ def predict(team_a_name: str, team_b_name: str) -> dict:
         "pct_a":       pct_a,
         "pct_b":       pct_b,
         "confidence":  label,
-        "signals":     {k: round(v, 4) for k, v in signals.items()},
-        "weights":     WEIGHTS,
+        "signals":     {k: round(v, 4) for k, v in all_signals.items()},
+        "weights":     {**WEIGHTS, **{k: 0.0 for k in DISPLAY_ONLY_SIGNALS}},
         "raw_stats":   raw_stats,
         "commentary":  commentary,
         "champion_likelihood": {
             "team_a": champ_a,
             "team_b": champ_b,
         },
+        "upset_alert":        upset_info,
+        "vegas_disagreement": vegas_disagree,
     }
 
 

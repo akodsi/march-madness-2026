@@ -135,6 +135,19 @@ export default function MatchupCard({ matchup, onPick, onUnpick, onDetail }: Pro
 
       <div className="flex items-center gap-1 px-2" style={{ height: 16 }}>
         <div className="flex-1 border-t border-slate-700" />
+        {matchup.upset_alert?.active && (
+          <span className="text-[8px] text-orange-400 font-bold leading-none flex-shrink-0" title={matchup.upset_alert.reason}>⚡</span>
+        )}
+        {matchup.vegas_disagreement && matchup.vegas_disagreement.level !== 'agree' && (
+          <span
+            className={`text-[8px] font-bold leading-none flex-shrink-0 ${
+              matchup.vegas_disagreement.level === 'disagree_winner' ? 'text-red-400' : 'text-amber-400'
+            }`}
+            title={matchup.vegas_disagreement.message}
+          >
+            {matchup.vegas_disagreement.level === 'disagree_winner' ? 'VS' : '△'}
+          </span>
+        )}
         {confidence && ready && (
           <span className={`text-[9px] uppercase tracking-wide leading-none whitespace-nowrap px-1.5 py-0.5 rounded-full ${confPill}`}>
             {confidence}

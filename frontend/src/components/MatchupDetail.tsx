@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Matchup, RedditPost, ChampionLikelihood, ChampionCheck } from '@/lib/types'
+import { Matchup, RedditPost, ChampionCheck } from '@/lib/types'
 import { getLogoUrl, getInitials } from '@/lib/teamLogos'
 
 interface Props {
@@ -97,6 +97,20 @@ function buildCase(
     bullets.push(`Similar schedule difficulty — SOS of ${sosVal > 0 ? '+' : ''}${sosVal}`)
   }
 
+  // Torvik Efficiency
+  const torvik = signals.torvik !== undefined ? (isA ? signals.torvik : 1 - signals.torvik) : undefined
+  const adjEM  = isA ? raw.torvik_adjEM_a : raw.torvik_adjEM_b
+  const tRank  = isA ? raw.torvik_overall_rank_a : raw.torvik_overall_rank_b
+  if (torvik !== undefined && adjEM != null) {
+    if (torvik >= 0.55) {
+      bullets.push(`Higher efficiency margin — Torvik AdjEM ${adjEM > 0 ? '+' : ''}${adjEM.toFixed(1)}${tRank ? ` (#${tRank} overall)` : ''}, more efficient on both ends`)
+    } else if (torvik <= 0.45) {
+      bullets.push(`Lower efficiency margin — Torvik AdjEM ${adjEM > 0 ? '+' : ''}${adjEM.toFixed(1)}${tRank ? ` (#${tRank} overall)` : ''}, opponent more efficient`)
+    } else {
+      bullets.push(`Similar efficiency — Torvik AdjEM ${adjEM > 0 ? '+' : ''}${adjEM.toFixed(1)}${tRank ? ` (#${tRank} overall)` : ''}`)
+    }
+  }
+
   // Seed history
   const otherSeed = isA ? raw.seed_b : raw.seed_a
   if (seed >= 0.60) {
@@ -159,6 +173,7 @@ function buildCase(
 const SIGNAL_LABELS: Record<string, string> = {
   srs:      'Team Quality (SRS)',
   sos:      'Schedule Strength',
+  torvik:   'Efficiency (Torvik)',
   seed:     'Seed History',
   travel:   'Travel Advantage',
   momentum: 'Momentum',
@@ -166,8 +181,10 @@ const SIGNAL_LABELS: Record<string, string> = {
 }
 
 const WEIGHTS: Record<string, number> = {
-  srs: 30, sos: 25, seed: 10, travel: 10, momentum: 15, injuries: 10,
+  srs: 30, sos: 20, torvik: 30, seed: 20, travel: 0, momentum: 0, injuries: 0,
 }
+
+const DISPLAY_ONLY_SIGNALS = new Set(['travel', 'momentum', 'injuries'])
 
 export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Props) {
   const { id, team_a, team_b, pct_a, pct_b, confidence, user_pick, signals, raw_stats, round_name, region } = matchup
@@ -258,11 +275,14 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
           <div className="px-6 py-4 border-b border-slate-800">
             <h3 className="text-xs uppercase tracking-widest text-slate-500 mb-3">Signal Breakdown</h3>
             <div className="space-y-2.5">
-              {Object.entries(signals).map(([key, probA]) => {
+              {Object.entries(signals)
+                .sort((a, b) => (WEIGHTS[b[0]] ?? 0) - (WEIGHTS[a[0]] ?? 0))
+                .map(([key, probA]) => {
                 const pctA  = Math.round(probA * 100)
                 const pctB  = 100 - pctA
                 const { edge: edgeA, color: colorA } = signalEdge(probA)
                 const weight = WEIGHTS[key] ?? 0
+                const isDisplayOnly = DISPLAY_ONLY_SIGNALS.has(key)
 
                 const dominantColor = (pct: number) =>
                   pct >= 75 ? 'bg-emerald-600' : pct >= 60 ? 'bg-blue-600' : pct >= 52 ? 'bg-yellow-500' : 'bg-slate-600'
@@ -270,9 +290,12 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                 const barColorB = pctB >  pctA ? dominantColor(pctB) : 'bg-slate-800'
 
                 return (
-                  <div key={key}>
+                  <div key={key} className={isDisplayOnly ? 'opacity-40' : ''}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-slate-400">{SIGNAL_LABELS[key] ?? key}</span>
+                      <span className="text-xs text-slate-400">
+                        {SIGNAL_LABELS[key] ?? key}
+                        {isDisplayOnly && <span className="text-[9px] text-slate-600 ml-1.5">(display only)</span>}
+                      </span>
                       <span className="text-[10px] text-slate-600">{weight}% weight</span>
                     </div>
                     <div className="flex h-4 rounded overflow-hidden text-[9px] font-bold gap-px bg-slate-900">
@@ -297,6 +320,40 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                 )
               })}
             </div>
+          </div>
+        )}
+
+        {/* Upset Alert — when the model detects a defensive mismatch favoring the underdog */}
+        {matchup.upset_alert?.active && (
+          <div className="mx-6 my-3 bg-orange-500/10 border border-orange-500/30 rounded-lg px-4 py-3">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-orange-400 text-sm">⚡</span>
+              <span className="text-xs font-bold text-orange-400 uppercase tracking-wide">Upset Alert</span>
+              <span className="text-[10px] text-orange-400/60">+{matchup.upset_alert.nudge_pct}% to underdog</span>
+            </div>
+            <p className="text-[11px] text-slate-300 leading-snug">{matchup.upset_alert.reason}</p>
+          </div>
+        )}
+
+        {/* Vegas Disagreement — when model and Vegas diverge significantly */}
+        {matchup.vegas_disagreement && matchup.vegas_disagreement.level !== 'agree' && (
+          <div className={`mx-6 my-3 rounded-lg px-4 py-3 border ${
+            matchup.vegas_disagreement.level === 'disagree_winner'
+              ? 'bg-red-500/10 border-red-500/30'
+              : 'bg-amber-500/10 border-amber-500/30'
+          }`}>
+            <div className="flex items-center gap-2 mb-1">
+              <span className={matchup.vegas_disagreement.level === 'disagree_winner' ? 'text-red-400 text-sm' : 'text-amber-400 text-sm'}>
+                {matchup.vegas_disagreement.level === 'disagree_winner' ? '🔴' : '⚠'}
+              </span>
+              <span className={`text-xs font-bold uppercase tracking-wide ${
+                matchup.vegas_disagreement.level === 'disagree_winner' ? 'text-red-400' : 'text-amber-400'
+              }`}>
+                Vegas Disagrees
+              </span>
+              <span className="text-[10px] text-slate-500">{matchup.vegas_disagreement.diff_pct}pt gap</span>
+            </div>
+            <p className="text-[11px] text-slate-300 leading-snug">{matchup.vegas_disagreement.message}</p>
           </div>
         )}
 
@@ -384,30 +441,24 @@ export default function MatchupDetail({ matchup, onPick, onUnpick, onClose }: Pr
                   ))}
                 </div>
 
-                {(() => {
-                  const vegasA = Math.round(raw_stats.no_vig_prob_a! * 100)
-                  const diff = Math.abs(pct_a - vegasA)
-                  if (diff >= 10) {
-                    const modelFavA = pct_a > pct_b
-                    const vegasFavA = vegasA > 50
-                    const disagreeOnWinner = modelFavA !== vegasFavA
-                    return (
-                      <div className="mt-2 bg-amber-500/10 border border-amber-500/20 rounded px-3 py-2">
-                        <p className="text-[10px] text-amber-400">
-                          {disagreeOnWinner
-                            ? '⚡ Model and Vegas disagree on the favorite'
-                            : `⚡ Model sees this ${pct_a > vegasA ? (modelFavA ? 'more' : 'less') : (modelFavA ? 'less' : 'more')} lopsided than Vegas — ${diff}pt gap`
-                          }
-                        </p>
-                      </div>
-                    )
-                  }
-                  return (
-                    <div className="mt-2 bg-slate-800/60 rounded px-3 py-2">
-                      <p className="text-[10px] text-slate-500">Model and Vegas broadly agree</p>
-                    </div>
-                  )
-                })()}
+                {matchup.vegas_disagreement && (
+                  <div className={`mt-2 rounded px-3 py-2 ${
+                    matchup.vegas_disagreement.level === 'agree'
+                      ? 'bg-slate-800/60'
+                      : matchup.vegas_disagreement.level === 'disagree_winner'
+                        ? 'bg-red-500/10 border border-red-500/20'
+                        : 'bg-amber-500/10 border border-amber-500/20'
+                  }`}>
+                    <p className={`text-[10px] ${
+                      matchup.vegas_disagreement.level === 'agree' ? 'text-slate-500'
+                      : matchup.vegas_disagreement.level === 'disagree_winner' ? 'text-red-400'
+                      : 'text-amber-400'
+                    }`}>
+                      {matchup.vegas_disagreement.level !== 'agree' && '⚡ '}
+                      {matchup.vegas_disagreement.message}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
           </div>

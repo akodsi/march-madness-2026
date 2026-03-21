@@ -3,8 +3,13 @@
 ## Project Goal
 Build a web app that predicts March Madness tournament outcomes with confidence levels for each matchup. The user sees both teams' win percentages (e.g. 68% vs 32%) and picks winners manually. Picks cascade forward — each new matchup recalculates automatically as teams advance. Start with a rule-based system, architected to swap in a statistical or ML model later.
 
-## Current Approach: Rule-Based (v2)
-- 6 weighted signals: SRS, SOS, momentum, seed history, travel advantage, injuries → both teams' win %
+## Current Approach: Rule-Based (v3 — Post-R64 Recalibration)
+- 4 weighted signals: SRS (30%), SOS (20%), Torvik AdjEM (30%), Seed History (20%) → both teams' win %
+- Torvik AdjEM (adjusted efficiency margin) added as a signal — possession-level quality metric
+- Momentum, Travel, Injuries dropped from formula (47%, 50%, 25% R64 accuracy) — still shown in modal as display-only
+- SOS sigmoid recalibrated (k=0.18→0.10) — schedule strength is a credibility signal, not a quality proxy
+- Upset detection heuristic — nudges probability toward underdog when Torvik defense mismatch + seed gap ≥ 4
+- Vegas–Model disagreement detector — flags games where model and Vegas diverge by ≥10pts (informational, not in formula)
 - Expert commentary from ESPN scraped and passed through for display (not part of prediction formula)
 - User picks the winner — no auto-prediction
 - Picks cascade forward through all 6 rounds
@@ -98,6 +103,20 @@ Build a web app that predicts March Madness tournament outcomes with confidence 
 - [x] "Post-Game Analysis" nav link in bracket header
 - [x] TypeScript types added (`AnalysisData`, `SignalGrade`, `VegasGame`, `UpsetDetail` interfaces)
 
+## Model Recalibration (v9 — Post-R64 Improvements) — all complete
+- [x] Dropped 3 underperforming signals — momentum (47%), travel (50%), injuries (25%) set to 0% weight; still calculated and shown in modal as "display only"
+- [x] Torvik AdjEM signal — possession-adjusted efficiency margin added at 30% weight via sigmoid on AdjEM delta between teams
+- [x] SOS sigmoid recalibrated — k=0.18→0.10, gentler curve appropriate for a credibility adjustment signal (was too aggressive)
+- [x] Weights redistributed — SRS 30%, Torvik 30%, SOS 20%, Seed 20% (was SRS 30%, SOS 25%, Momentum 15%, Seed 10%, Travel 10%, Injuries 10%)
+- [x] Upset detection heuristic — nudges underdog probability +1–5% when seed gap ≥ 4 and underdog has top-40 Torvik defense (AdjDE rank)
+- [x] Vegas–Model disagreement detector — compares model prob to DraftKings no-vig prob, flags games with ≥10pt gap
+- [x] Disagreement banner in matchup detail modal — red for winner disagreement, amber for confidence disagreement
+- [x] Card indicators — ⚡ for upset alert, △ / VS for Vegas disagreement visible on bracket cards
+- [x] Torvik raw stats (AdjEM, AdjOE, AdjDE, rank) passed through to frontend in raw_stats
+- [x] Signal bars sorted by weight (weighted signals first, display-only dimmed at 40% opacity)
+- [x] "Case for each team" section updated with Torvik efficiency bullet points
+- [x] TypeScript types updated — `UpsetAlert`, `VegasDisagreement` interfaces, Torvik fields in `raw_stats`
+
 ## Tech Stack
 - **Frontend**: Next.js 14 / React + Tailwind CSS — `frontend/`
 - **Backend**: Python 3.9 + FastAPI + uvicorn — `backend/`
@@ -154,21 +173,26 @@ Repo: https://github.com/akodsi/march-madness-2026 (private)
 | ESPN Rankings API | AP Poll Top 25 for champion-pattern scoring |
 | [The Odds API](https://the-odds-api.com/) | DraftKings moneyline + spread for tournament matchups (free tier) |
 
-## Key Metrics & Weights (v2)
+## Key Metrics & Weights (v3 — Post-R64 Recalibration)
 | Signal | Weight | What it measures |
 |--------|--------|-----------------|
 | SRS (efficiency) | **30%** | Overall team quality adjusted for opponent |
-| SOS (schedule strength) | **25%** | How hard was their regular season |
-| Momentum | **15%** | Last 10 games W/L record + margin of victory trend |
-| Seed history | **10%** | 10-year historical win rate for this seed matchup |
-| Travel advantage | **10%** | Geographic proximity to game venue |
-| Injuries | **10%** | Roster health — key players out reduce team's score |
+| Torvik AdjEM | **30%** | Possession-adjusted efficiency margin (offense - defense) |
+| SOS (schedule strength) | **20%** | How hard was their regular season (recalibrated k=0.10) |
+| Seed history | **20%** | 10-year historical win rate for this seed matchup |
+| ~~Momentum~~ | **0%** | Dropped — 47% R64 accuracy (inversely predictive) |
+| ~~Travel advantage~~ | **0%** | Dropped — 50% R64 accuracy (coin flip) |
+| ~~Injuries~~ | **0%** | Dropped — 25% R64 accuracy (actively harmful) |
+
+**Upset Detection**: When seed gap ≥ 4 and underdog has top-40 Torvik defensive efficiency, probability nudged up to 5% toward underdog. Capped so it never flips the favorite.
+
+**Vegas Disagreement**: When model and Vegas no-vig probabilities differ by ≥10 percentage points, a warning is shown on the card (⚡ or △) and in the matchup detail modal. Three levels: `agree` (< 10pt gap), `disagree_confidence` (same winner, different confidence), `disagree_winner` (different winner picks). Not part of weighted formula — Vegas already incorporates the same signals, so blending would double-count.
 
 **Commentary** (display only): ESPN headlines + team context, Google News headlines, and Reddit r/collegebasketball posts shown in matchup detail modal. Not part of weighted formula.
 
 **Champion Likelihood** (display only): Torvik efficiency ranks + AP Poll scored against historically-validated champion patterns. Hard filters (top-25 overall, top-25 defense, seed ≤ 8) plus soft score bonuses. Per-rule pass/fail checks available in API for frontend rendering.
 
-**Vegas Odds** (display only): DraftKings moneyline + spread per matchup. Implied win % (no-vig normalized) shown alongside model predictions for comparison. Not part of weighted formula — Vegas lines already incorporate the same signals the model uses, so blending would double-count.
+**Vegas Odds** (display only): DraftKings moneyline + spread per matchup. Implied win % (no-vig normalized) shown alongside model predictions for comparison.
 
 Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight Edge (55–64%) · Toss-Up (<55%)
 
@@ -179,6 +203,9 @@ Confidence labels: Heavy Favorite (80%+) · Clear Favorite (65–79%) · Slight 
 - **Injuries at 10%** — missing a star player can swing a game, but injury data is noisy (status changes daily, importance is estimated). Kept at 10% to influence without dominating.
 - **Commentary is display-only** — expert analysis is valuable as a sense check but too subjective to quantify in a formula. Shown in the matchup detail modal alongside signal breakdowns.
 - **No auto-winner prediction** — the app shows probabilities and lets the user decide, preserving human judgment.
+- **Torvik AdjEM at 30%** — possession-adjusted efficiency margin is widely considered the best single predictor of tournament outcomes. It captures both offensive and defensive quality in one number, and is highly correlated with KenPom (r > 0.95). Added after R64 analysis showed SRS (72%) and Torvik overlap but aren't identical.
+- **Vegas not blended into formula** — Vegas lines already incorporate SRS, Torvik/KenPom, injuries, momentum, and more. Blending Vegas alongside these signals would double-count. Instead, the model-vs-Vegas disagreement is surfaced as an informational flag.
+- **Upset heuristic is conservative** — caps at 5% nudge and never flips the favorite. Only fires when seed gap ≥ 4 and underdog has elite defense (top-40 AdjDE). Designed to flag potential grind-it-out upsets, not predict them.
 
 ## File Structure
 ```
@@ -246,7 +273,8 @@ frontend/
 15. ✅ Vegas odds (v7) — DraftKings moneyline + spread via The Odds API (backend only, frontend deferred)
 16. ✅ Vegas odds frontend (v7.1) — odds section in matchup detail modal + card indicators
 17. ✅ Post-tournament analysis (v8) — signal report card, vegas vs model, upset autopsy on `/analysis` page
-18. Post-round refresh — update predictions after each round's results
+18. ✅ Model recalibration (v9) — drop underperforming signals, add Torvik AdjEM, upset detection, Vegas disagreement detector
+19. Post-round refresh — update predictions after each round's results
 
 ## Running the Pipeline
 ```bash
